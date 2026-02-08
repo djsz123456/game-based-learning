@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>平均数 vs 中位数互动演示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        secondary: '#36D399',
+                        accent: '#F59E0B',
+                        neutral: '#1F2937',
+                        'neutral-light': '#F3F4F6',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .transition-transform-opacity {
+                transition-property: transform, opacity;
+            }
+            .scale-on-hover {
+                @apply hover:scale-105 transition-all duration-300;
+            }
+            .shadow-depth {
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            }
+        }
+    </style>
+</head>
+<body class="font-inter bg-gradient-to-br from-neutral-light to-white min-h-screen">
+    <!-- 顶部导航 -->
+    <header class="bg-white shadow-sm sticky top-0 z-50 transition-all duration-300" id="main-header">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa fa-bar-chart text-primary text-2xl"></i>
+                <h1 class="text-xl font-bold text-neutral">统计概念可视化</h1>
+            </div>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#concept" class="text-neutral hover:text-primary transition-colors">概念</a></li>
+                    <li><a href="#demo" class="text-neutral hover:text-primary transition-colors">互动演示</a></li>
+                    <li><a href="#practice" class="text-neutral hover:text-primary transition-colors">练习题</a></li>
+                    <li><a href="#summary" class="text-neutral hover:text-primary transition-colors">总结</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <!-- 介绍部分 -->
+        <section class="mb-16 text-center">
+            <h2 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-neutral mb-4">平均数 vs 中位数</h2>
+            <p class="text-lg text-neutral/80 max-w-3xl mx-auto mb-8">理解这两个集中趋势指标的差异及其在不同数据分布中的表现</p>
+            <div class="flex justify-center space-x-4">
+                <div class="bg-primary/10 rounded-full px-6 py-2 flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-primary mr-2"></div>
+                    <span>平均数</span>
+                </div>
+                <div class="bg-accent/10 rounded-full px-6 py-2 flex items-center">
+                    <div class="w-4 h-4 rounded-full bg-accent mr-2"></div>
+                    <span>中位数</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 概念解释 -->
+        <section id="concept" class="mb-16 bg-white rounded-xl shadow-depth p-8 transform transition-all duration-500 hover:shadow-lg">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-book text-primary mr-2"></i>基本概念
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-primary/5 p-6 rounded-lg border-l-4 border-primary transform transition-all duration-300 hover:scale-x-105">
+                    <h4 class="text-xl font-medium text-primary mb-3 flex items-center">
+                        <i class="fa fa-calculator mr-2"></i>平均数
+                    </h4>
+                    <p class="text-neutral/80">平均数是一组数据的总和除以数据点的数量，它对所有数据点都敏感，包括异常值。</p>
+                    <div class="mt-4 bg-white p-4 rounded-lg">
+                        <p class="text-sm font-mono text-neutral">公式: 平均数 = (x₁ + x₂ + ... + xₙ) / n</p>
+                    </div>
+                </div>
+                <div class="bg-accent/5 p-6 rounded-lg border-l-4 border-accent transform transition-all duration-300 hover:scale-x-105">
+                    <h4 class="text-xl font-medium text-accent mb-3 flex items-center">
+                        <i class="fa fa-sort-numeric-asc mr-2"></i>中位数
+                    </h4>
+                    <p class="text-neutral/80">中位数是一组数据排序后位于中间位置的数值，它对异常值不敏感，更能代表数据的中间水平。</p>
+                    <div class="mt-4 bg-white p-4 rounded-lg">
+                        <p class="text-sm font-mono text-neutral">
+                            公式: 当n为奇数时，中位数 = x₍ₙ₊₁₎/₂；当n为偶数时，中位数 = (xₙ/₂ + xₙ/₂₊₁) / 2
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 互动演示 -->
+        <section id="demo" class="mb-16">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-mouse-pointer text-primary mr-2"></i>互动演示
+            </h3>
+            <div class="bg-white rounded-xl shadow-depth p-6">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="md:w-2/3">
+                        <div class="bg-neutral-light rounded-lg p-4 mb-4">
+                            <canvas id="distributionChart" width="400" height="300"></canvas>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-primary/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-primary">平均数</h4>
+                                    <span id="mean-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="mean-bar" class="bg-primary h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="bg-accent/5 p-4 rounded-lg">
+                                <div class="flex justify-between items-center mb-2">
+                                    <h4 class="font-medium text-accent">中位数</h4>
+                                    <span id="median-value" class="font-bold text-lg">0</span>
+                                </div>
+                                <div class="w-full bg-white h-2 rounded-full overflow-hidden">
+                                    <div id="median-bar" class="bg-accent h-full" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-1/3">
+                        <div class="bg-neutral-light rounded-lg p-6 h-full">
+                            <h4 class="font-semibold text-neutral mb-4">调整数据点</h4>
+                            <p class="text-sm text-neutral/70 mb-4">拖动滑块改变数值，观察平均数和中位数的变化</p>
+                            <div id="data-points" class="space-y-4">
+                                <!-- 数据点滑块将通过JavaScript动态生成 -->
+                            </div>
+                            <div class="mt-6">
+                                <button id="randomize-btn" class="w-full bg-primary hover:bg-primary/90 text-white py-2 px-4 rounded-lg transition-colors duration-300 flex items-center justify-center">
+                                    <i class="fa fa-random mr-2"></i>随机生成数据
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 关键区别 -->
+        <section id="differences" class="mb-16 bg-white rounded-xl shadow-depth p-8">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-exchange text-primary mr-2"></i>关键区别
+            </h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-balance-scale text-primary text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-neutral mb-2">对异常值的敏感性</h4>
+                    <p class="text-neutral/70">平均数受异常值影响较大，而中位数相对稳定。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-line-chart text-primary text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-neutral mb-2">数据分布</h4>
+                    <p class="text-neutral/70">在对称分布中，平均数和中位数接近；在偏态分布中，两者差异较大。</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg border border-neutral-light transform transition-all duration-300 hover:shadow-md">
+                    <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                        <i class="fa fa-users text-primary text-xl"></i>
+                    </div>
+                    <h4 class="font-semibold text-neutral mb-2">适用场景</h4>
+                    <p class="text-neutral/70">平均数适合没有异常值的对称分布，中位数适合有异常值的偏态分布。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 练习题 -->
+        <section id="practice" class="mb-16">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-pencil-square-o text-primary mr-2"></i>练习题
+            </h3>
+            <div class="bg-white rounded-xl shadow-depth p-6">
+                <div id="quiz-container" class="space-y-8">
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 1</h4>
+                        <p class="mb-4">一组数据：3, 5, 7, 9, 100。哪个数值更能代表这组数据的中心趋势？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="mean" class="mr-3">
+                                <span>平均数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q1" value="median" class="mr-3">
+                                <span>中位数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4 hidden" id="q1-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q1-message"></p>
+                        </div>
+                    </div>
+
+                    <div class="quiz-question bg-neutral-light p-6 rounded-lg">
+                        <h4 class="font-medium text-neutral mb-4">问题 2</h4>
+                        <p class="mb-4">在一个对称分布的数据集中，平均数和中位数的关系是？</p>
+                        <div class="space-y-2">
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="equal" class="mr-3">
+                                <span>平均数等于中位数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="greater" class="mr-3">
+                                <span>平均数大于中位数</span>
+                            </label>
+                            <label class="flex items-center p-3 border border-neutral-light rounded-lg cursor-pointer hover:bg-white transition-colors">
+                                <input type="radio" name="q2" value="less" class="mr-3">
+                                <span>平均数小于中位数</span>
+                            </label>
+                        </div>
+                        <div class="mt-4 hidden" id="q2-feedback">
+                            <p class="text-sm p-3 rounded-lg" id="q2-message"></p>
+                        </div>
+                    </div>
+
+                    <button id="check-answers" class="bg-primary hover:bg-primary/90 text-white py-2 px-6 rounded-lg transition-colors duration-300">
+                        检查答案
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 总结 -->
+        <section id="summary" class="mb-16 bg-white rounded-xl shadow-depth p-8">
+            <h3 class="text-2xl font-semibold text-neutral mb-6 flex items-center">
+                <i class="fa fa-lightbulb-o text-primary mr-2"></i>总结
+            </h3>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h4 class="font-semibold text-neutral mb-4">何时使用平均数？</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-neutral/80">
+                        <li>数据分布相对对称</li>
+                        <li>没有极端异常值</li>
+                        <li>需要考虑所有数据点的影响</li>
+                        <li>数据呈正态分布</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-neutral mb-4">何时使用中位数？</h4>
+                    <ul class="list-disc pl-5 space-y-2 text-neutral/80">
+                        <li>数据分布偏态</li>
+                        <li>存在极端异常值</li>
+                        <li>需要一个稳健的中心指标</li>
+                        <li>数据是顺序数据</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-8 p-6 bg-primary/5 rounded-lg border border-primary/20">
+                <p class="text-neutral/80 italic">
+                    <i class="fa fa-quote-left text-primary mr-2"></i>理解平均数和中位数的区别是数据分析的基础。选择合适的集中趋势指标可以更准确地描述和解释数据。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-neutral text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">统计概念可视化</h4>
+                    <p class="text-white/70">一个交互式学习工具，帮助理解基础统计概念</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">相关资源</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-white/70 hover:text-white transition-colors">统计基础教程</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition-colors">数据可视化指南</a></li>
+                        <li><a href="#" class="text-white/70 hover:text-white transition-colors">统计计算器</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">联系我们</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <i class="fa fa-github text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <i class="fa fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-white/70 hover:text-white transition-colors">
+                            <i class="fa fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 pt-4 border-t border-white/20 text-center text-white/50 text-sm">
+                <p>&copy; 2025 统计概念可视化 | 版权所有</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 初始数据点
+        let dataPoints = [3, 5, 7, 9, 11];
+        let chart;
+
+        // DOM 加载完成后初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            initChart();
+            createDataPointControls();
+            updateStatistics();
+            setupScrollEffects();
+            setupQuiz();
+        });
+
+        // 初始化图表
+        function initChart() {
+            const ctx = document.getElementById('distributionChart').getContext('2d');
+            
+            chart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dataPoints.map((_, index) => `数据点 ${index + 1}`),
+                    datasets: [{
+                        label: '数据值',
+                        data: dataPoints,
+                        backgroundColor: '#165DFF',
+                        borderColor: '#0F4CD8',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                display: true,
+                                color: 'rgba(0, 0, 0, 0.05)'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `值: ${context.raw}`;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    animation: {
+                        duration: 500,
+                        easing: 'easeOutQuart'
+                    }
+                }
+            });
+        }
+
+        // 创建数据点控制滑块
+        function createDataPointControls() {
+            const container = document.getElementById('data-points');
+            container.innerHTML = '';
+            
+            dataPoints.forEach((value, index) => {
+                const controlGroup = document.createElement('div');
+                controlGroup.className = 'data-point-control';
+                controlGroup.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <label class="text-sm font-medium text-neutral">数据点 ${index + 1}</label>
+                        <span class="text-sm font-semibold text-primary value-display">${value}</span>
+                    </div>
+                    <input type="range" min="1" max="50" value="${value}" 
+                           class="w-full h-2 bg-neutral-light rounded-lg appearance-none cursor-pointer accent-primary"
+                           data-index="${index}">
+                `;
+                
+                container.appendChild(controlGroup);
+                
+                // 为滑块添加事件监听器
+                const slider = controlGroup.querySelector('input[type="range"]');
+                slider.addEventListener('input', function() {
+                    const dataIndex = parseInt(this.dataset.index);
+                    dataPoints[dataIndex] = parseInt(this.value);
+                    this.parentNode.querySelector('.value-display').textContent = this.value;
+                    updateVisualization();
+                });
+            });
+        }
+
+        // 更新可视化
+        function updateVisualization() {
+            // 更新图表
+            chart.data.datasets[0].data = dataPoints;
+            chart.update();
+            
+            // 更新统计数据
+            updateStatistics();
+        }
+
+        // 计算并更新统计数据
+        function updateStatistics() {
+            // 计算平均数
+            const mean = dataPoints.reduce((sum, value) => sum + value, 0) / dataPoints.length;
+            
+            // 计算中位数
+            const sortedData = [...dataPoints].sort((a, b) => a - b);
+            const middle = Math.floor(sortedData.length / 2);
+            const median = sortedData.length % 2 === 0 
+                ? (sortedData[middle - 1] + sortedData[middle]) / 2 
+                : sortedData[middle];
+            
+            // 更新DOM
+            document.getElementById('mean-value').textContent = mean.toFixed(2);
+            document.getElementById('median-value').textContent = median.toFixed(2);
+            
+            // 更新进度条
+            const maxValue = Math.max(...dataPoints, mean, median);
+            document.getElementById('mean-bar').style.width = `${(mean / maxValue) * 100}%`;
+            document.getElementById('median-bar').style.width = `${(median / maxValue) * 100}%`;
+        }
+
+        // 设置随机数据按钮
+        document.getElementById('randomize-btn').addEventListener('click', function() {
+            // 生成5-8个随机数据点
+            const numPoints = Math.floor(Math.random() * 4) + 5;
+            dataPoints = Array(numPoints).fill().map(() => Math.floor(Math.random() * 45) + 5);
+            
+            // 更新图表和控制滑块
+            chart.data.labels = dataPoints.map((_, index) => `数据点 ${index + 1}`);
+            createDataPointControls();
+            updateVisualization();
+            
+            // 添加动画效果
+            this.classList.add('animate-pulse');
+            setTimeout(() => {
+                this.classList.remove('animate-pulse');
+            }, 1000);
+        });
+
+        // 设置滚动效果
+        function setupScrollEffects() {
+            const header = document.getElementById('main-header');
+            
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-md', 'py-2');
+                    header.classList.remove('py-3');
+                } else {
+                    header.classList.remove('shadow-md', 'py-2');
+                    header.classList.add('py-3');
+                }
+            });
+            
+            // 平滑滚动
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        }
+
+        // 设置测验功能
+        function setupQuiz() {
+            const checkBtn = document.getElementById('check-answers');
+            
+            checkBtn.addEventListener('click', function() {
+                // 检查问题1
+                const q1Answer = document.querySelector('input[name="q1"]:checked');
+                const q1Feedback = document.getElementById('q1-feedback');
+                const q1Message = document.getElementById('q1-message');
+                
+                if (q1Answer) {
+                    q1Feedback.classList.remove('hidden');
+                    if (q1Answer.value === 'median') {
+                        q1Message.textContent = '正确！中位数不受极端值影响，更适合描述有异常值的数据。';
+                        q1Message.className = 'text-sm p-3 rounded-lg bg-green-100 text-green-800';
+                    } else {
+                        q1Message.textContent = '错误！平均数受到极端值(100)的影响，不能很好地代表这组数据的中心。';
+                        q1Message.className = 'text-sm p-3 rounded-lg bg-red-100 text-red-800';
+                    }
+                }
+                
+                // 检查问题2
+                const q2Answer = document.querySelector('input[name="q2"]:checked');
+                const q2Feedback = document.getElementById('q2-feedback');
+                const q2Message = document.getElementById('q2-message');
+                
+                if (q2Answer) {
+                    q2Feedback.classList.remove('hidden');
+                    if (q2Answer.value === 'equal') {
+                        q2Message.textContent = '正确！在对称分布中，平均数和中位数相等。';
+                        q2Message.className = 'text-sm p-3 rounded-lg bg-green-100 text-green-800';
+                    } else {
+                        q2Message.textContent = '错误！在对称分布中，数据均匀分布在中心两侧，因此平均数和中位数相等。';
+                        q2Message.className = 'text-sm p-3 rounded-lg bg-red-100 text-red-800';
+                    }
+                }
+                
+                // 按钮状态变化
+                this.textContent = '已检查答案';
+                this.disabled = true;
+                this.classList.add('bg-neutral', 'cursor-not-allowed');
+                this.classList.remove('bg-primary', 'hover:bg-primary/90');
+            });
+        }
+    </script>
+</body>
+</html>

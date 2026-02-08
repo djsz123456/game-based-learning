@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>友情测试</title>
+    <!-- 引入Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4A3B9A', // 深紫蓝色
+                        secondary: '#FF6EC7', // 粉红色
+                        accent: '#00F5D4', // 亮青色
+                        light: '#F8F9FF', // 浅色背景
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- 自定义工具类 -->
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .btn-transition {
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+            .float-animation {
+                animation: float 3s ease-in-out infinite;
+            }
+            .pulse-animation {
+                animation: pulse 3s ease-in-out infinite;
+            }
+            .scale-animation {
+                animation: scale 0.5s ease-out;
+            }
+            .heart-beat {
+                animation: heartBeat 1.5s ease-in-out infinite;
+            }
+            .confetti {
+                position: absolute;
+                opacity: 0;
+            }
+            .bg-blur {
+                backdrop-filter: blur(8px);
+            }
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes scale {
+            0% { transform: scale(0.8); opacity: 0; }
+            70% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            14% { transform: scale(1.1); }
+            28% { transform: scale(1); }
+            42% { transform: scale(1.1); }
+            70% { transform: scale(1); }
+        }
+        
+        /* 波浪动画 */
+        @keyframes wave {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(-25%) translateY(5px); }
+            100% { transform: translateX(-50%) translateY(0); }
+        }
+        
+        .wave-animation {
+            animation: wave 8s linear infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-primary/90 via-primary to-secondary/80 transition-all duration-700 text-light overflow-x-hidden relative">
+    <!-- 装饰元素 -->
+    <div class="absolute top-0 left-0 w-full overflow-hidden -z-10">
+        <svg class="wave-animation" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+            <path fill="#ffffff20" fill-opacity="1" d="M0,64L48,69.3C96,75,192,85,288,80C384,75,480,53,576,48C672,43,768,53,864,58.7C960,64,1056,64,1152,58.7C1248,53,1344,43,1392,37.3L1440,32L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"></path>
+        </svg>
+    </div>
+    
+    <!-- 海景小图标装饰 -->
+    <div class="absolute top-10 left-5 text-accent opacity-70 hidden md:block">
+        <i class="fa fa-umbrella text-2xl float-animation" style="animation-delay: 0.3s"></i>
+    </div>
+    <div class="absolute bottom-10 right-8 text-accent opacity-70 hidden md:block">
+        <i class="fa fa-anchor text-2xl float-animation" style="animation-delay: 0.7s"></i>
+    </div>
+    <div class="absolute top-1/4 right-10 text-accent opacity-70 hidden lg:block">
+        <i class="fa fa-sun-o text-2xl float-animation" style="animation-delay: 1s"></i>
+    </div>
+    
+    <!-- 心形装饰 -->
+    <div class="absolute top-20 right-1/4 text-secondary opacity-40 heart-beat hidden lg:block">
+        <i class="fa fa-heart text-xl"></i>
+    </div>
+    <div class="absolute bottom-1/3 left-1/5 text-accent opacity-40 heart-beat hidden lg:block" style="animation-delay: 0.5s">
+        <i class="fa fa-heart text-lg"></i>
+    </div>
+    
+    <!-- 主容器 -->
+    <div id="app-container" class="w-full max-w-md text-center relative z-10">
+        <!-- 问题区域 -->
+        <div id="question-container" class="mb-12 p-6 md:p-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/20 scale-animation">
+            <!-- 装饰性小图标 -->
+            <div class="flex justify-between mb-4 opacity-70">
+                <i class="fa fa-home text-accent"></i>
+                <i class="fa fa-heart text-secondary"></i>
+            </div>
+            
+            <!-- 新增的标题文字和爱心图标 -->
+            <div class="mb-6 flex items-center justify-center gap-2">
+                <h2 class="text-[clamp(1.2rem,4vw,1.8rem)] font-bold text-light">友情测试</h2>
+                <i class="fa fa-heart text-secondary heart-beat"></i>
+            </div>
+            
+            <h1 id="question-text" class="text-[clamp(1.5rem,5vw,2.5rem)] font-bold text-light pulse-animation transition-all duration-700">
+                你愿意给我买豪华别墅吗
+            </h1>
+            
+            <!-- 底部装饰线 -->
+            <div class="mt-4 h-1 w-32 mx-auto bg-gradient-to-r from-secondary to-accent rounded-full"></div>
+        </div>
+        
+        <!-- 按钮区域 -->
+        <div id="buttons-container" class="flex justify-center gap-4 md:gap-8">
+            <button id="yes-btn" class="btn-transition bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-white/30 float-animation">
+                必须的！
+            </button>
+            <button id="no-btn" class="btn-transition bg-white/20 backdrop-blur-md hover:bg-white/30 text-light border-2 border-white/40 font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-white/20 float-animation" style="animation-delay: 0.2s">
+                等等再说
+            </button>
+        </div>
+        
+        <!-- 庆祝区域 (初始隐藏) -->
+        <div id="celebration-container" class="hidden scale-animation">
+            <div class="p-8 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/20">
+                <div class="flex justify-center mb-6">
+                    <i class="fa fa-heart text-4xl text-secondary heart-beat"></i>
+                </div>
+                
+                <h2 class="text-[clamp(1.5rem,5vw,2.2rem)] font-bold text-light mb-4 pulse-animation">
+                    太感谢你了！😊
+                </h2>
+                <p class="text-lg text-white/80 mb-6">
+                    我就知道你对我最好了！我们的海景别墅有着落啦~
+                </p>
+                
+                <button id="restart-btn" class="btn-transition bg-gradient-to-r from-primary to-accent hover:from-accent hover:to-primary text-white font-bold py-3 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 focus:outline-none">
+                    再来一次
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // 追问语句列表 - 增强了与海景别墅相关的内容
+        const followUpQuestions = [
+            "那买辆海景别墅配套豪车怎么样？",
+            "那请我去海边餐厅吃顿大餐总可以吧？",
+            "那送我个海边度假小礼物呢？",
+            "考虑一下嘛，海景别墅可是友情的最佳见证~",
+            "别这么小气嘛，海边别墅我们可以一起住呀！",
+            "那下次我请你看海，你请我别墅怎么样？",
+            "打折的海景别墅也行啊！",
+            "那租一个豪华海景别墅住几天可以吗？",
+            "要不先预定一个海景别墅的参观名额？",
+            "友情价买个别墅，我们做永远的邻居啊！"
+        ];
+        
+        // DOM元素
+        const questionContainer = document.getElementById('question-container');
+        const questionText = document.getElementById('question-text');
+        const buttonsContainer = document.getElementById('buttons-container');
+        const yesBtn = document.getElementById('yes-btn');
+        const noBtn = document.getElementById('no-btn');
+        const celebrationContainer = document.getElementById('celebration-container');
+        const restartBtn = document.getElementById('restart-btn');
+        
+        // 初始问题
+        const initialQuestion = "你愿意给我买豪华别墅吗";
+        
+        // 生成随机位置 (确保按钮不重叠且在可视范围内)
+        function getRandomPosition(button) {
+            // 获取视口尺寸
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            
+            // 获取按钮尺寸
+            const buttonWidth = button.offsetWidth;
+            const buttonHeight = button.offsetHeight;
+            
+            // 获取问题区域位置和尺寸
+            const questionRect = questionContainer.getBoundingClientRect();
+            
+            // 计算可用区域 (避开问题区域)
+            let maxX = viewportWidth - buttonWidth - 20; // 留出边距
+            let maxY = viewportHeight - buttonHeight - 20;
+            const minX = 20;
+            const minY = 20;
+            
+            // 生成随机位置
+            let x = Math.floor(Math.random() * (maxX - minX + 1)) + minX;
+            let y = Math.floor(Math.random() * (maxY - minY + 1)) + minY;
+            
+            // 检查是否与问题区域重叠，如果重叠则重新生成
+            if (
+                x < questionRect.right &&
+                x + buttonWidth > questionRect.left &&
+                y < questionRect.bottom &&
+                y + buttonHeight > questionRect.top
+            ) {
+                return getRandomPosition(button);
+            }
+            
+            return { x, y };
+        }
+        
+        // 移动按钮到随机位置
+        function moveButtonsRandomly() {
+            // 获取两个按钮的随机位置
+            const yesPos = getRandomPosition(yesBtn);
+            let noPos = getRandomPosition(noBtn);
+            
+            // 确保两个按钮不重叠
+            const yesRect = {
+                x: yesPos.x,
+                y: yesPos.y,
+                width: yesBtn.offsetWidth,
+                height: yesBtn.offsetHeight
+            };
+            
+            // 检查两个按钮是否重叠，如果重叠则重新生成"等等再说"按钮的位置
+            while (
+                noPos.x < yesRect.x + yesRect.width &&
+                noPos.x + noBtn.offsetWidth > yesRect.x &&
+                noPos.y < yesRect.y + yesRect.height &&
+                noPos.y + noBtn.offsetHeight > yesRect.y
+            ) {
+                noPos = getRandomPosition(noBtn);
+            }
+            
+            // 应用位置和动画
+            yesBtn.style.position = 'fixed';
+            yesBtn.style.left = `${yesPos.x}px`;
+            yesBtn.style.top = `${yesPos.y}px`;
+            yesBtn.classList.add('scale-animation');
+            setTimeout(() => yesBtn.classList.remove('scale-animation'), 500);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${noPos.x}px`;
+            noBtn.style.top = `${noPos.y}px`;
+            noBtn.classList.add('scale-animation');
+            setTimeout(() => noBtn.classList.remove('scale-animation'), 500);
+        }
+        
+        // 显示庆祝画面
+        function showCelebration() {
+            // 隐藏问题和按钮
+            questionContainer.classList.add('hidden');
+            buttonsContainer.classList.add('hidden');
+            
+            // 显示庆祝画面
+            celebrationContainer.classList.remove('hidden');
+            
+            // 创建庆祝动画
+            createConfetti();
+            createHearts();
+        }
+        
+        // 创建彩屑庆祝效果
+        function createConfetti() {
+            const colors = ['#4A3B9A', '#FF6EC7', '#00F5D4', '#F8F9FF', '#7B61FF'];
+            const container = document.body;
+            
+            for (let i = 0; i < 120; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                
+                // 随机形状（圆形、方形、星形）
+                const shape = Math.random();
+                if (shape < 0.5) {
+                    confetti.style.width = `${Math.random() * 8 + 4}px`;
+                    confetti.style.height = `${Math.random() * 8 + 4}px`;
+                    confetti.style.borderRadius = shape < 0.25 ? '50%' : '0';
+                } else {
+                    confetti.innerHTML = '<i class="fa fa-star"></i>';
+                    confetti.style.fontSize = `${Math.random() * 12 + 8}px`;
+                }
+                
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.top = `-${Math.random() * 20 + 10}px`;
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                confetti.style.animation = `fall ${Math.random() * 4 + 3}s linear forwards`;
+                
+                // 添加到页面
+                container.appendChild(confetti);
+                
+                // 动画结束后移除
+                setTimeout(() => {
+                    confetti.remove();
+                }, 7000);
+            }
+            
+            // 添加下落动画样式
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes fall {
+                    0% {
+                        transform: translateY(0) rotate(0deg);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(${window.innerHeight}px) rotate(720deg);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // 创建心形动画
+        function createHearts() {
+            const container = document.body;
+            
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '<i class="fa fa-heart text-secondary"></i>';
+                heart.style.position = 'absolute';
+                heart.style.fontSize = `${Math.random() * 20 + 10}px`;
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 50 + 20}%`;
+                heart.style.opacity = '0';
+                heart.style.animation = `floatUp ${Math.random() * 4 + 3}s ease-in-out forwards`;
+                heart.style.animationDelay = `${Math.random() * 2}s`;
+                
+                container.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 7000);
+            }
+            
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes floatUp {
+                    0% {
+                        transform: translateY(20px) scale(0.5);
+                        opacity: 0.7;
+                    }
+                    50% {
+                        transform: translateY(-40px) scale(1);
+                        opacity: 1;
+                    }
+                    100% {
+                        transform: translateY(-100px) scale(0.5);
+                        opacity: 0;
+                    }
+                }
+            `;
+            document.head.appendChild(style);
+        }
+        
+        // 显示下一个追问
+        function showNextQuestion() {
+            // 随机选择一个追问
+            const randomIndex = Math.floor(Math.random() * followUpQuestions.length);
+            const nextQuestion = followUpQuestions[randomIndex];
+            
+            // 更新问题文本并添加动画
+            questionText.textContent = nextQuestion;
+            questionText.classList.add('scale-animation');
+            setTimeout(() => {
+                questionText.classList.remove('scale-animation');
+            }, 500);
+            
+            // 移动按钮到随机位置
+            moveButtonsRandomly();
+        }
+        
+        // 重置游戏
+        function resetGame() {
+            // 恢复初始状态
+            questionText.textContent = initialQuestion;
+            celebrationContainer.classList.add('hidden');
+            questionContainer.classList.remove('hidden');
+            buttonsContainer.classList.remove('hidden');
+            
+            // 重置按钮样式
+            yesBtn.style.position = 'static';
+            noBtn.style.position = 'static';
+            
+            // 清除所有动画元素
+            document.querySelectorAll('.confetti, [class*="fa-heart"][style*="animation"]').forEach(el => {
+                el.remove();
+            });
+        }
+        
+        // 事件监听
+        yesBtn.addEventListener('click', showCelebration);
+        noBtn.addEventListener('click', showNextQuestion);
+        restartBtn.addEventListener('click', resetGame);
+        
+        // 移动端触摸事件支持
+        yesBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showCelebration();
+        });
+        
+        noBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            showNextQuestion();
+        });
+        
+        restartBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            resetGame();
+        });
+        
+        // 窗口大小改变时重新定位按钮（如果它们处于随机位置）
+        window.addEventListener('resize', () => {
+            if (noBtn.style.position === 'fixed') {
+                moveButtonsRandomly();
+            }
+        });
+    </script>
+</body>
+</html>

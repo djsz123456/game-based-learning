@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杠杆原理互动实验室</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#667eea',
+                        secondary: '#764ba2',
+                        force: '#3b82f6',      // 动力蓝色
+                        weight: '#ef4444',     // 阻力红色
+                        balanced: '#22c55e',   // 平衡绿色
+                        unbalanced: '#ef4444', // 不平衡红色
+                        lever: '#9ca3af',      // 杠杆灰色
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .bg-gradient-primary {
+                background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .card-hover {
+                transition: all 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+            .btn-glow {
+                position: relative;
+                overflow: hidden;
+            }
+            .btn-glow::after {
+                content: '';
+                position: absolute;
+                top: -50%;
+                left: -50%;
+                width: 200%;
+                height: 200%;
+                background: linear-gradient(
+                    to right,
+                    rgba(255, 255, 255, 0) 0%,
+                    rgba(255, 255, 255, 0.3) 50%,
+                    rgba(255, 255, 255, 0) 100%
+                );
+                transform: rotate(30deg);
+                animation: glow 3s infinite;
+            }
+            @keyframes glow {
+                0% { transform: translateX(-100%) rotate(30deg); }
+                100% { transform: translateX(100%) rotate(30deg); }
+            }
+            .slider-thumb::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            .slider-thumb::-webkit-slider-thumb:hover {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-primary min-h-screen text-gray-800 font-sans">
+    <!-- 顶部导航栏 -->
+    <nav class="bg-white shadow-md py-3 px-6 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <i class="fa fa-balance-scale text-primary text-2xl"></i>
+                <h1 class="text-xl md:text-2xl font-bold text-gray-800">杠杆原理互动实验室</h1>
+            </div>
+            <div class="hidden md:block">
+                <p class="text-gray-600 italic">探索力与平衡的奥秘</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <div class="container mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- 左栏：实验原理说明 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <h2 class="text-xl font-bold mb-4 text-primary border-b pb-2">
+                    <i class="fa fa-book mr-2"></i>实验原理
+                </h2>
+                
+                <div class="space-y-4">
+                    <p class="text-gray-700">杠杆是一种简单机械，由一个支点和一根能绕支点转动的硬棒组成。杠杆原理表明，当杠杆平衡时，动力乘以动力臂等于阻力乘以阻力臂。</p>
+                    
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                        <h3 class="font-bold text-center mb-2 text-primary">杠杆平衡公式</h3>
+                        <div class="text-center text-xl font-bold my-3">F × L₁ = W × L₂</div>
+                        <div class="grid grid-cols-2 gap-2 text-sm">
+                            <div><span class="font-semibold">F:</span> 动力 (N)</div>
+                            <div><span class="font-semibold">L₁:</span> 动力臂 (cm)</div>
+                            <div><span class="font-semibold">W:</span> 阻力 (N)</div>
+                            <div><span class="font-semibold">L₂:</span> 阻力臂 (cm)</div>
+                        </div>
+                    </div>
+                    
+                    <h3 class="font-bold text-lg text-primary">杠杆三要素</h3>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li><span class="font-semibold">支点(O):</span> 杠杆绕其转动的点</li>
+                        <li><span class="font-semibold">动力(F):</span> 使杠杆转动的力</li>
+                        <li><span class="font-semibold">阻力(W):</span> 阻碍杠杆转动的力</li>
+                    </ul>
+                    
+                    <h3 class="font-bold text-lg text-primary">机械利益</h3>
+                    <p class="text-gray-700">机械利益 = L₁/L₂</p>
+                    <ul class="list-disc list-inside space-y-1 text-gray-700">
+                        <li>机械利益 > 1: 省力杠杆</li>
+                        <li>机械利益 = 1: 等臂杠杆</li>
+                        <li>机械利益 < 1: 费力杠杆</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- 中栏：实验画布和控制面板 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <h2 class="text-xl font-bold mb-4 text-primary border-b pb-2">
+                    <i class="fa fa-flask mr-2"></i>实验区域
+                </h2>
+                
+                <!-- 杠杆类型切换按钮 -->
+                <div class="flex justify-center space-x-3 mb-6">
+                    <button id="type1" class="btn-glow bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all duration-300 font-medium">
+                        第一类杠杆 (F-O-W)
+                    </button>
+                    <button id="type2" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium">
+                        第二类杠杆 (O-W-F)
+                    </button>
+                    <button id="type3" class="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium">
+                        第三类杠杆 (O-F-W)
+                    </button>
+                </div>
+                
+                <!-- 预设配置按钮 -->
+                <div class="flex justify-center space-x-3 mb-6">
+                    <button id="preset-balance" class="bg-balanced/20 hover:bg-balanced/30 text-balanced px-3 py-1 rounded-lg transition-all duration-300 text-sm font-medium">
+                        平衡状态
+                    </button>
+                    <button id="preset-easy" class="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-1 rounded-lg transition-all duration-300 text-sm font-medium">
+                        省力杠杆
+                    </button>
+                    <button id="preset-hard" class="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-1 rounded-lg transition-all duration-300 text-sm font-medium">
+                        费力杠杆
+                    </button>
+                </div>
+                
+                <!-- Canvas画布 -->
+                <div class="relative bg-blue-50 rounded-lg border border-blue-100 mb-6 overflow-hidden">
+                    <canvas id="leverCanvas" width="800" height="400" class="w-full max-w-full"></canvas>
+                    
+                    <!-- 画布上的指示器 -->
+                    <div id="tiltIndicator" class="absolute top-4 left-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow">
+                        ↕️ 倾斜方向：水平
+                    </div>
+                    <div id="balanceIndicator" class="absolute top-4 right-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow text-balanced">
+                        ⚖️ 平衡
+                    </div>
+                    <div id="structureIndicator" class="absolute bottom-4 left-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow">
+                        结构：F-O-W
+                    </div>
+                    <div id="forceDirIndicator" class="absolute bottom-4 right-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow">
+                        力方向：F↓ W↓
+                    </div>
+                </div>
+                
+                <!-- 参数控制面板 -->
+                <div class="space-y-6">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label for="forceF" class="text-force font-medium">动力 (F): <span id="forceFValue">50</span>N</label>
+                            <input type="range" id="forceF" min="10" max="200" value="50" 
+                                class="w-2/3 slider-thumb" style="accent-color: #3b82f6;">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label for="lengthL1" class="text-force font-medium">动力臂 (L₁): <span id="lengthL1Value">30</span>cm</label>
+                            <input type="range" id="lengthL1" min="5" max="100" value="30" 
+                                class="w-2/3 slider-thumb" style="accent-color: #3b82f6;">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label for="weightW" class="text-weight font-medium">阻力 (W): <span id="weightWValue">50</span>N</label>
+                            <input type="range" id="weightW" min="10" max="200" value="50" 
+                                class="w-2/3 slider-thumb" style="accent-color: #ef4444;">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label for="lengthL2" class="text-weight font-medium">阻力臂 (L₂): <span id="lengthL2Value">30</span>cm</label>
+                            <input type="range" id="lengthL2" min="5" max="100" value="30" 
+                                class="w-2/3 slider-thumb" style="accent-color: #ef4444;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 右栏：杠杆特点和计算结果 -->
+            <div class="bg-white rounded-xl shadow-lg p-6 card-hover">
+                <h2 class="text-xl font-bold mb-4 text-primary border-b pb-2">
+                    <i class="fa fa-info-circle mr-2"></i>实验信息
+                </h2>
+                
+                <!-- 杠杆特点介绍 -->
+                <div class="mb-6">
+                    <h3 class="font-bold text-lg mb-2 text-gray-800">杠杆特点</h3>
+                    <div id="leverFeatures" class="bg-gray-50 p-4 rounded-lg border border-gray-100 text-gray-700">
+                        动力F和阻力W分别在支点O的两边，可以改变力的方向
+                    </div>
+                    
+                    <h3 class="font-bold text-lg mt-4 mb-2 text-gray-800">生活实例</h3>
+                    <div id="leverExamples" class="flex flex-wrap gap-2">
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">剪刀</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">天平</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">跷跷板</span>
+                        <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm">撬棍</span>
+                    </div>
+                </div>
+                
+                <!-- 实验数据计算结果 -->
+                <div>
+                    <h3 class="font-bold text-lg mb-3 text-gray-800">计算结果</h3>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">动力矩 (F×L₁):</span>
+                                <span id="momentF" class="text-force font-bold">1500 N·cm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">阻力矩 (W×L₂):</span>
+                                <span id="momentW" class="text-weight font-bold">1500 N·cm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-yellow-50 p-3 rounded-lg border border-yellow-100">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">力矩差值:</span>
+                                <span id="momentDiff" class="text-yellow-700 font-bold">0 N·cm</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">机械利益 (L₁/L₂):</span>
+                                <span id="mechanicalAdvantage" class="text-blue-700 font-bold">1.00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div class="flex justify-between">
+                                <span class="text-gray-600">杠杆类型:</span>
+                                <span id="leverTypeText" class="text-blue-700 font-bold">等臂杠杆</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-white mt-12 py-6 px-6 shadow-inner">
+        <div class="container mx-auto text-center text-gray-600">
+            <p>杠杆原理互动实验室 &copy; 2023 | 物理教学互动工具</p>
+        </div>
+    </footer>
+
+    <script>
+        // 获取DOM元素
+        const canvas = document.getElementById('leverCanvas');
+        const ctx = canvas.getContext('2d');
+        const forceFSlider = document.getElementById('forceF');
+        const lengthL1Slider = document.getElementById('lengthL1');
+        const weightWSlider = document.getElementById('weightW');
+        const lengthL2Slider = document.getElementById('lengthL2');
+        const forceFValue = document.getElementById('forceFValue');
+        const lengthL1Value = document.getElementById('lengthL1Value');
+        const weightWValue = document.getElementById('weightWValue');
+        const lengthL2Value = document.getElementById('lengthL2Value');
+        const momentF = document.getElementById('momentF');
+        const momentW = document.getElementById('momentW');
+        const momentDiff = document.getElementById('momentDiff');
+        const mechanicalAdvantage = document.getElementById('mechanicalAdvantage');
+        const leverTypeText = document.getElementById('leverTypeText');
+        const tiltIndicator = document.getElementById('tiltIndicator');
+        const balanceIndicator = document.getElementById('balanceIndicator');
+        const structureIndicator = document.getElementById('structureIndicator');
+        const forceDirIndicator = document.getElementById('forceDirIndicator');
+        const leverFeatures = document.getElementById('leverFeatures');
+        const leverExamples = document.getElementById('leverExamples');
+        const type1Btn = document.getElementById('type1');
+        const type2Btn = document.getElementById('type2');
+        const type3Btn = document.getElementById('type3');
+        const presetBalanceBtn = document.getElementById('preset-balance');
+        const presetEasyBtn = document.getElementById('preset-easy');
+        const presetHardBtn = document.getElementById('preset-hard');
+
+        // 实验参数
+        let params = {
+            leverType: 1,          // 1:第一类, 2:第二类, 3:第三类
+            F: 50,                 // 动力 (N)
+            L1: 30,                // 动力臂 (cm)
+            W: 50,                 // 阻力 (N)
+            L2: 30,                // 阻力臂 (cm)
+            currentAngle: 0,       // 当前角度 (弧度)
+            targetAngle: 0,        // 目标角度 (弧度)
+            centerX: canvas.width / 2,
+            centerY: canvas.height / 2 + 50,
+            scale: 5,              // 缩放比例 (像素/cm)
+            maxAngle: 0.2          // 最大倾斜角度 (弧度)
+        };
+
+        // 杠杆类型配置
+        const leverConfigs = {
+            1: {
+                structure: "F-O-W",
+                forceDir: "F↓ W↓",
+                features: "动力F和阻力W分别在支点O的两边，可以改变力的方向",
+                examples: ["剪刀", "天平", "跷跷板", "撬棍"],
+                getPositions: (params) => {
+                    const fulcrumX = params.centerX;
+                    const forceX = fulcrumX - params.L1 * params.scale;
+                    const weightX = fulcrumX + params.L2 * params.scale;
+                    return { fulcrumX, forceX, weightX };
+                },
+                drawForceArrows: (params, positions) => {
+                    // 动力箭头向下
+                    drawArrow(ctx, positions.forceX, params.centerY, 
+                              positions.forceX, params.centerY + params.F * 1.5, 
+                              '#3b82f6', 5);
+                    
+                    // 阻力箭头向下
+                    drawArrow(ctx, positions.weightX, params.centerY, 
+                              positions.weightX, params.centerY + params.W * 1.5, 
+                              '#ef4444', 5);
+                }
+            },
+            2: {
+                structure: "O-W-F",
+                forceDir: "F↑ W↓",
+                features: "阻力W在支点O和动力F之间，必定省力",
+                examples: ["独轮车", "开瓶器", "铡刀", "胡桃夹"],
+                getPositions: (params) => {
+                    const fulcrumX = params.centerX - params.L1 * params.scale / 2;
+                    const weightX = fulcrumX + params.L2 * params.scale;
+                    const forceX = fulcrumX + params.L1 * params.scale;
+                    return { fulcrumX, forceX, weightX };
+                },
+                drawForceArrows: (params, positions) => {
+                    // 动力箭头向上
+                    drawArrow(ctx, positions.forceX, params.centerY, 
+                              positions.forceX, params.centerY - params.F * 1.5, 
+                              '#3b82f6', 5);
+                    
+                    // 阻力箭头向下
+                    drawArrow(ctx, positions.weightX, params.centerY, 
+                              positions.weightX, params.centerY + params.W * 1.5, 
+                              '#ef4444', 5);
+                }
+            },
+            3: {
+                structure: "O-F-W",
+                forceDir: "F↑ W↓",
+                features: "动力F在支点O和阻力W之间，必定费力但动作灵活",
+                examples: ["钓鱼竿", "筷子", "人的前臂", "扫帚"],
+                getPositions: (params) => {
+                    const fulcrumX = params.centerX - params.L2 * params.scale / 2;
+                    const forceX = fulcrumX + params.L1 * params.scale;
+                    const weightX = fulcrumX + params.L2 * params.scale;
+                    return { fulcrumX, forceX, weightX };
+                },
+                drawForceArrows: (params, positions) => {
+                    // 动力箭头向上
+                    drawArrow(ctx, positions.forceX, params.centerY, 
+                              positions.forceX, params.centerY - params.F * 1.5, 
+                              '#3b82f6', 5);
+                    
+                    // 阻力箭头向下
+                    drawArrow(ctx, positions.weightX, params.centerY, 
+                              positions.weightX, params.centerY + params.W * 1.5, 
+                              '#ef4444', 5);
+                }
+            }
+        };
+
+        // 预设配置
+        const presets = {
+            balance: { F: 50, L1: 30, W: 75, L2: 20 },
+            easy: { F: 30, L1: 45, W: 90, L2: 15 },
+            hard: { F: 80, L1: 15, W: 30, L2: 40 }
+        };
+
+        // 初始化滑块值
+        forceFSlider.value = params.F;
+        lengthL1Slider.value = params.L1;
+        weightWSlider.value = params.W;
+        lengthL2Slider.value = params.L2;
+
+        // 事件监听器
+        forceFSlider.addEventListener('input', (e) => {
+            params.F = parseInt(e.target.value);
+            updateDisplay();
+        });
+
+        lengthL1Slider.addEventListener('input', (e) => {
+            params.L1 = parseInt(e.target.value);
+            updateDisplay();
+        });
+
+        weightWSlider.addEventListener('input', (e) => {
+            params.W = parseInt(e.target.value);
+            updateDisplay();
+        });
+
+        lengthL2Slider.addEventListener('input', (e) => {
+            params.L2 = parseInt(e.target.value);
+            updateDisplay();
+        });
+
+        // 杠杆类型切换
+        type1Btn.addEventListener('click', () => {
+            setLeverType(1);
+            type1Btn.className = "btn-glow bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type2Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type3Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+        });
+
+        type2Btn.addEventListener('click', () => {
+            setLeverType(2);
+            type1Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type2Btn.className = "btn-glow bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type3Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+        });
+
+        type3Btn.addEventListener('click', () => {
+            setLeverType(3);
+            type1Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type2Btn.className = "bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+            type3Btn.className = "btn-glow bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg transition-all duration-300 font-medium";
+        });
+
+        // 预设配置按钮
+        presetBalanceBtn.addEventListener('click', () => applyPreset('balance'));
+        presetEasyBtn.addEventListener('click', () => applyPreset('easy'));
+        presetHardBtn.addEventListener('click', () => applyPreset('hard'));
+
+        // 设置杠杆类型
+        function setLeverType(type) {
+            params.leverType = type;
+            
+            // 设置各类型的初始值
+            if (type === 1) {
+                params.F = 50;
+                params.L1 = 30;
+                params.W = 50;
+                params.L2 = 30;
+            } else if (type === 2) {
+                params.F = 30;
+                params.L1 = 40;
+                params.W = 120;
+                params.L2 = 10;
+            } else if (type === 3) {
+                params.F = 90;
+                params.L1 = 15;
+                params.W = 30;
+                params.L2 = 45;
+            }
+            
+            // 更新滑块显示
+            forceFSlider.value = params.F;
+            lengthL1Slider.value = params.L1;
+            weightWSlider.value = params.W;
+            lengthL2Slider.value = params.L2;
+            
+            // 更新杠杆特点和示例
+            leverFeatures.textContent = leverConfigs[type].features;
+            
+            // 更新示例标签
+            leverExamples.innerHTML = '';
+            leverConfigs[type].examples.forEach(example => {
+                const span = document.createElement('span');
+                span.className = 'bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm';
+                span.textContent = example;
+                leverExamples.appendChild(span);
+            });
+            
+            // 更新结构和力方向显示
+            structureIndicator.textContent = `结构：${leverConfigs[type].structure}`;
+            forceDirIndicator.textContent = `力方向：${leverConfigs[type].forceDir}`;
+            
+            updateDisplay();
+        }
+
+        // 应用预设配置
+        function applyPreset(presetName) {
+            const preset = presets[presetName];
+            params.F = preset.F;
+            params.L1 = preset.L1;
+            params.W = preset.W;
+            params.L2 = preset.L2;
+            
+            // 更新滑块
+            forceFSlider.value = params.F;
+            lengthL1Slider.value = params.L1;
+            weightWSlider.value = params.W;
+            lengthL2Slider.value = params.L2;
+            
+            updateDisplay();
+        }
+
+        // 更新显示
+        function updateDisplay() {
+            // 更新数值显示
+            forceFValue.textContent = params.F;
+            lengthL1Value.textContent = params.L1;
+            weightWValue.textContent = params.W;
+            lengthL2Value.textContent = params.L2;
+            
+            // 计算力矩
+            const momentFValue = params.F * params.L1;
+            const momentWValue = params.W * params.L2;
+            const diff = Math.abs(momentFValue - momentWValue);
+            
+            // 更新力矩显示
+            momentF.textContent = `${momentFValue} N·cm`;
+            momentW.textContent = `${momentWValue} N·cm`;
+            momentDiff.textContent = `${diff} N·cm`;
+            
+            // 计算机械利益
+            const ma = params.L1 / params.L2;
+            mechanicalAdvantage.textContent = ma.toFixed(2);
+            
+            // 确定杠杆类型文本
+            if (ma > 1) {
+                leverTypeText.textContent = "省力杠杆";
+                leverTypeText.className = "text-green-700 font-bold";
+            } else if (ma < 1) {
+                leverTypeText.textContent = "费力杠杆";
+                leverTypeText.className = "text-red-700 font-bold";
+            } else {
+                leverTypeText.textContent = "等臂杠杆";
+                leverTypeText.className = "text-blue-700 font-bold";
+            }
+            
+            // 确定平衡状态
+            if (diff < 50) {
+                balanceIndicator.textContent = "⚖️ 平衡";
+                balanceIndicator.className = "absolute top-4 right-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow text-balanced";
+                params.targetAngle = 0;
+                tiltIndicator.textContent = "↕️ 倾斜方向：水平";
+            } else {
+                balanceIndicator.textContent = "⚠️ 不平衡";
+                balanceIndicator.className = "absolute top-4 right-4 bg-white/80 px-2 py-1 rounded text-sm font-medium shadow text-unbalanced";
+                
+                // 计算目标角度
+                const largerMoment = Math.max(momentFValue, momentWValue);
+                const angleRatio = diff / largerMoment;
+                const angle = Math.min(angleRatio * params.maxAngle, params.maxAngle);
+                
+                // 确定倾斜方向
+                if (momentFValue > momentWValue) {
+                    params.targetAngle = -angle; // 动力端下降
+                    tiltIndicator.textContent = "↕️ 倾斜方向：动力端下降";
+                } else {
+                    params.targetAngle = angle;  // 阻力端下降
+                    tiltIndicator.textContent = "↕️ 倾斜方向：阻力端下降";
+                }
+            }
+            
+            // 重绘
+            draw();
+        }
+
+        // 绘制箭头的辅助函数
+        function drawArrow(ctx, x1, y1, x2, y2, color, lineWidth) {
+            const headLength = 10;
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const angle = Math.atan2(dy, dx);
+            
+            // 绘制线
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.strokeStyle = color;
+            ctx.lineWidth = lineWidth;
+            ctx.stroke();
+            
+            // 绘制箭头头部
+            ctx.beginPath();
+            ctx.moveTo(x2, y2);
+            ctx.lineTo(
+                x2 - headLength * Math.cos(angle - Math.PI / 6),
+                y2 - headLength * Math.sin(angle - Math.PI / 6)
+            );
+            ctx.lineTo(
+                x2 - headLength * Math.cos(angle + Math.PI / 6),
+                y2 - headLength * Math.sin(angle + Math.PI / 6)
+            );
+            ctx.closePath();
+            ctx.fillStyle = color;
+            ctx.fill();
+        }
+
+        // 绘制网格背景
+        function drawGrid() {
+            const gridSize = 40;
+            ctx.strokeStyle = 'rgba(173, 216, 230, 0.3)'; // 浅蓝色半透明
+            ctx.lineWidth = 1;
+            
+            // 绘制水平线
+            for (let y = 0; y <= canvas.height; y += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(0, y);
+                ctx.lineTo(canvas.width, y);
+                ctx.stroke();
+            }
+            
+            // 绘制垂直线
+            for (let x = 0; x <= canvas.width; x += gridSize) {
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, canvas.height);
+                ctx.stroke();
+            }
+        }
+
+        // 绘制杠杆
+        function drawLever() {
+            const config = leverConfigs[params.leverType];
+            const positions = config.getPositions(params);
+            
+            // 计算杠杆的起点和终点
+            const leverStartX = Math.min(positions.fulcrumX, positions.forceX, positions.weightX) - 50;
+            const leverEndX = Math.max(positions.fulcrumX, positions.forceX, positions.weightX) + 50;
+            
+            // 保存当前状态
+            ctx.save();
+            
+            // 平移到支点
+            ctx.translate(positions.fulcrumX, params.centerY);
+            
+            // 旋转杠杆
+            ctx.rotate(params.currentAngle);
+            
+            // 绘制杠杆（灰色渐变）
+            const leverGradient = ctx.createLinearGradient(leverStartX - positions.fulcrumX, 0, leverEndX - positions.fulcrumX, 0);
+            leverGradient.addColorStop(0, '#6b7280');
+            leverGradient.addColorStop(0.5, '#9ca3af');
+            leverGradient.addColorStop(1, '#6b7280');
+            
+            ctx.fillStyle = leverGradient;
+            ctx.fillRect(leverStartX - positions.fulcrumX, -5, leverEndX - leverStartX, 10);
+            
+            // 绘制刻度线
+            for (let x = leverStartX; x <= leverEndX; x += 10) {
+                if (x !== positions.fulcrumX) { // 不在支点处绘制刻度
+                    ctx.beginPath();
+                    ctx.moveTo(x - positions.fulcrumX, -5);
+                    ctx.lineTo(x - positions.fulcrumX, 5);
+                    ctx.strokeStyle = '#4b5563';
+                    ctx.lineWidth = 1;
+                    ctx.stroke();
+                }
+            }
+            
+            // 恢复状态
+            ctx.restore();
+        }
+
+        // 绘制支点
+        function drawFulcrum(x) {
+            ctx.save();
+            
+            // 平移到支点位置并考虑旋转
+            ctx.translate(x, params.centerY);
+            ctx.rotate(params.currentAngle);
+            
+            // 绘制蓝色三角形支点
+            ctx.beginPath();
+            ctx.moveTo(0, -15);
+            ctx.lineTo(-10, 15);
+            ctx.lineTo(10, 15);
+            ctx.closePath();
+            
+            const fulcrumGradient = ctx.createLinearGradient(-10, -15, 10, 15);
+            fulcrumGradient.addColorStop(0, '#3b82f6');
+            fulcrumGradient.addColorStop(1, '#2563eb');
+            ctx.fillStyle = fulcrumGradient;
+            ctx.fill();
+            
+            // 绘制支点标签 "O"
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('O', 0, 0);
+            
+            ctx.restore();
+        }
+
+        // 绘制力的标签
+        function drawForceLabels(forceX, weightX) {
+            // 保存状态
+            ctx.save();
+            
+            // 绘制动力标签 F
+            ctx.fillStyle = '#3b82f6';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            
+            if (params.leverType === 1) {
+                ctx.textBaseline = 'top';
+                ctx.fillText(`F=${params.F}N`, forceX, params.centerY + params.F * 1.5 + 5);
+            } else {
+                ctx.textBaseline = 'bottom';
+                ctx.fillText(`F=${params.F}N`, forceX, params.centerY - params.F * 1.5 - 5);
+            }
+            
+            // 绘制阻力标签 W
+            ctx.fillStyle = '#ef4444';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'top';
+            ctx.fillText(`W=${params.W}N`, weightX, params.centerY + params.W * 1.5 + 5);
+            
+            // 恢复状态
+            ctx.restore();
+        }
+
+        // 绘制力臂
+        function drawArms(fulcrumX, forceX, weightX) {
+            // 保存状态
+            ctx.save();
+            
+            // 平移到支点并旋转
+            ctx.translate(fulcrumX, params.centerY);
+            ctx.rotate(params.currentAngle);
+            
+            // 绘制动力臂（虚线）
+            ctx.beginPath();
+            ctx.setLineDash([5, 5]);
+            ctx.moveTo(0, -40);
+            ctx.lineTo(forceX - fulcrumX, -40);
+            ctx.strokeStyle = '#3b82f6';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 绘制动力臂标签 L₁
+            ctx.fillStyle = '#3b82f6';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`L₁=${params.L1}cm`, (forceX - fulcrumX) / 2, -50);
+            
+            // 绘制阻力臂（虚线）
+            ctx.beginPath();
+            ctx.setLineDash([5, 5]);
+            ctx.moveTo(0, -25);
+            ctx.lineTo(weightX - fulcrumX, -25);
+            ctx.strokeStyle = '#ef4444';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 绘制阻力臂标签 L₂
+            ctx.fillStyle = '#ef4444';
+            ctx.font = '12px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(`L₂=${params.L2}cm`, (weightX - fulcrumX) / 2, -35);
+            
+            // 重置线条样式
+            ctx.setLineDash([]);
+            
+            // 恢复状态
+            ctx.restore();
+        }
+
+        // 绘制整个场景
+        function draw() {
+            // 清除画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制背景渐变
+            const bgGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            bgGradient.addColorStop(0, 'rgba(224, 242, 254, 0.8)');
+            bgGradient.addColorStop(1, 'rgba(191, 219, 254, 0.8)');
+            ctx.fillStyle = bgGradient;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制网格
+            drawGrid();
+            
+            // 获取当前杠杆配置和位置
+            const config = leverConfigs[params.leverType];
+            const positions = config.getPositions(params);
+            
+            // 绘制杠杆
+            drawLever();
+            
+            // 绘制支点
+            drawFulcrum(positions.fulcrumX);
+            
+            // 绘制力臂
+            drawArms(positions.fulcrumX, positions.forceX, positions.weightX);
+            
+            // 绘制力箭头
+            config.drawForceArrows(params, positions);
+            
+            // 绘制力标签
+            drawForceLabels(positions.forceX, positions.weightX);
+        }
+
+        // 动画循环
+        function animate() {
+            // 平滑过渡到目标角度
+            params.currentAngle += (params.targetAngle - params.currentAngle) * 0.1;
+            
+            // 重绘
+            draw();
+            
+            // 继续动画
+            requestAnimationFrame(animate);
+        }
+
+        // 初始化
+        function init() {
+            updateDisplay();
+            animate();
+        }
+
+        // 启动应用
+        init();
+    </script>
+</body>
+</html>

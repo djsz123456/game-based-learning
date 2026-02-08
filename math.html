@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>勾股定理互动演示</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
+    <!-- 配置Tailwind自定义颜色和字体 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#165DFF',
+                        aColor: '#FF4D4F',
+                        bColor: '#1890FF',
+                        cColor: '#52C41A',
+                        card: 'rgba(255, 255, 255, 0.9)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            }
+            .bg-gradient-custom {
+                background: linear-gradient(135deg, #e0f7fa 0%, #bbdefb 100%);
+            }
+            .card-hover {
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+            .card-hover:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-custom min-h-screen font-sans text-gray-800">
+    <!-- 页面容器 -->
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        
+        <!-- 头部区域 -->
+        <header class="text-center mb-12">
+            <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold text-primary mb-4 text-shadow">勾股定理互动演示</h1>
+            <p class="text-[clamp(1rem,2vw,1.25rem)] text-gray-600 max-w-3xl mx-auto">
+                探索直角三角形三条边的关系，通过动态可视化理解数学原理
+            </p>
+        </header>
+        
+        <!-- 主要内容区域 -->
+        <main class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            
+            <!-- 左栏 - 演示区域 -->
+            <section class="bg-card rounded-xl shadow-lg p-6 lg:p-8">
+                <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                    <i class="fa fa-cubes mr-3"></i>直观演示
+                </h2>
+                
+                <!-- SVG可视化容器 -->
+                <div class="bg-white rounded-lg shadow-inner p-4 mb-6 flex justify-center">
+                    <svg id="triangle-svg" width="300" height="400" viewBox="0 0 300 400" class="border border-gray-200">
+                        <!-- 三角形和正方形将通过JS动态生成 -->
+                    </svg>
+                </div>
+                
+                <!-- 颜色图例 -->
+                <div class="flex justify-center space-x-6 mb-8">
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-aColor rounded mr-2"></div>
+                        <span>边a</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-bColor rounded mr-2"></div>
+                        <span>边b</span>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="w-4 h-4 bg-cColor rounded mr-2"></div>
+                        <span>斜边c</span>
+                    </div>
+                </div>
+                
+                <!-- 滑块控件 -->
+                <div class="space-y-6 mb-8">
+                    <div>
+                        <label for="side-a" class="block mb-2 font-medium">边a长度: <span id="a-value">3</span></label>
+                        <input 
+                            type="range" 
+                            id="side-a" 
+                            min="3" 
+                            max="15" 
+                            value="3" 
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-aColor"
+                        >
+                    </div>
+                    <div>
+                        <label for="side-b" class="block mb-2 font-medium">边b长度: <span id="b-value">4</span></label>
+                        <input 
+                            type="range" 
+                            id="side-b" 
+                            min="3" 
+                            max="15" 
+                            value="4" 
+                            class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-bColor"
+                        >
+                    </div>
+                </div>
+                
+                <!-- 控制按钮 -->
+                <div class="flex justify-center space-x-4">
+                    <button 
+                        id="animate-btn" 
+                        class="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg shadow transition-all flex items-center"
+                    >
+                        <i class="fa fa-play mr-2"></i>开始动画
+                    </button>
+                    <button 
+                        id="reset-btn" 
+                        class="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white rounded-lg shadow transition-all flex items-center"
+                    >
+                        <i class="fa fa-refresh mr-2"></i>重置
+                    </button>
+                </div>
+            </section>
+            
+            <!-- 右栏 - 知识讲解区域 -->
+            <section class="space-y-6">
+                <div class="bg-card rounded-xl shadow-lg p-6 lg:p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-primary flex items-center">
+                        <i class="fa fa-book mr-3"></i>勾股定理详解
+                    </h2>
+                    
+                    <!-- 知识模块1：什么是勾股定理？ -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">什么是勾股定理？</h3>
+                        <p class="mb-4">勾股定理描述了直角三角形三条边之间的基本关系：在任何一个直角三角形中，两条直角边的平方和等于斜边的平方。</p>
+                        <div class="bg-gray-50 p-4 rounded-lg text-center">
+                            <p class="text-2xl font-bold">a² + b² = c²</p>
+                            <p class="text-sm text-gray-500 mt-2">其中，a和b是直角边，c是斜边</p>
+                        </div>
+                    </div>
+                    
+                    <!-- 知识模块2：历史背景 -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">历史背景</h3>
+                        <p class="mb-2">勾股定理是几何学中最著名的定理之一，有着悠久的历史：</p>
+                        <ul class="list-disc pl-6 space-y-2">
+                            <li>在中国，勾股定理最早可追溯至西周时期（约公元前11世纪），数学家商高提出"勾三股四弦五"的说法</li>
+                            <li>在西方，该定理被称为毕达哥拉斯定理，以古希腊数学家毕达哥拉斯（约公元前570年-公元前495年）命名</li>
+                            <li>古埃及、巴比伦等文明也在实践中应用了勾股定理的原理</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 知识模块3：应用场景 -->
+                    <div class="mb-8">
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">应用场景</h3>
+                        <p class="mb-2">勾股定理在多个领域有着广泛应用：</p>
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>建筑和工程测量</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>导航和地图绘制</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>计算机图形学</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>物理学和力学计算</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                                <span>卫星定位系统(GPS)</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- 知识模块4：当前示例计算 -->
+                    <div>
+                        <h3 class="text-xl font-semibold mb-3 text-gray-700">当前示例计算</h3>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-aColor/10 p-4 rounded-lg border border-aColor/30">
+                                <p class="text-sm text-gray-500">边a长度</p>
+                                <p id="calc-a" class="text-2xl font-bold text-aColor">3</p>
+                            </div>
+                            <div class="bg-bColor/10 p-4 rounded-lg border border-bColor/30">
+                                <p class="text-sm text-gray-500">边b长度</p>
+                                <p id="calc-b" class="text-2xl font-bold text-bColor">4</p>
+                            </div>
+                            <div class="bg-gray-100 p-4 rounded-lg">
+                                <p class="text-sm text-gray-500">a² + b²</p>
+                                <p id="calc-sum" class="text-2xl font-bold">25</p>
+                            </div>
+                            <div class="bg-cColor/10 p-4 rounded-lg border border-cColor/30">
+                                <p class="text-sm text-gray-500">斜边c长度</p>
+                                <p id="calc-c" class="text-2xl font-bold text-cColor">5</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <!-- 底部示例区域 -->
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold mb-6 text-primary text-center flex items-center justify-center">
+                <i class="fa fa-th-large mr-3"></i>常见勾股数示例
+            </h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 勾股数卡片1 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">3-4-5</h3>
+                    <p class="text-sm text-gray-600">3² + 4² = 5²</p>
+                    <p class="text-sm">9 + 16 = 25</p>
+                </div>
+                
+                <!-- 勾股数卡片2 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">5-12-13</h3>
+                    <p class="text-sm text-gray-600">5² + 12² = 13²</p>
+                    <p class="text-sm">25 + 144 = 169</p>
+                </div>
+                
+                <!-- 勾股数卡片3 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">6-8-10</h3>
+                    <p class="text-sm text-gray-600">6² + 8² = 10²</p>
+                    <p class="text-sm">36 + 64 = 100</p>
+                </div>
+                
+                <!-- 勾股数卡片4 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">7-24-25</h3>
+                    <p class="text-sm text-gray-600">7² + 24² = 25²</p>
+                    <p class="text-sm">49 + 576 = 625</p>
+                </div>
+                
+                <!-- 勾股数卡片5 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">8-15-17</h3>
+                    <p class="text-sm text-gray-600">8² + 15² = 17²</p>
+                    <p class="text-sm">64 + 225 = 289</p>
+                </div>
+                
+                <!-- 勾股数卡片6 -->
+                <div class="bg-card rounded-xl shadow-lg p-5 card-hover">
+                    <h3 class="font-bold text-lg mb-2">9-40-41</h3>
+                    <p class="text-sm text-gray-600">9² + 40² = 41²</p>
+                    <p class="text-sm">81 + 1600 = 1681</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 页脚 -->
+        <footer class="text-center text-gray-500 text-sm py-4">
+            <p>© 2023 勾股定理互动演示 | 用直观方式探索数学的奥秘</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取DOM元素
+        const svg = document.getElementById('triangle-svg');
+        const sideAInput = document.getElementById('side-a');
+        const sideBInput = document.getElementById('side-b');
+        const aValue = document.getElementById('a-value');
+        const bValue = document.getElementById('b-value');
+        const animateBtn = document.getElementById('animate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const calcA = document.getElementById('calc-a');
+        const calcB = document.getElementById('calc-b');
+        const calcSum = document.getElementById('calc-sum');
+        const calcC = document.getElementById('calc-c');
+        
+        // 初始值
+        let a = parseInt(sideAInput.value);
+        let b = parseInt(sideBInput.value);
+        let c = Math.sqrt(a*a + b*b);
+        let isAnimating = false;
+        let animationId = null;
+        
+        // 缩放因子 - 使三角形在SVG中合适显示
+        const scale = 15;
+        
+        // 计算三角形位置
+        const getTrianglePoints = (a, b) => {
+            // 起点坐标
+            const startX = 50;
+            const startY = 300;
+            
+            // 计算三个顶点
+            const point1 = { x: startX, y: startY };
+            const point2 = { x: startX + b * scale, y: startY }; // 右点（边b）
+            const point3 = { x: startX, y: startY - a * scale }; // 上点（边a）
+            
+            return { point1, point2, point3 };
+        };
+        
+        // 清除SVG内容
+        const clearSVG = () => {
+            while (svg.firstChild) {
+                svg.removeChild(svg.firstChild);
+            }
+        };
+        
+        // 绘制直角三角形
+        const drawTriangle = (a, b, animate = false, progress = 1) => {
+            const { point1, point2, point3 } = getTrianglePoints(
+                animate ? a * progress : a, 
+                animate ? b * progress : b
+            );
+            
+            // 创建三角形路径
+            const triangle = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            triangle.setAttribute('d', `M ${point1.x},${point1.y} L ${point2.x},${point2.y} L ${point3.x},${point3.y} Z`);
+            triangle.setAttribute('fill', 'none');
+            triangle.setAttribute('stroke', '#333');
+            triangle.setAttribute('stroke-width', '2');
+            svg.appendChild(triangle);
+            
+            // 绘制直角标记
+            const rightAngleSize = 10;
+            const rightAngle = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            rightAngle.setAttribute('d', `M ${point1.x},${point1.y} L ${point1.x + rightAngleSize},${point1.y} L ${point1.x},${point1.y - rightAngleSize}`);
+            rightAngle.setAttribute('stroke', '#333');
+            rightAngle.setAttribute('stroke-width', '2');
+            svg.appendChild(rightAngle);
+            
+            // 标记边a（红色）
+            const sideA = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            sideA.setAttribute('x1', point1.x);
+            sideA.setAttribute('y1', point1.y);
+            sideA.setAttribute('x2', point3.x);
+            sideA.setAttribute('y2', point3.y);
+            sideA.setAttribute('stroke', '#FF4D4F');
+            sideA.setAttribute('stroke-width', '4');
+            svg.appendChild(sideA);
+            
+            // 标记边b（蓝色）
+            const sideB = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            sideB.setAttribute('x1', point1.x);
+            sideB.setAttribute('y1', point1.y);
+            sideB.setAttribute('x2', point2.x);
+            sideB.setAttribute('y2', point2.y);
+            sideB.setAttribute('stroke', '#1890FF');
+            sideB.setAttribute('stroke-width', '4');
+            svg.appendChild(sideB);
+            
+            // 标记斜边c（绿色）
+            const sideC = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            sideC.setAttribute('x1', point2.x);
+            sideC.setAttribute('y1', point2.y);
+            sideC.setAttribute('x2', point3.x);
+            sideC.setAttribute('y2', point3.y);
+            sideC.setAttribute('stroke', '#52C41A');
+            sideC.setAttribute('stroke-width', '4');
+            svg.appendChild(sideC);
+            
+            // 添加边标签
+            const labelA = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            labelA.setAttribute('x', (point1.x + point3.x) / 2 - 10);
+            labelA.setAttribute('y', (point1.y + point3.y) / 2);
+            labelA.setAttribute('fill', '#FF4D4F');
+            labelA.setAttribute('font-weight', 'bold');
+            labelA.textContent = 'a';
+            svg.appendChild(labelA);
+            
+            const labelB = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            labelB.setAttribute('x', (point1.x + point2.x) / 2);
+            labelB.setAttribute('y', (point1.y + point2.y) / 2 + 15);
+            labelB.setAttribute('fill', '#1890FF');
+            labelB.setAttribute('font-weight', 'bold');
+            labelB.textContent = 'b';
+            svg.appendChild(labelB);
+            
+            const labelC = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            labelC.setAttribute('x', (point2.x + point3.x) / 2 + 10);
+            labelC.setAttribute('y', (point2.y + point3.y) / 2);
+            labelC.setAttribute('fill', '#52C41A');
+            labelC.setAttribute('font-weight', 'bold');
+            labelC.textContent = 'c';
+            svg.appendChild(labelC);
+            
+            return { point1, point2, point3 };
+        };
+        
+        // 绘制正方形
+        const drawSquares = (a, b, points, animate = false, progress = 1) => {
+            const { point1, point2, point3 } = points;
+            const animatedA = animate ? a * progress : a;
+            const animatedB = animate ? b * progress : b;
+            
+            // 边a的正方形（红色）
+            const squareAPoints = [
+                point1,
+                point3,
+                { x: point3.x - animatedA * scale, y: point3.y },
+                { x: point1.x - animatedA * scale, y: point1.y }
+            ];
+            
+            const squareA = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            squareA.setAttribute('points', squareAPoints.map(p => `${p.x},${p.y}`).join(' '));
+            squareA.setAttribute('fill', 'rgba(255, 77, 79, 0.3)');
+            squareA.setAttribute('stroke', '#FF4D4F');
+            squareA.setAttribute('stroke-width', '2');
+            svg.appendChild(squareA);
+            
+            // 边b的正方形（蓝色）
+            const squareBPoints = [
+                point1,
+                point2,
+                { x: point2.x, y: point2.y + animatedB * scale },
+                { x: point1.x, y: point1.y + animatedB * scale }
+            ];
+            
+            const squareB = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            squareB.setAttribute('points', squareBPoints.map(p => `${p.x},${p.y}`).join(' '));
+            squareB.setAttribute('fill', 'rgba(24, 144, 255, 0.3)');
+            squareB.setAttribute('stroke', '#1890FF');
+            squareB.setAttribute('stroke-width', '2');
+            svg.appendChild(squareB);
+            
+            // 斜边c的正方形（绿色）
+            // 计算正方形的另外两个点
+            const angle = Math.atan2(point3.y - point2.y, point3.x - point2.x);
+            const cLength = Math.sqrt(a*a + b*b) * scale;
+            const animatedCLength = animate ? cLength * progress : cLength;
+            
+            // 旋转向量计算
+            const dx = Math.cos(angle + Math.PI/2) * animatedCLength;
+            const dy = Math.sin(angle + Math.PI/2) * animatedCLength;
+            
+            const squareCPoint3 = { x: point2.x + dx, y: point2.y + dy };
+            const squareCPoint4 = { x: point3.x + dx, y: point3.y + dy };
+            
+            const squareCPoints = [
+                point2,
+                point3,
+                squareCPoint4,
+                squareCPoint3
+            ];
+            
+            const squareC = document.createElementNS("http://www.w3.org/2000/svg", "polygon");
+            squareC.setAttribute('points', squareCPoints.map(p => `${p.x},${p.y}`).join(' '));
+            squareC.setAttribute('fill', 'rgba(82, 196, 26, 0.3)');
+            squareC.setAttribute('stroke', '#52C41A');
+            squareC.setAttribute('stroke-width', '2');
+            svg.appendChild(squareC);
+        };
+        
+        // 更新显示
+        const updateDisplay = (animate = false, progress = 1) => {
+            clearSVG();
+            const points = drawTriangle(a, b, animate, progress);
+            drawSquares(a, b, points, animate, progress);
+            
+            // 更新计算值显示
+            const currentA = animate ? a * progress : a;
+            const currentB = animate ? b * progress : b;
+            const currentC = Math.sqrt(currentA*currentA + currentB*currentB);
+            
+            calcA.textContent = currentA.toFixed(1);
+            calcB.textContent = currentB.toFixed(1);
+            calcSum.textContent = (currentA*currentA + currentB*currentB).toFixed(1);
+            calcC.textContent = currentC.toFixed(2);
+        };
+        
+        // 动画函数
+        const animate = () => {
+            if (isAnimating) return;
+            
+            isAnimating = true;
+            animateBtn.innerHTML = '<i class="fa fa-spinner fa-spin mr-2"></i>动画中...';
+            animateBtn.disabled = true;
+            
+            let startTime = null;
+            const duration = 1500; // 动画持续时间（毫秒）
+            
+            const animationStep = (timestamp) => {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                
+                updateDisplay(true, progress);
+                
+                if (progress < 1) {
+                    animationId = requestAnimationFrame(animationStep);
+                } else {
+                    // 动画结束
+                    isAnimating = false;
+                    animateBtn.innerHTML = '<i class="fa fa-repeat mr-2"></i>重新播放';
+                    animateBtn.disabled = false;
+                }
+            };
+            
+            // 开始动画
+            animationId = requestAnimationFrame(animationStep);
+        };
+        
+        // 重置函数
+        const reset = () => {
+            // 取消任何正在进行的动画
+            if (isAnimating && animationId) {
+                cancelAnimationFrame(animationId);
+                isAnimating = false;
+            }
+            
+            // 重置为初始值
+            a = 3;
+            b = 4;
+            sideAInput.value = a;
+            sideBInput.value = b;
+            aValue.textContent = a;
+            bValue.textContent = b;
+            
+            // 更新显示
+            updateDisplay();
+            
+            // 重置按钮文本
+            animateBtn.innerHTML = '<i class="fa fa-play mr-2"></i>开始动画';
+        };
+        
+        // 事件监听器
+        sideAInput.addEventListener('input', () => {
+            a = parseInt(sideAInput.value);
+            aValue.textContent = a;
+            updateDisplay();
+        });
+        
+        sideBInput.addEventListener('input', () => {
+            b = parseInt(sideBInput.value);
+            bValue.textContent = b;
+            updateDisplay();
+        });
+        
+        animateBtn.addEventListener('click', animate);
+        resetBtn.addEventListener('click', reset);
+        
+        // 初始绘制
+        updateDisplay();
+    </script>
+</body>
+</html>
