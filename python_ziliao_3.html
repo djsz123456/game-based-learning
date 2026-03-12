@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python爬虫课件+电子书</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #f5576c;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #f5576c;
+        }
+        
+        h3 {
+            color: #555;
+            margin: 20px 0 15px;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .file-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: #fff0f5;
+        }
+        
+        .file-link {
+            color: #f5576c;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-link:hover {
+            text-decoration: underline;
+        }
+        
+        .file-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .nav-menu h3 {
+            margin-bottom: 15px;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-item {
+            flex: 1 0 calc(20% - 10px);
+            min-width: 140px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 10px;
+            background: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #f5576c;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #f5576c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #f093fb;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-item {
+                flex: 1 0 calc(33.33% - 10px);
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-item {
+                flex: 1 0 100%;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Python爬虫课件+电子书</h1>
+            <p>全面的爬虫学习资源集合</p>
+        </header>
+        
+        <div class="nav-menu">
+            <h3>资料分类导航</h3>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#ebooks" class="nav-link">电子书</a></li>
+                <li class="nav-item"><a href="#courseware" class="nav-link">爬虫课程课件</a></li>
+                <li class="nav-item"><a href="#scripts" class="nav-link">爬虫脚本</a></li>
+                <li class="nav-item"><a href="#tutorials" class="nav-link">专题教程</a></li>
+                <li class="nav-item"><a href="#framework" class="nav-link">框架详解</a></li>
+            </ul>
+        </div>
+        
+        <section id="ebooks" class="section">
+            <h2>电子书</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/《Python 3网络爬虫开发实战 》崔庆才著.pdf" class="file-link"><span class="file-icon">📑</span>《Python 3网络爬虫开发实战 》崔庆才著.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Python网络爬虫实战胡松涛编著.pdf" class="file-link"><span class="file-icon">📑</span>Python网络爬虫实战胡松涛编著.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Python网络爬虫实战 第2版.pdf" class="file-link"><span class="file-icon">📑</span>Python网络爬虫实战 第2版.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/自己动手写网络爬虫.pdf" class="file-link"><span class="file-icon">📑</span>自己动手写网络爬虫.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/用Python写网络爬虫.pdf" class="file-link"><span class="file-icon">📑</span>用Python写网络爬虫.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Python3网络爬虫数据采集.pdf" class="file-link"><span class="file-icon">📑</span>Python3网络爬虫数据采集.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/python_网络爬虫.pdf" class="file-link"><span class="file-icon">📑</span>python_网络爬虫.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/第10章 网络爬虫开发.pdf" class="file-link"><span class="file-icon">📑</span>第10章 网络爬虫开发.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫单子基础练习合集.pdf" class="file-link"><span class="file-icon">📑</span>爬虫单子基础练习合集.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/难度等级4级-爬虫练习项目【程序篇】.pdf" class="file-link"><span class="file-icon">📑</span>难度等级4级-爬虫练习项目【程序篇】.pdf</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/难度等级1级-爬虫练习项目【获取数据篇】(1).pdf" class="file-link"><span class="file-icon">📑</span>难度等级1级-爬虫练习项目【获取数据篇】(1).pdf</a></li>
+            </div>
+        </section>
+        
+        <section id="courseware" class="section">
+            <h2>爬虫课程课件</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter1/03http协议和chrome浏览器.html" class="file-link"><span class="file-icon">🌐</span>HTTP协议和Chrome浏览器</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter1/04urllib库.html" class="file-link"><span class="file-icon">🌐</span>urllib库详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter1/05requests库.html" class="file-link"><span class="file-icon">🌐</span>requests库详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter2/01xpath语法与lxml库.html" class="file-link"><span class="file-icon">🌐</span>XPath语法与lxml库</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter3/04mysql数据库.html" class="file-link"><span class="file-icon">🌐</span>MySQL数据库</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter3/05mongodb数据库.html" class="file-link"><span class="file-icon">🌐</span>MongoDB数据库</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter4/01多线程爬虫.html" class="file-link"><span class="file-icon">🌐</span>多线程爬虫</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter4/02动态网页爬虫.html" class="file-link"><span class="file-icon">🌐</span>动态网页爬虫</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter4/03图形验证码识别.html" class="file-link"><span class="file-icon">🌐</span>图形验证码识别</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter5/02快速入门.html" class="file-link"><span class="file-icon">🌐</span>Scrapy快速入门</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter5/06下载文件和图片.html" class="file-link"><span class="file-icon">🌐</span>下载文件和图片</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter5/07下载中间件.html" class="file-link"><span class="file-icon">🌐</span>下载中间件</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫课程课件/chapter6/01redis数据库介绍.html" class="file-link"><span class="file-icon">🌐</span>Redis数据库介绍</a></li>
+            </div>
+        </section>
+        
+        <section id="scripts" class="section">
+            <h2>爬虫脚本</h2>
+            
+            <h3>实用工具脚本</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/Python制作简易时钟/clock.py" class="file-link"><span class="file-icon">🐍</span>Python制作简易时钟</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/tkinter计算器/calculator.py" class="file-link"><span class="file-icon">🐍</span>tkinter计算器</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/二维码生成器/genQrcode.py" class="file-link"><span class="file-icon">🐍</span>二维码生成器</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/简单计时器/Timer.py" class="file-link"><span class="file-icon">🐍</span>简单计时器</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/动态更新地球壁纸/earthWallpaper.py" class="file-link"><span class="file-icon">🐍</span>动态更新地球壁纸</a></li>
+            </div>
+            
+            <h3>爬虫项目脚本</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/Python爬取并简单分析51Job数据/51job.py" class="file-link"><span class="file-icon">🐍</span>Python爬取并简单分析51Job数据</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/多肉数据查询系统/SucculentQuery.py" class="file-link"><span class="file-icon">🐍</span>多肉数据查询系统</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/电影小助手/movieHelper.py" class="file-link"><span class="file-icon">🐍</span>电影小助手</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/百度搜索引擎/bd_spider.py" class="file-link"><span class="file-icon">🐍</span>百度搜索引擎</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/快递查询/V1.0/py/inquiryExpress/inquiryExpress.py" class="file-link"><span class="file-icon">🐍</span>快递查询</a></li>
+            </div>
+            
+            <h3>其他脚本</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/抖音/index.py" class="file-link"><span class="file-icon">🐍</span>抖音相关脚本</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/翻译/translate.py" class="file-link"><span class="file-icon">🐍</span>翻译工具</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/截图工具/baidu.py" class="file-link"><span class="file-icon">🐍</span>截图工具</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/python实现代码雨效果/python实现代码雨效果/CodeRain.py" class="file-link"><span class="file-icon">🐍</span>Python实现代码雨效果</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/10+爬虫脚本/python破解滑块验证码/slider_captcha.py" class="file-link"><span class="file-icon">🐍</span>Python破解滑块验证码</a></li>
+            </div>
+        </section>
+        
+        <section id="tutorials" class="section">
+            <h2>专题教程</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫基本原理/爬虫基本原理.pdf" class="file-link"><span class="file-icon">📑</span>爬虫基本原理</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/分析Ajax来爬取今日头条街拍美图/分析Ajax来爬取今日头条街拍美图.pdf" class="file-link"><span class="file-icon">📑</span>分析Ajax来爬取今日头条街拍美图</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/代理抓取微信文章/用代理抓取微信文章.pdf" class="file-link"><span class="file-icon">📑</span>用代理抓取微信文章</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/urllib讲解/urllib库详解.pdf" class="file-link"><span class="file-icon">📑</span>urllib库详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Selenium详解/selenium.ipynb" class="file-link"><span class="file-icon">📄</span>Selenium详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Selenium爬取淘宝美食/selenium爬取淘宝美食.pdf" class="file-link"><span class="file-icon">📑</span>Selenium爬取淘宝美食</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Requests讲解/requests库详解.pdf" class="file-link"><span class="file-icon">📑</span>requests库详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Requests+正则表达式爬取猫眼电影/requests+正则表达式爬取猫眼电影TOP100.pdf" class="file-link"><span class="file-icon">📑</span>requests+正则表达式爬取猫眼电影TOP100</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/PyQuery详解/pyquery.ipynb" class="file-link"><span class="file-icon">📄</span>PyQuery详解</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/BeautifulSoup详解/beautifulsoup.ipynb" class="file-link"><span class="file-icon">📄</span>BeautifulSoup详解</a></li>
+            </div>
+        </section>
+        
+        <section id="framework" class="section">
+            <h2>框架详解</h2>
+            
+            <h3>Scrapy框架</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy安装详解/Scrapy框架安装.pdf" class="file-link"><span class="file-icon">📑</span>Scrapy框架安装</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy爬取知乎/Scrapy知乎.pdf" class="file-link"><span class="file-icon">📑</span>Scrapy爬取知乎</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy分布式原理/Scrapy分布式原理.pdf" class="file-link"><span class="file-icon">📑</span>Scrapy分布式原理</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy新浪微博/代码.txt" class="file-link"><span class="file-icon">📄</span>Scrapy新浪微博代码</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy爬取知乎/代码.txt" class="file-link"><span class="file-icon">📄</span>Scrapy爬取知乎代码</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Scrapy分布式爬取知乎/代码.txt" class="file-link"><span class="file-icon">📄</span>Scrapy分布式爬取知乎代码</a></li>
+            </div>
+            
+            <h3>Flask+Redis</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/Flask+Redis维护代理池/Flask+Redis维护代理池.pdf" class="file-link"><span class="file-icon">📑</span>Flask+Redis维护代理池</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Flask+Redis维护Cookies池/Flask+Redis维护Cookies池.pdf" class="file-link"><span class="file-icon">📑</span>Flask+Redis维护Cookies池</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Flask+Redis维护代理池/代码(1).txt" class="file-link"><span class="file-icon">📄</span>Flask+Redis维护代理池代码</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/Flask+Redis维护Cookies池/代码.txt" class="file-link"><span class="file-icon">📄</span>Flask+Redis维护Cookies池代码</a></li>
+            </div>
+            
+            <h3>爬虫资料索引</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫资料/index.html" class="file-link"><span class="file-icon">🌐</span>爬虫资料GitBook索引</a></li>
+                <li class="file-item"><a href="python爬虫课件+电子书/爬虫资料/search_index.json" class="file-link"><span class="file-icon">📄</span>爬虫资料搜索索引</a></li>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2>其他资源</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="python爬虫课件+电子书/Python爬虫轻松入门到项目实战/11442.rar.baiduyun.p.downloading" class="file-link"><span class="file-icon">📦</span>Python爬虫轻松入门到项目实战(下载中)</a></li>
+            </div>
+        </section>
+        
+        <a href="index.html" class="back-link">返回首页</a>
+    </div>
+</body>
+</html>

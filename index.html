@@ -42,6 +42,155 @@
             font-weight: 300;
         }
 
+        .auth-container {
+            width: 100%;
+            max-width: 400px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 8px 24px rgba(45, 74, 62, 0.12);
+            border: 1px solid rgba(139, 115, 85, 0.15);
+            margin-bottom: 40px;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .auth-form h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: #2d4a3e;
+            text-align: center;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: #8b7355;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            padding: 12px 16px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            border-radius: 12px;
+            font-size: 1rem;
+            color: #3d3d3d;
+            background: rgba(255, 255, 255, 0.7);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #8b7355;
+            box-shadow: 0 0 0 3px rgba(139, 115, 85, 0.1);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .verify-code-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .verify-code-image {
+            width: 120px;
+            height: 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            border-radius: 8px;
+            cursor: pointer;
+            background: #f5f0e8;
+        }
+
+        .verify-code-refresh {
+            font-size: 0.85rem;
+            color: #8b7355;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .verify-code-refresh:hover {
+            color: #2d4a3e;
+            text-decoration: underline;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #2d4a3e;
+            color: #f5f0e8;
+        }
+
+        .btn-primary:hover {
+            background: #1a2e25;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(45, 74, 62, 0.2);
+        }
+
+        .btn-secondary {
+            background: rgba(139, 115, 85, 0.1);
+            color: #8b7355;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(139, 115, 85, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        .auth-toggle {
+            text-align: center;
+            margin-top: 16px;
+            font-size: 0.9rem;
+            color: #8b7355;
+        }
+
+        .auth-toggle a {
+            color: #2d4a3e;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        .auth-toggle a:hover {
+            color: #1a2e25;
+            text-decoration: underline;
+        }
+
         .container {
             width: 100%;
             max-width: 400px;
@@ -156,6 +305,24 @@
             letter-spacing: 2px;
         }
 
+        .user-info {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-info span {
+            font-size: 0.9rem;
+            color: #2d4a3e;
+        }
+
         @media (max-width: 480px) {
             .header h1 {
                 font-size: 2rem;
@@ -173,16 +340,91 @@
             .nav-card .card-title {
                 font-size: 1rem;
             }
+
+            .auth-container {
+                padding: 24px;
+            }
+
+            .form-row {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="userInfo" class="user-info" style="display: none;">
+        <span id="userName"></span>
+        <button class="btn btn-sm btn-secondary" onclick="logout()">退出登录</button>
+    </div>
+
     <div class="header">
         <h1>管理面板</h1>
         <div class="subtitle">雅致国风 · 极简设计</div>
     </div>
 
-    <div class="container">
+    <div id="authContainer" class="auth-container">
+        <div id="loginForm" class="auth-form">
+            <h2>登录</h2>
+            <div class="form-group">
+                <label for="loginUsername">用户名</label>
+                <input type="text" id="loginUsername" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="loginPassword">密码</label>
+                <input type="password" id="loginPassword" placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <label for="loginEmail">邮箱</label>
+                <input type="email" id="loginEmail" placeholder="请输入邮箱">
+            </div>
+            <div class="form-group">
+                <label for="loginVerifyCode">验证码</label>
+                <div class="verify-code-container">
+                    <input type="text" id="loginVerifyCode" placeholder="请输入验证码" style="flex: 1;">
+                    <canvas id="loginVerifyCodeImage" class="verify-code-image" onclick="generateVerifyCode('login')"></canvas>
+                    <span class="verify-code-refresh" onclick="generateVerifyCode('login')">刷新</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="login()">登录</button>
+            <div class="auth-toggle">
+                还没有账号？ <a href="#" onclick="switchForm('register')">立即注册</a>
+            </div>
+        </div>
+
+        <div id="registerForm" class="auth-form" style="display: none;">
+            <h2>注册</h2>
+            <div class="form-group">
+                <label for="registerUsername">用户名</label>
+                <input type="text" id="registerUsername" placeholder="请输入用户名">
+            </div>
+            <div class="form-group">
+                <label for="registerPassword">密码</label>
+                <input type="password" id="registerPassword" placeholder="请输入密码">
+            </div>
+            <div class="form-group">
+                <label for="registerConfirmPassword">确认密码</label>
+                <input type="password" id="registerConfirmPassword" placeholder="请再次输入密码">
+            </div>
+            <div class="form-group">
+                <label for="registerEmail">邮箱</label>
+                <input type="email" id="registerEmail" placeholder="请输入邮箱">
+            </div>
+            <div class="form-group">
+                <label for="registerVerifyCode">验证码</label>
+                <div class="verify-code-container">
+                    <input type="text" id="registerVerifyCode" placeholder="请输入验证码" style="flex: 1;">
+                    <canvas id="registerVerifyCodeImage" class="verify-code-image" onclick="generateVerifyCode('register')"></canvas>
+                    <span class="verify-code-refresh" onclick="generateVerifyCode('register')">刷新</span>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="register()">注册</button>
+            <div class="auth-toggle">
+                已有账号？ <a href="#" onclick="switchForm('login')">立即登录</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="contentContainer" class="container" style="display: none;">
         <div class="nav-card" onclick="navigateTo('admin.html')">
             <span class="card-title">WordMaster - 词汇记忆挑战</span>
             <span class="card-icon"></span>
@@ -293,6 +535,26 @@
             <span class="card-icon"></span>
         </div>
 
+        <div class="nav-card" onclick="navigateTo('Pythonziliao.html')">
+            <span class="card-title">Python学习资料</span>
+            <span class="card-icon"></span>
+        </div>
+
+        <div class="nav-card" onclick="navigateTo('python_ziliao_2.html')">
+            <span class="card-title">学习资料共享平台</span>
+            <span class="card-icon"></span>
+        </div>
+
+        <div class="nav-card" onclick="navigateTo('python_ziliao_3.html')">
+            <span class="card-title">Python爬虫课件+电子书</span>
+            <span class="card-icon"></span>
+        </div>
+
+        <div class="nav-card" onclick="navigateTo('python_daan.html')">
+            <span class="card-title">Python二级考试资料</span>
+            <span class="card-icon"></span>
+        </div>
+
         <div class="section-title">像素贪吃蛇游戏</div>
 
         <div class="nav-card" onclick="navigateTo('retro-pixel-snake-game/index.html')">
@@ -320,6 +582,13 @@
             <span class="card-icon"></span>
         </div>
 
+        <div class="section-title">奔跑吧兔子跑酷</div>
+
+        <div class="nav-card" onclick="navigateTo('奔跑吧兔子跑酷/index.html')">
+            <span class="card-title">奔跑吧兔子跑酷</span>
+            <span class="card-icon"></span>
+        </div>
+
         <div class="nav-card" onclick="navigateTo('retro-pixel-snake-game/test-new-image.html')">
             <span class="card-title">新图像测试</span>
             <span class="card-icon"></span>
@@ -334,6 +603,307 @@
     <div class="toast" id="toast">加载失败，请重试</div>
 
     <script>
+        // 存储用户数据的本地存储键
+        const USER_STORAGE_KEY = 'game_based_learning_user';
+        const LOGIN_VERIFY_CODE_KEY = 'game_based_learning_login_verify_code';
+        const REGISTER_VERIFY_CODE_KEY = 'game_based_learning_register_verify_code';
+
+        // 页面加载时检查用户登录状态
+        document.addEventListener('DOMContentLoaded', function() {
+            checkLoginStatus();
+            // 生成初始验证码
+            generateVerifyCode('login');
+            generateVerifyCode('register');
+        });
+
+        // 切换登录/注册表单
+        function switchForm(formType) {
+            if (formType === 'login') {
+                document.getElementById('loginForm').style.display = 'flex';
+                document.getElementById('registerForm').style.display = 'none';
+                // 生成新的登录验证码
+                generateVerifyCode('login');
+            } else if (formType === 'register') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('registerForm').style.display = 'flex';
+                // 生成新的注册验证码
+                generateVerifyCode('register');
+            }
+        }
+
+        // 生成图片验证码
+        function generateVerifyCode(formType) {
+            const canvas = document.getElementById(`${formType}VerifyCodeImage`);
+            const ctx = canvas.getContext('2d');
+            
+            // 清除画布
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            // 生成4位随机数字验证码
+            const verifyCode = Math.floor(1000 + Math.random() * 9000).toString();
+            
+            // 存储验证码到本地存储
+            const storageKey = formType === 'login' ? LOGIN_VERIFY_CODE_KEY : REGISTER_VERIFY_CODE_KEY;
+            localStorage.setItem(storageKey, JSON.stringify({
+                code: verifyCode,
+                timestamp: Date.now()
+            }));
+            
+            // 绘制背景
+            ctx.fillStyle = '#f5f0e8';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // 绘制干扰线
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.moveTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.lineTo(Math.random() * canvas.width, Math.random() * canvas.height);
+                ctx.strokeStyle = `rgba(139, 115, 85, ${0.2 + Math.random() * 0.3})`;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+            
+            // 绘制验证码
+            ctx.font = '75px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 每个字符使用不同的颜色和位置
+            for (let i = 0; i < verifyCode.length; i++) {
+                const x = (canvas.width / verifyCode.length) * (i + 0.5);
+                const y = canvas.height / 2 + (Math.random() - 0.5) * 10;
+                ctx.fillStyle = `rgba(45, 74, 62, ${0.7 + Math.random() * 0.3})`;
+                ctx.fillText(verifyCode[i], x, y);
+            }
+        }
+
+        // 注册功能
+        function register() {
+            const username = document.getElementById('registerUsername').value.trim();
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
+            const email = document.getElementById('registerEmail').value.trim();
+            const verifyCode = document.getElementById('registerVerifyCode').value.trim();
+
+            // 验证输入
+            if (!username) {
+                showToast('请输入用户名');
+                return;
+            }
+
+            if (!password) {
+                showToast('请输入密码');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                showToast('两次输入的密码不一致');
+                return;
+            }
+
+            if (!email) {
+                showToast('请输入邮箱地址');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showToast('请输入有效的邮箱地址');
+                return;
+            }
+
+            if (!verifyCode) {
+                showToast('请输入验证码');
+                return;
+            }
+
+            // 验证验证码
+            const storedVerifyCode = localStorage.getItem(REGISTER_VERIFY_CODE_KEY);
+            if (!storedVerifyCode) {
+                showToast('请刷新验证码');
+                return;
+            }
+
+            const verifyCodeData = JSON.parse(storedVerifyCode);
+            if (verifyCodeData.code !== verifyCode) {
+                showToast('验证码错误');
+                // 生成新的验证码
+                generateVerifyCode('register');
+                return;
+            }
+
+            // 检查验证码是否过期（10分钟）
+            if (Date.now() - verifyCodeData.timestamp > 10 * 60 * 1000) {
+                showToast('验证码已过期，请重新刷新');
+                generateVerifyCode('register');
+                return;
+            }
+
+            // 检查用户是否已存在
+            const existingUser = localStorage.getItem(USER_STORAGE_KEY);
+            if (existingUser) {
+                const userData = JSON.parse(existingUser);
+                if (userData.username === username) {
+                    showToast('用户名已存在');
+                    return;
+                }
+                if (userData.email === email) {
+                    showToast('邮箱已被注册');
+                    return;
+                }
+            }
+
+            // 存储用户信息
+            const userData = {
+                username: username,
+                password: password, // 实际项目中应该加密存储
+                email: email,
+                loggedIn: true
+            };
+
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData));
+            showToast('注册成功');
+
+            // 跳转到登录表单
+            switchForm('login');
+        }
+
+        // 登录功能
+        function login() {
+            const username = document.getElementById('loginUsername').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const email = document.getElementById('loginEmail').value.trim();
+            const verifyCode = document.getElementById('loginVerifyCode').value.trim();
+
+            // 验证输入
+            if (!username) {
+                showToast('请输入用户名');
+                return;
+            }
+
+            if (!password) {
+                showToast('请输入密码');
+                return;
+            }
+
+            if (!email) {
+                showToast('请输入邮箱地址');
+                return;
+            }
+
+            if (!isValidEmail(email)) {
+                showToast('请输入有效的邮箱地址');
+                return;
+            }
+
+            if (!verifyCode) {
+                showToast('请输入验证码');
+                return;
+            }
+
+            // 验证验证码
+            const storedVerifyCode = localStorage.getItem(LOGIN_VERIFY_CODE_KEY);
+            if (!storedVerifyCode) {
+                showToast('请刷新验证码');
+                return;
+            }
+
+            const verifyCodeData = JSON.parse(storedVerifyCode);
+            if (verifyCodeData.code !== verifyCode) {
+                showToast('验证码错误');
+                // 生成新的验证码
+                generateVerifyCode('login');
+                return;
+            }
+
+            // 检查验证码是否过期（10分钟）
+            if (Date.now() - verifyCodeData.timestamp > 10 * 60 * 1000) {
+                showToast('验证码已过期，请重新刷新');
+                generateVerifyCode('login');
+                return;
+            }
+
+            // 验证用户信息
+            const storedUser = localStorage.getItem(USER_STORAGE_KEY);
+            if (!storedUser) {
+                showToast('用户不存在，请先注册');
+                return;
+            }
+
+            const userData = JSON.parse(storedUser);
+            if (userData.username !== username || userData.password !== password || userData.email !== email) {
+                showToast('用户名、密码或邮箱错误');
+                return;
+            }
+
+            // 更新登录状态
+            userData.loggedIn = true;
+            localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData));
+            showToast('登录成功');
+
+            // 显示用户信息和内容
+            showUserInfo(userData.username);
+            showContent();
+        }
+
+        // 退出登录
+        function logout() {
+            const storedUser = localStorage.getItem(USER_STORAGE_KEY);
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                userData.loggedIn = false;
+                localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(userData));
+            }
+            showToast('已退出登录');
+            hideUserInfo();
+            hideContent();
+        }
+
+        // 检查登录状态
+        function checkLoginStatus() {
+            const storedUser = localStorage.getItem(USER_STORAGE_KEY);
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                if (userData.loggedIn) {
+                    showUserInfo(userData.username);
+                    showContent();
+                    return;
+                }
+            }
+            // 未登录状态，显示认证表单
+            hideUserInfo();
+            hideContent();
+        }
+
+        // 显示用户信息
+        function showUserInfo(username) {
+            document.getElementById('userName').textContent = username;
+            document.getElementById('userInfo').style.display = 'flex';
+        }
+
+        // 隐藏用户信息
+        function hideUserInfo() {
+            document.getElementById('userInfo').style.display = 'none';
+        }
+
+        // 显示内容
+        function showContent() {
+            document.getElementById('authContainer').style.display = 'none';
+            document.getElementById('contentContainer').style.display = 'flex';
+        }
+
+        // 隐藏内容
+        function hideContent() {
+            document.getElementById('authContainer').style.display = 'block';
+            document.getElementById('contentContainer').style.display = 'none';
+        }
+
+        // 验证邮箱格式
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // 显示提示信息
         function showToast(message) {
             const toast = document.getElementById('toast');
             const overlay = document.getElementById('toastOverlay');
@@ -348,20 +918,27 @@
             }, 2000);
         }
 
+        // 导航到其他页面
         function navigateTo(url) {
+            // 检查登录状态
+            const storedUser = localStorage.getItem(USER_STORAGE_KEY);
+            if (!storedUser) {
+                showToast('请先登录');
+                return;
+            }
+
+            const userData = JSON.parse(storedUser);
+            if (!userData.loggedIn) {
+                showToast('请先登录');
+                return;
+            }
+
             try {
                 window.location.href = url;
             } catch (error) {
                 showToast('加载失败，请重试');
             }
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const cards = document.querySelectorAll('.nav-card');
-            cards.forEach((card, index) => {
-                card.style.animationDelay = `${index * 0.05}s`;
-            });
-        });
     </script>
 </body>
 </html>

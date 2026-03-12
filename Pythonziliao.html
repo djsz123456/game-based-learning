@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python400集系列课程 - 学习资料</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #4CAF50;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #4CAF50;
+        }
+        
+        h3 {
+            color: #555;
+            margin: 20px 0 15px;
+        }
+        
+        .chapter {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .chapter:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-section {
+            margin: 20px 0;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .file-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: #f0f8f0;
+        }
+        
+        .file-link {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-link:hover {
+            text-decoration: underline;
+        }
+        
+        .file-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .nav-menu h3 {
+            margin-bottom: 15px;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-item {
+            flex: 1 0 calc(25% - 10px);
+            min-width: 150px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 10px;
+            background: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #4CAF50;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #45a049;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-item {
+                flex: 1 0 calc(50% - 10px);
+            }
+            
+            .chapter {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-item {
+                flex: 1 0 100%;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>25版Python400集系列课程</h1>
+            <p>全面系统的Python学习资料</p>
+        </header>
+        
+        <div class="nav-menu">
+            <h3>章节导航</h3>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#chapter1" class="nav-link">第1章：Python入门</a></li>
+                <li class="nav-item"><a href="#chapter2" class="nav-link">第2章：编程基本概念</a></li>
+                <li class="nav-item"><a href="#chapter3" class="nav-link">第3章：序列</a></li>
+                <li class="nav-item"><a href="#chapter4" class="nav-link">第4章：条件语句</a></li>
+                <li class="nav-item"><a href="#chapter5" class="nav-link">第5章：函数</a></li>
+                <li class="nav-item"><a href="#chapter6" class="nav-link">第6章：函数式编程</a></li>
+                <li class="nav-item"><a href="#chapter7" class="nav-link">第7章：面向对象</a></li>
+                <li class="nav-item"><a href="#chapter8" class="nav-link">第8章：设计模式</a></li>
+                <li class="nav-item"><a href="#chapter9" class="nav-link">第9章：异常机制</a></li>
+                <li class="nav-item"><a href="#chapter10" class="nav-link">第10章：模块</a></li>
+                <li class="nav-item"><a href="#chapter11" class="nav-link">第11章：文件操作</a></li>
+                <li class="nav-item"><a href="#chapter12" class="nav-link">第12章：网络通信</a></li>
+                <li class="nav-item"><a href="#chapter13" class="nav-link">第13章：并发编程</a></li>
+                <li class="nav-item"><a href="#chapter14" class="nav-link">第14章：正则表达式</a></li>
+            </ul>
+        </div>
+        
+        <section id="chapter1" class="chapter">
+            <h2>第1章：Python入门</h2>
+            <div class="file-section">
+                <h3>源码文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/04_turtle_base.py" class="file-link"><span class="file-icon">🐍</span>04_turtle_base.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/05_draw_olympic.py" class="file-link"><span class="file-icon">🐍</span>05_draw_olympic.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/06_AICode.py" class="file-link"><span class="file-icon">🐍</span>06_AICode.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/07_att.py" class="file-link"><span class="file-icon">🐍</span>07_att.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/爱心.py" class="file-link"><span class="file-icon">🐍</span>爱心.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/01_第一章Python入门/源码/玫瑰花.py" class="file-link"><span class="file-icon">🐍</span>玫瑰花.py</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter2" class="chapter">
+            <h2>第2章：编程基本概念</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/02_第二章编程基本概念/md文档/编程基本概念.md" class="file-link"><span class="file-icon">📄</span>编程基本概念.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/02_第二章编程基本概念/文档/编程基本概念.pdf" class="file-link"><span class="file-icon">📑</span>编程基本概念.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter3" class="chapter">
+            <h2>第3章：序列</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/03_第三章序列/md文档/序列.md" class="file-link"><span class="file-icon">📄</span>序列.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/03_第三章序列/文档/序列.pdf" class="file-link"><span class="file-icon">📑</span>序列.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter4" class="chapter">
+            <h2>第4章：条件语句</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/04 第四章 条件语句/md文档/条件语句.md" class="file-link"><span class="file-icon">📄</span>条件语句.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/04 第四章 条件语句/文档/条件语句.pdf" class="file-link"><span class="file-icon">📑</span>条件语句.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter5" class="chapter">
+            <h2>第5章：函数</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/05_第五章 函数/md文档/函数.md" class="file-link"><span class="file-icon">📄</span>函数.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/05_第五章 函数/文档/函数.pdf" class="file-link"><span class="file-icon">📑</span>函数.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter6" class="chapter">
+            <h2>第6章：函数式编程</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/06 第六章 函数式编程/md文档/函数式编程.md" class="file-link"><span class="file-icon">📄</span>函数式编程.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/06 第六章 函数式编程/文档/函数式编程.pdf" class="file-link"><span class="file-icon">📑</span>函数式编程.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter7" class="chapter">
+            <h2>第7章：面向对象</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/07_第七章 面向对象/md文档/面向对象.md" class="file-link"><span class="file-icon">📄</span>面向对象.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/07_第七章 面向对象/文档/面向对象.pdf" class="file-link"><span class="file-icon">📑</span>面向对象.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter8" class="chapter">
+            <h2>第8章：设计模式</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/md文档/设计模式.md" class="file-link"><span class="file-icon">📄</span>设计模式.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/md文档/设计模式(1).md" class="file-link"><span class="file-icon">📄</span>设计模式(1).md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/文档/设计模式.pdf" class="file-link"><span class="file-icon">📑</span>设计模式.pdf</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/文档/设计模式(1).pdf" class="file-link"><span class="file-icon">📑</span>设计模式(1).pdf</a></li>
+                </ul>
+            </div>
+            <div class="file-section">
+                <h3>源码文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/单例模式.py" class="file-link"><span class="file-icon">🐍</span>单例模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/单例模式(1).py" class="file-link"><span class="file-icon">🐍</span>单例模式(1).py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/工厂方法模式.py" class="file-link"><span class="file-icon">🐍</span>工厂方法模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/工厂方法模式(1).py" class="file-link"><span class="file-icon">🐍</span>工厂方法模式(1).py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/建造者模式.py" class="file-link"><span class="file-icon">🐍</span>建造者模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/建造者模式(1).py" class="file-link"><span class="file-icon">🐍</span>建造者模式(1).py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/抽象工厂模式.py" class="file-link"><span class="file-icon">🐍</span>抽象工厂模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/抽象工厂模式(1).py" class="file-link"><span class="file-icon">🐍</span>抽象工厂模式(1).py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/简单工厂模式.py" class="file-link"><span class="file-icon">🐍</span>简单工厂模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/简单工厂模式(1).py" class="file-link"><span class="file-icon">🐍</span>简单工厂模式(1).py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/适配器模式.py" class="file-link"><span class="file-icon">🐍</span>适配器模式.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/08_第八章 设计模式/源码/适配器模式(1).py" class="file-link"><span class="file-icon">🐍</span>适配器模式(1).py</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter9" class="chapter">
+            <h2>第9章：异常机制</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/文档/index.md" class="file-link"><span class="file-icon">📄</span>index.md</a></li>
+                </ul>
+            </div>
+            <div class="file-section">
+                <h3>源码文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/01_Exception.py" class="file-link"><span class="file-icon">🐍</span>01_Exception.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/02_Exception.py" class="file-link"><span class="file-icon">🐍</span>02_Exception.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/03_Exception.py" class="file-link"><span class="file-icon">🐍</span>03_Exception.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/04_Exception.py" class="file-link"><span class="file-icon">🐍</span>04_Exception.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/05_Exception.py" class="file-link"><span class="file-icon">🐍</span>05_Exception.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/05_FileException.py" class="file-link"><span class="file-icon">🐍</span>05_FileException.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/06_EmailExcepiton.py" class="file-link"><span class="file-icon">🐍</span>06_EmailExcepiton.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/09 第九章 异常机制/源码/06_Exception.py" class="file-link"><span class="file-icon">🐍</span>06_Exception.py</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter10" class="chapter">
+            <h2>第10章：模块</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/10_第十章 模块/md文档/模块化编程.md" class="file-link"><span class="file-icon">📄</span>模块化编程.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/10_第十章 模块/文档/模块化编程.pdf" class="file-link"><span class="file-icon">📑</span>模块化编程.pdf</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter11" class="chapter">
+            <h2>第11章：文件操作</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/文档/index.md" class="file-link"><span class="file-icon">📄</span>index.md</a></li>
+                </ul>
+            </div>
+            <div class="file-section">
+                <h3>源码文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/01_File.py" class="file-link"><span class="file-icon">🐍</span>01_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/02_File.py" class="file-link"><span class="file-icon">🐍</span>02_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/03_File.py" class="file-link"><span class="file-icon">🐍</span>03_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/04_File.py" class="file-link"><span class="file-icon">🐍</span>04_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/05_File.py" class="file-link"><span class="file-icon">🐍</span>05_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/06_File.py" class="file-link"><span class="file-icon">🐍</span>06_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/07_File.py" class="file-link"><span class="file-icon">🐍</span>07_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/08_File.py" class="file-link"><span class="file-icon">🐍</span>08_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/09_File.py" class="file-link"><span class="file-icon">🐍</span>09_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/10_File.py" class="file-link"><span class="file-icon">🐍</span>10_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/11_File.py" class="file-link"><span class="file-icon">🐍</span>11_File.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/5.jpg" class="file-link"><span class="file-icon">🖼️</span>5.jpg</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/data.bat" class="file-link"><span class="file-icon">⚙️</span>data.bat</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/demo.py" class="file-link"><span class="file-icon">🐍</span>demo.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/hello.txt" class="file-link"><span class="file-icon">📄</span>hello.txt</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/11_第十一章 文件操作/源码/list.csv" class="file-link"><span class="file-icon">📊</span>list.csv</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter12" class="chapter">
+            <h2>第12章：网络通信</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/文档/index.md" class="file-link"><span class="file-icon">📄</span>index.md</a></li>
+                </ul>
+            </div>
+            <div class="file-section">
+                <h3>源码文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/01_UDP_serve.py" class="file-link"><span class="file-icon">🐍</span>01_UDP_serve.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/02_UDP_client.py" class="file-link"><span class="file-icon">🐍</span>02_UDP_client.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/03_UDP_long_client.py" class="file-link"><span class="file-icon">🐍</span>03_UDP_long_client.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/03_UDP_long_serve.py" class="file-link"><span class="file-icon">🐍</span>03_UDP_long_serve.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/04_UDP_chat_user1.py" class="file-link"><span class="file-icon">🐍</span>04_UDP_chat_user1.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/04_UDP_chat_user2.py" class="file-link"><span class="file-icon">🐍</span>04_UDP_chat_user2.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/05_TCP_serve.py" class="file-link"><span class="file-icon">🐍</span>05_TCP_serve.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/06_TCP_client.py" class="file-link"><span class="file-icon">🐍</span>06_TCP_client.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/07_TCP_long_client.py" class="file-link"><span class="file-icon">🐍</span>07_TCP_long_client.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/07_TCP_long_serve.py" class="file-link"><span class="file-icon">🐍</span>07_TCP_long_serve.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/08_TCP_chat_user1.py" class="file-link"><span class="file-icon">🐍</span>08_TCP_chat_user1.py</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/12_第十二章 网络通信/源码/08_TCP_chat_user2.py" class="file-link"><span class="file-icon">🐍</span>08_TCP_chat_user2.py</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter13" class="chapter">
+            <h2>第13章：并发编程</h2>
+            <div class="file-section">
+                <h3>文档文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/md文档/并发编程.md" class="file-link"><span class="file-icon">📄</span>并发编程.md</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/文档/并发编程.pdf" class="file-link"><span class="file-icon">📑</span>并发编程.pdf</a></li>
+                </ul>
+            </div>
+            <div class="file-section">
+                <h3>视频文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/01_并发编程.mp4" class="file-link"><span class="file-icon">🎬</span>01_并发编程.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/02_线程.mp4" class="file-link"><span class="file-icon">🎬</span>02_线程.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/03_线程函数.mp4" class="file-link"><span class="file-icon">🎬</span>03_线程函数.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/04_线程锁.mp4" class="file-link"><span class="file-icon">🎬</span>04_线程锁.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/05_死锁情况.mp4" class="file-link"><span class="file-icon">🎬</span>05_死锁情况.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/06_线程池.mp4" class="file-link"><span class="file-icon">🎬</span>06_线程池.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/07_线程池作用.mp4" class="file-link"><span class="file-icon">🎬</span>07_线程池作用.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/08_进程.mp4" class="file-link"><span class="file-icon">🎬</span>08_进程.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/09_进程池.mp4" class="file-link"><span class="file-icon">🎬</span>09_进程池.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/10_进程通讯.mp4" class="file-link"><span class="file-icon">🎬</span>10_进程通讯.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/11_Pipe管道.mp4" class="file-link"><span class="file-icon">🎬</span>11_Pipe管道.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/13_第十三章：并发编程/13_第十三章：并发编程/12_协程.mp4" class="file-link"><span class="file-icon">🎬</span>12_协程.mp4</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section id="chapter14" class="chapter">
+            <h2>第14章：正则表达式</h2>
+            <div class="file-section">
+                <h3>视频文件</h3>
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/01_什么是正则表达式.mp4" class="file-link"><span class="file-icon">🎬</span>01_什么是正则表达式.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/02_Re模块.mp4" class="file-link"><span class="file-icon">🎬</span>02_Re模块.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/03_字符匹配.mp4" class="file-link"><span class="file-icon">🎬</span>03_字符匹配.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/04_字符匹配实例.mp4" class="file-link"><span class="file-icon">🎬</span>04_字符匹配实例.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/05_量词与重复.mp4" class="file-link"><span class="file-icon">🎬</span>05_量词与重复.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/06_量词与重复实例.mp4" class="file-link"><span class="file-icon">🎬</span>06_量词与重复实例.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/07_贪婪与非贪婪.mp4" class="file-link"><span class="file-icon">🎬</span>07_贪婪与非贪婪.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/08_贪婪与非贪婪实例.mp4" class="file-link"><span class="file-icon">🎬</span>08_贪婪与非贪婪实例.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/09_位置锚定.mp4.baiduyun.p.downloading" class="file-link"><span class="file-icon">⏬</span>09_位置锚定.mp4.baiduyun.p.downloading</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/10_位置锚定实例.mp4" class="file-link"><span class="file-icon">🎬</span>10_位置锚定实例.mp4</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/11_分组.mp4.baiduyun.p.downloading" class="file-link"><span class="file-icon">⏬</span>11_分组.mp4.baiduyun.p.downloading</a></li>
+                    <li class="file-item"><a href="25版Python400集 系列课程/14_第十四章：正则表达式/14_第十四章：正则表达式/12_断言.mp4.baiduyun.p.downloading" class="file-link"><span class="file-icon">⏬</span>12_断言.mp4.baiduyun.p.downloading</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="chapter">
+            <h2>其他文件</h2>
+            <div class="file-section">
+                <ul class="file-list">
+                    <li class="file-item"><a href="25版Python400集 系列课程/必读.txt" class="file-link"><span class="file-icon">📄</span>必读.txt</a></li>
+                </ul>
+            </div>
+        </section>
+        
+        <a href="index.html" class="back-link">返回首页</a>
+    </div>
+</body>
+</html>

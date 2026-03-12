@@ -147,6 +147,7 @@
             background-color: #FFFFFF;
             min-height: 100vh;
             font-weight: 300;
+            overflow-x: hidden;
         }
         /* 页面切换动画 */
         .page-transition {
@@ -189,6 +190,157 @@
         .decorative-line {
             position: absolute;
             background-color: rgba(0, 0, 0, 0.1);
+        }
+        /* 配对卡片样式 */
+        .pairing-card {
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .pairing-card-inner {
+            width: 100%;
+            height: 120px;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .pairing-card.flipped .pairing-card-inner {
+            transform: rotateY(180deg);
+        }
+        .pairing-card-front, .pairing-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        .pairing-card-front {
+            background-color: #f9fafb;
+            border: 1px solid #e5e7eb;
+        }
+        .pairing-card-back {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            transform: rotateY(180deg);
+        }
+        .pairing-card.matched .pairing-card-front,
+        .pairing-card.matched .pairing-card-back {
+            background-color: #f0fdf4;
+            border-color: #dcfce7;
+            color: #15803d;
+        }
+        /* 表单元素样式 */
+        input[type="text"],
+        input[type="number"],
+        select,
+        textarea {
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+        }
+        /* 按钮悬停效果 */
+        button {
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-1px);
+        }
+        button:active {
+            transform: translateY(0);
+        }
+        /* 类别选项样式 */
+        .category-option {
+            transition: all 0.3s ease;
+        }
+        .category-option:hover {
+            transform: translateY(-2px);
+        }
+        .category-option.selected {
+            border-color: #0066CC;
+            background-color: rgba(0, 102, 204, 0.05);
+        }
+        /* 加载动画 */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #0066CC;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* 响应式调整 */
+        @media (max-width: 768px) {
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            h2.text-4xl,
+            h2.text-5xl {
+                font-size: 2.5rem;
+            }
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            #pairing-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            h2.text-4xl,
+            h2.text-5xl {
+                font-size: 2rem;
+            }
+            .category-btn {
+                font-size: 0.75rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* 防止文本选择 */
+        .no-select {
+            user-select: none;
+        }
+        /* 工具提示 */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
         }
     </style>
 </head>

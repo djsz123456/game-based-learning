@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>学习资料共享平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 30px 0 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        h3 {
+            color: #555;
+            margin: 20px 0 15px;
+        }
+        
+        .section {
+            background: white;
+            margin-bottom: 30px;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .file-list {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        .file-item {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .file-item:hover {
+            background: #f0f0ff;
+        }
+        
+        .file-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        
+        .file-link:hover {
+            text-decoration: underline;
+        }
+        
+        .file-icon {
+            margin-right: 10px;
+            font-size: 1.2em;
+        }
+        
+        .nav-menu {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .nav-menu h3 {
+            margin-bottom: 15px;
+        }
+        
+        .nav-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-item {
+            flex: 1 0 calc(25% - 10px);
+            min-width: 150px;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 10px;
+            background: #f9f9f9;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #764ba2;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-item {
+                flex: 1 0 calc(50% - 10px);
+            }
+            
+            .section {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .nav-item {
+                flex: 1 0 100%;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>学习资料共享平台</h1>
+            <p>全面的学习资源集合</p>
+        </header>
+        
+        <div class="nav-menu">
+            <h3>资料分类导航</h3>
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#python-materials" class="nav-link">Python学习资料</a></li>
+                <li class="nav-item"><a href="#exam-syllabus" class="nav-link">考试大纲</a></li>
+                <li class="nav-item"><a href="#sample-questions" class="nav-link">样题及参考答案</a></li>
+                <li class="nav-item"><a href="#other-materials" class="nav-link">其他学习资料</a></li>
+            </ul>
+        </div>
+        
+        <section id="python-materials" class="section">
+            <h2>Python学习资料</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/Learning-Materials-Sharing-Platform/25年计算机二级python全部考点汇总【内附真题】.md" class="file-link"><span class="file-icon">📄</span>25年计算机二级python全部考点汇总【内附真题】.md</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/Learning-Materials-Sharing-Platform/Python编程指南.pdf" class="file-link"><span class="file-icon">📑</span>Python编程指南.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/Learning-Materials-Sharing-Platform/全国计算机等级考试（NCRE）二级Python语言程序设计考试大纲(2025年版）.pdf" class="file-link"><span class="file-icon">📑</span>全国计算机等级考试（NCRE）二级Python语言程序设计考试大纲(2025年版）.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/Learning-Materials-Sharing-Platform/计算机二级python通关秘籍.pdf" class="file-link"><span class="file-icon">📑</span>计算机二级python通关秘籍.pdf</a></li>
+            </div>
+        </section>
+        
+        <section id="exam-syllabus" class="section">
+            <h2>考试大纲</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/21二级《C程序设计》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>21二级《C程序设计》考试大纲.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/24二级《Java程序设计》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>24二级《Java程序设计》考试大纲.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/25二级《动漫设计》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>25二级《动漫设计》考试大纲.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/26二级《办公软件高级应用技术》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>26二级《办公软件高级应用技术》考试大纲.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/27二级《Python程序设计》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>27二级《Python程序设计》考试大纲.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/28二级《WPS办公软件高级应用技术》考试大纲.docx" class="file-link"><span class="file-icon">📄</span>28二级《WPS办公软件高级应用技术》考试大纲.docx</a></li>
+            </div>
+        </section>
+        
+        <section id="sample-questions" class="section">
+            <h2>样题及参考答案</h2>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级C++语言程序设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级C++语言程序设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级C语言程序设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级C语言程序设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级Java语言程序设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级Java语言程序设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级MS Office高级应用与设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级MS Office高级应用与设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级Python语言程序设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级Python语言程序设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级WPS Office高级应用与设计——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级WPS Office高级应用与设计——样题及参考答案.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/二级公共基础知识——样题及参考答案.pdf" class="file-link"><span class="file-icon">📑</span>二级公共基础知识——样题及参考答案.pdf</a></li>
+            </div>
+        </section>
+        
+        <section id="other-materials" class="section">
+            <h2>其他学习资料</h2>
+            
+            <h3>数学相关</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/初一上学期人教版数学知识点汇总（填空题+无答案例题）.docx" class="file-link"><span class="file-icon">📄</span>初一上学期人教版数学知识点汇总（填空题+无答案例题）.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/数学基础题型练习汇总.docx" class="file-link"><span class="file-icon">📄</span>数学基础题型练习汇总.docx</a></li>
+            </div>
+            
+            <h3>计算机相关</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/DICE-CP226实验指导书20140926.pdf" class="file-link"><span class="file-icon">📑</span>DICE-CP226实验指导书20140926.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/Untitled.pdf" class="file-link"><span class="file-icon">📑</span>Untitled.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/数值数据的表述.pdf" class="file-link"><span class="file-icon">📑</span>数值数据的表述.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/数据信息的表示.pdf" class="file-link"><span class="file-icon">📑</span>数据信息的表示.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/浙江财经大学软件工程专业Java期末考试知识点梳理.docx" class="file-link"><span class="file-icon">📄</span>浙江财经大学软件工程专业Java期末考试知识点梳理.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/浙江财经大学软件工程专业《软件需求分析》核心知识点总结.docx" class="file-link"><span class="file-icon">📄</span>浙江财经大学软件工程专业《软件需求分析》核心知识点总结.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/浙江财经大学软件工程专业大二学生全方位发展规划书.pdf" class="file-link"><span class="file-icon">📑</span>浙江财经大学软件工程专业大二学生全方位发展规划书.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/计算机组成原理.pdf" class="file-link"><span class="file-icon">📑</span>计算机组成原理.pdf</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/计算机组成原理的汇编程序.docx" class="file-link"><span class="file-icon">📄</span>计算机组成原理的汇编程序.docx</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/进制转换.pdf" class="file-link"><span class="file-icon">📑</span>进制转换.pdf</a></li>
+            </div>
+            
+            <h3>平台文件</h3>
+            <div class="file-list">
+                <li class="file-item"><a href="Study Materials Sharing Platform/about.htm" class="file-link"><span class="file-icon">🌐</span>about.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/admin_1.htm" class="file-link"><span class="file-icon">🌐</span>admin_1.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/admin_2.htm" class="file-link"><span class="file-icon">🌐</span>admin_2.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/fenlei.htm" class="file-link"><span class="file-icon">🌐</span>fenlei.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/index.htm" class="file-link"><span class="file-icon">🌐</span>index.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/materials.js" class="file-link"><span class="file-icon">📄</span>materials.js</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/music.mp3" class="file-link"><span class="file-icon">🎵</span>music.mp3</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/my.htm" class="file-link"><span class="file-icon">🌐</span>my.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/save.html" class="file-link"><span class="file-icon">🌐</span>save.html</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/ziliaoku.htm" class="file-link"><span class="file-icon">🌐</span>ziliaoku.htm</a></li>
+                <li class="file-item"><a href="Study Materials Sharing Platform/习题解答.doc" class="file-link"><span class="file-icon">📄</span>习题解答.doc</a></li>
+            </div>
+        </section>
+        
+        <a href="index.html" class="back-link">返回首页</a>
+    </div>
+</body>
+</html>
