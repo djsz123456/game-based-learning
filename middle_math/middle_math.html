@@ -1,0 +1,3320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>初高中数学知识点速查</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px 0;
+            text-align: center;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        nav {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        nav h2 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        nav li {
+            flex: 1 1 200px;
+        }
+        
+        nav a {
+            display: block;
+            padding: 10px;
+            background-color: #f0f0f0;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        nav a:hover {
+            background-color: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        nav button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border: none;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+        }
+        
+        nav button:hover {
+            background-color: #667eea;
+            color: white;
+            transform: translateY(-2px);
+        }
+        
+        section {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            color: #667eea;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            font-size: 1.4em;
+            margin: 20px 0 15px;
+            color: #764ba2;
+        }
+        
+        h4 {
+            font-size: 1.2em;
+            margin: 15px 0 10px;
+            color: #555;
+        }
+        
+        .formula-card {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .formula-card h5 {
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .formula {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        
+        .explanation {
+            margin: 10px 0;
+            color: #555;
+        }
+        
+        .example {
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e8f4f8;
+            border-radius: 5px;
+            font-style: italic;
+        }
+        
+        .copy-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .copy-btn:hover {
+            background-color: #764ba2;
+        }
+        
+        .error-card {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+        }
+        
+        .error-side {
+            flex: 1;
+            padding: 15px;
+            background-color: #ffebee;
+            border-radius: 5px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .correct-side {
+            flex: 1;
+            padding: 15px;
+            background-color: #e8f5e8;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+        }
+        
+        .error-card h5 {
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        #function-visualizer {
+            margin-top: 20px;
+        }
+        
+        .function-input {
+            margin-bottom: 20px;
+        }
+        
+        .function-input label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .function-input input {
+            width: 100px;
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .slider-container {
+            margin: 15px 0;
+        }
+        
+        .slider-container label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .slider-container input[type="range"] {
+            width: 100%;
+            margin: 10px 0;
+        }
+        
+        .slider-value {
+            display: inline-block;
+            width: 50px;
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        #graph-container {
+            width: 100%;
+            height: 400px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        #calculator {
+            margin-top: 20px;
+        }
+        
+        .calc-section {
+            margin-bottom: 30px;
+        }
+        
+        .calc-input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .calc-btn {
+            background-color: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .calc-btn:hover {
+            background-color: #764ba2;
+        }
+        
+        .calc-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        
+        #question-bank {
+            margin-top: 20px;
+        }
+        
+        .question-category {
+            margin-bottom: 30px;
+        }
+        
+        .question-card {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .question-difficulty {
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .difficulty-basic {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .difficulty-medium {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .difficulty-hard {
+            background-color: #f44336;
+            color: white;
+        }
+        
+        .question-content {
+            margin-bottom: 15px;
+        }
+        
+        .question-solution {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #e8f4f8;
+            border-radius: 5px;
+        }
+        
+        .toggle-solution {
+            background-color: #f0f0f0;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        .toggle-solution:hover {
+            background-color: #ddd;
+        }
+        
+        .favorite-btn {
+            background-color: #ffeb3b;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9em;
+        }
+        
+        .favorite-btn:hover {
+            background-color: #fbc02d;
+        }
+        
+        .favorite-btn.favorited {
+            background-color: #f57f17;
+            color: white;
+        }
+        
+        @media print {
+            nav {
+                display: none;
+            }
+            
+            .copy-btn, .toggle-solution, .favorite-btn {
+                display: none;
+            }
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>初高中数学知识点速查</h1>
+            <p>公式定理、易错点、函数图像、在线计算、题库</p>
+        </header>
+        
+        <nav>
+            <h2>导航目录</h2>
+            <ul>
+                <li><a href="#formulas">公式/定理速查</a></li>
+                <li><a href="#common-errors">易错点/易混点总结</a></li>
+                <li><a href="#function-visualizer">函数图像可视化</a></li>
+                <li><a href="#calculator">在线计算题</a></li>
+                <li><a href="#question-bank">题型分类题库</a></li>
+                <li><a href="#error-notebook">错题本</a></li>
+                <li><a href="#notes">笔记/标注</a></li>
+                <li><a href="#statistics">学习统计</a></li>
+                <li><a href="#custom-bank">自定义题库/组卷</a></li>
+                <li><a href="#share-export">题目分享/导出</a></li>
+                <li><a href="https://www.shijuan1.com" target="_blank" title="点击访问第一试卷网，获取中高考数学标准化试卷，辅助组卷/题目导出">第一试卷网</a></li>
+                <li><button id="extract-paper-btn" title="输入小学至高中任意学科试卷名称，自动从第一试卷网提取资源并生成可下载的文档">智能提取试卷并生成文档</button></li>
+            </ul>
+        </nav>
+        
+        <section id="formulas">
+            <h2>1. 公式/定理速查</h2>
+            
+            <h3>1.1 代数</h3>
+            
+            <h4>1.1.1 因式分解公式</h4>
+            <div class="formula-card">
+                <h5>完全平方公式</h5>
+                <div class="formula">(a + b)² = a² + 2ab + b²</div>
+                <div class="formula">(a - b)² = a² - 2ab + b²</div>
+                <div class="explanation">两个数的和（或差）的平方，等于它们的平方和，加上（或减去）它们的积的2倍。</div>
+                <div class="example">例：(2x + 3)² = 4x² + 12x + 9</div>
+                <button class="copy-btn" onclick="copyFormula('(a + b)² = a² + 2ab + b²')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>平方差公式</h5>
+                <div class="formula">a² - b² = (a + b)(a - b)</div>
+                <div class="explanation">两个数的平方差，等于这两个数的和与这两个数的差的积。</div>
+                <div class="example">例：9x² - 16 = (3x + 4)(3x - 4)</div>
+                <button class="copy-btn" onclick="copyFormula('a² - b² = (a + b)(a - b)')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>立方和公式</h5>
+                <div class="formula">a³ + b³ = (a + b)(a² - ab + b²)</div>
+                <div class="explanation">两个数的立方和，等于这两个数的和乘以它们的平方和减去它们的积。</div>
+                <div class="example">例：x³ + 8 = (x + 2)(x² - 2x + 4)</div>
+                <button class="copy-btn" onclick="copyFormula('a³ + b³ = (a + b)(a² - ab + b²)')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>立方差公式</h5>
+                <div class="formula">a³ - b³ = (a - b)(a² + ab + b²)</div>
+                <div class="explanation">两个数的立方差，等于这两个数的差乘以它们的平方和加上它们的积。</div>
+                <div class="example">例：8x³ - 27 = (2x - 3)(4x² + 6x + 9)</div>
+                <button class="copy-btn" onclick="copyFormula('a³ - b³ = (a - b)(a² + ab + b²)')">复制公式</button>
+            </div>
+            
+            <h4>1.1.2 数列通项/求和公式</h4>
+            <div class="formula-card">
+                <h5>等差数列</h5>
+                <div class="formula">通项公式：aₙ = a₁ + (n - 1)d</div>
+                <div class="formula">求和公式：Sₙ = n(a₁ + aₙ)/2 = na₁ + n(n - 1)d/2</div>
+                <div class="explanation">a₁是首项，d是公差，n是项数。</div>
+                <div class="example">例：等差数列首项a₁=2，公差d=3，第5项a₅=2 + 4×3=14，前5项和S₅=5×(2+14)/2=40</div>
+                <button class="copy-btn" onclick="copyFormula('aₙ = a₁ + (n - 1)d')">复制通项公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>等比数列</h5>
+                <div class="formula">通项公式：aₙ = a₁·qⁿ⁻¹</div>
+                <div class="formula">求和公式：Sₙ = a₁(1 - qⁿ)/(1 - q) (q ≠ 1)</div>
+                <div class="explanation">a₁是首项，q是公比，n是项数。</div>
+                <div class="example">例：等比数列首项a₁=2，公比q=3，第4项a₄=2×3³=54，前4项和S₄=2×(1-3⁴)/(1-3)=80</div>
+                <button class="copy-btn" onclick="copyFormula('aₙ = a₁·qⁿ⁻¹')">复制通项公式</button>
+            </div>
+            
+            <h4>1.1.3 指数/对数运算法则</h4>
+            <div class="formula-card">
+                <h5>指数运算法则</h5>
+                <div class="formula">aᵐ·aⁿ = aᵐ⁺ⁿ</div>
+                <div class="formula">aᵐ/aⁿ = aᵐ⁻ⁿ</div>
+                <div class="formula">(aᵐ)ⁿ = aᵐⁿ</div>
+                <div class="formula">(ab)ⁿ = aⁿ·bⁿ</div>
+                <div class="explanation">a>0，m、n为实数。</div>
+                <div class="example">例：2³·2⁴=2⁷=128</div>
+                <button class="copy-btn" onclick="copyFormula('aᵐ·aⁿ = aᵐ⁺ⁿ')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>对数运算法则</h5>
+                <div class="formula">logₐ(MN) = logₐM + logₐN</div>
+                <div class="formula">logₐ(M/N) = logₐM - logₐN</div>
+                <div class="formula">logₐMⁿ = n·logₐM</div>
+                <div class="formula">logₐb = logₑb / logₑa（换底公式）</div>
+                <div class="explanation">a>0且a≠1，M>0，N>0。</div>
+                <div class="example">例：log₂(8×4)=log₂8 + log₂4=3+2=5</div>
+                <button class="copy-btn" onclick="copyFormula('logₐ(MN) = logₐM + logₐN')">复制公式</button>
+            </div>
+            
+            <h3>1.2 几何</h3>
+            
+            <h4>1.2.1 勾股定理</h4>
+            <div class="formula-card">
+                <h5>勾股定理</h5>
+                <div class="formula">a² + b² = c²</div>
+                <div class="explanation">在直角三角形中，两条直角边的平方和等于斜边的平方。</div>
+                <div class="example">例：直角三角形的两条直角边分别为3和4，斜边c=√(3²+4²)=5</div>
+                <button class="copy-btn" onclick="copyFormula('a² + b² = c²')">复制公式</button>
+            </div>
+            
+            <h4>1.2.2 三角函数诱导公式</h4>
+            <div class="formula-card">
+                <h5>三角函数诱导公式</h5>
+                <div class="formula">sin(π/2 - α) = cosα</div>
+                <div class="formula">cos(π/2 - α) = sinα</div>
+                <div class="formula">sin(π - α) = sinα</div>
+                <div class="formula">cos(π - α) = -cosα</div>
+                <div class="explanation">用于将任意角的三角函数转化为锐角的三角函数。</div>
+                <div class="example">例：sin(150°)=sin(180°-30°)=sin30°=1/2</div>
+                <button class="copy-btn" onclick="copyFormula('sin(π/2 - α) = cosα')">复制公式</button>
+            </div>
+            
+            <h4>1.2.3 面积/体积公式</h4>
+            <div class="formula-card">
+                <h5>三角形面积</h5>
+                <div class="formula">S = 1/2·底·高</div>
+                <div class="formula">S = 1/2·ab·sinC（a、b为两边，C为夹角）</div>
+                <div class="explanation">两种计算三角形面积的方法。</div>
+                <div class="example">例：底为4，高为3的三角形面积S=1/2×4×3=6</div>
+                <button class="copy-btn" onclick="copyFormula('S = 1/2·底·高')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>圆的面积和周长</h5>
+                <div class="formula">面积：S = πr²</div>
+                <div class="formula">周长：C = 2πr</div>
+                <div class="explanation">r为圆的半径。</div>
+                <div class="example">例：半径为5的圆，面积S=π×5²=25π，周长C=2π×5=10π</div>
+                <button class="copy-btn" onclick="copyFormula('S = πr²')">复制面积公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>圆柱的表面积和体积</h5>
+                <div class="formula">表面积：S = 2πr² + 2πrh</div>
+                <div class="formula">体积：V = πr²h</div>
+                <div class="explanation">r为底面半径，h为高。</div>
+                <div class="example">例：底面半径为2，高为5的圆柱，体积V=π×2²×5=20π</div>
+                <button class="copy-btn" onclick="copyFormula('V = πr²h')">复制体积公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>圆锥的表面积和体积</h5>
+                <div class="formula">表面积：S = πr² + πrl</div>
+                <div class="formula">体积：V = 1/3·πr²h</div>
+                <div class="explanation">r为底面半径，h为高，l为母线长。</div>
+                <div class="example">例：底面半径为3，高为4的圆锥，体积V=1/3×π×3²×4=12π</div>
+                <button class="copy-btn" onclick="copyFormula('V = 1/3·πr²h')">复制体积公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>球的表面积和体积</h5>
+                <div class="formula">表面积：S = 4πr²</div>
+                <div class="formula">体积：V = 4/3·πr³</div>
+                <div class="explanation">r为球的半径。</div>
+                <div class="example">例：半径为3的球，体积V=4/3×π×3³=36π</div>
+                <button class="copy-btn" onclick="copyFormula('V = 4/3·πr³')">复制体积公式</button>
+            </div>
+            
+            <h4>1.2.4 解析几何</h4>
+            <div class="formula-card">
+                <h5>两点距离公式</h5>
+                <div class="formula">d = √[(x₂ - x₁)² + (y₂ - y₁)²]</div>
+                <div class="explanation">计算平面上两点(x₁,y₁)和(x₂,y₂)之间的距离。</div>
+                <div class="example">例：点(1,2)和(4,6)之间的距离d=√[(4-1)²+(6-2)²]=5</div>
+                <button class="copy-btn" onclick="copyFormula('d = √[(x₂ - x₁)² + (y₂ - y₁)²]')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>直线斜率公式</h5>
+                <div class="formula">k = (y₂ - y₁)/(x₂ - x₁) (x₂ ≠ x₁)</div>
+                <div class="explanation">计算通过两点(x₁,y₁)和(x₂,y₂)的直线的斜率。</div>
+                <div class="example">例：通过点(1,2)和(4,6)的直线斜率k=(6-2)/(4-1)=4/3</div>
+                <button class="copy-btn" onclick="copyFormula('k = (y₂ - y₁)/(x₂ - x₁)')">复制公式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>直线方程</h5>
+                <div class="formula">点斜式：y - y₁ = k(x - x₁)</div>
+                <div class="formula">斜截式：y = kx + b</div>
+                <div class="formula">一般式：Ax + By + C = 0</div>
+                <div class="explanation">k为斜率，b为截距。</div>
+                <div class="example">例：斜率为2，截距为3的直线方程：y=2x+3</div>
+                <button class="copy-btn" onclick="copyFormula('y = kx + b')">复制斜截式</button>
+            </div>
+            
+            <div class="formula-card">
+                <h5>圆的方程</h5>
+                <div class="formula">标准式：(x - a)² + (y - b)² = r²</div>
+                <div class="formula">一般式：x² + y² + Dx + Ey + F = 0</div>
+                <div class="explanation">(a,b)为圆心坐标，r为半径。</div>
+                <div class="example">例：圆心在(2,3)，半径为4的圆的方程：(x-2)²+(y-3)²=16</div>
+                <button class="copy-btn" onclick="copyFormula('(x - a)² + (y - b)² = r²')">复制标准式</button>
+            </div>
+            
+            <h3>1.3 函数</h3>
+            
+            <h4>1.3.1 一次函数</h4>
+            <div class="formula-card">
+                <h5>一次函数 y = kx + b</h5>
+                <div class="explanation">
+                    <p>定义域：R（全体实数）</p>
+                    <p>值域：R</p>
+                    <p>单调性：k>0时，单调递增；k<0时，单调递减</p>
+                    <p>图像：直线，k为斜率，b为截距</p>
+                </div>
+                <div class="example">例：y=2x+3，斜率为2，截距为3，单调递增</div>
+            </div>
+            
+            <h4>1.3.2 二次函数</h4>
+            <div class="formula-card">
+                <h5>二次函数 y = ax² + bx + c (a ≠ 0)</h5>
+                <div class="explanation">
+                    <p>定义域：R</p>
+                    <p>值域：a>0时，[4ac-b²/4a, +∞)；a<0时，(-∞, 4ac-b²/4a]</p>
+                    <p>单调性：a>0时，在(-∞, -b/2a)上递减，在(-b/2a, +∞)上递增；a<0时相反</p>
+                    <p>对称轴：x = -b/2a</p>
+                    <p>顶点：(-b/2a, 4ac-b²/4a)</p>
+                </div>
+                <div class="example">例：y=x²-4x+3，a=1>0，对称轴x=2，顶点(2,-1)，值域[-1,+∞)</div>
+            </div>
+            
+            <h4>1.3.3 反比例函数</h4>
+            <div class="formula-card">
+                <h5>反比例函数 y = k/x (k ≠ 0)</h5>
+                <div class="explanation">
+                    <p>定义域：(-∞,0)∪(0,+∞)</p>
+                    <p>值域：(-∞,0)∪(0,+∞)</p>
+                    <p>单调性：k>0时，在(-∞,0)和(0,+∞)上分别递减；k<0时，在(-∞,0)和(0,+∞)上分别递增</p>
+                    <p>对称中心：原点(0,0)</p>
+                </div>
+                <div class="example">例：y=2/x，k=2>0，在(-∞,0)和(0,+∞)上递减</div>
+            </div>
+            
+            <h4>1.3.4 指数函数</h4>
+            <div class="formula-card">
+                <h5>指数函数 y = aˣ (a>0且a≠1)</h5>
+                <div class="explanation">
+                    <p>定义域：R</p>
+                    <p>值域：(0,+∞)</p>
+                    <p>单调性：a>1时，单调递增；0<a<1时，单调递减</p>
+                    <p>图像：过点(0,1)</p>
+                </div>
+                <div class="example">例：y=2ˣ，a=2>1，单调递增，过点(0,1)</div>
+            </div>
+            
+            <h4>1.3.5 对数函数</h4>
+            <div class="formula-card">
+                <h5>对数函数 y = logₐx (a>0且a≠1)</h5>
+                <div class="explanation">
+                    <p>定义域：(0,+∞)</p>
+                    <p>值域：R</p>
+                    <p>单调性：a>1时，单调递增；0<a<1时，单调递减</p>
+                    <p>图像：过点(1,0)</p>
+                </div>
+                <div class="example">例：y=log₂x，a=2>1，单调递增，过点(1,0)</div>
+            </div>
+            
+            <h4>1.3.6 三角函数</h4>
+            <div class="formula-card">
+                <h5>正弦函数 y = sinx</h5>
+                <div class="explanation">
+                    <p>定义域：R</p>
+                    <p>值域：[-1,1]</p>
+                    <p>周期性：2π</p>
+                    <p>奇偶性：奇函数</p>
+                    <p>单调递增区间：[2kπ-π/2, 2kπ+π/2]</p>
+                    <p>单调递减区间：[2kπ+π/2, 2kπ+3π/2]</p>
+                    <p>对称中心：(kπ, 0)</p>
+                    <p>对称轴：x = kπ + π/2</p>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <h5>余弦函数 y = cosx</h5>
+                <div class="explanation">
+                    <p>定义域：R</p>
+                    <p>值域：[-1,1]</p>
+                    <p>周期性：2π</p>
+                    <p>奇偶性：偶函数</p>
+                    <p>单调递增区间：[2kπ-π, 2kπ]</p>
+                    <p>单调递减区间：[2kπ, 2kπ+π]</p>
+                    <p>对称中心：(kπ+π/2, 0)</p>
+                    <p>对称轴：x = kπ</p>
+                </div>
+            </div>
+            
+            <div class="formula-card">
+                <h5>正切函数 y = tanx</h5>
+                <div class="explanation">
+                    <p>定义域：{x | x ≠ kπ + π/2, k∈Z}</p>
+                    <p>值域：R</p>
+                    <p>周期性：π</p>
+                    <p>奇偶性：奇函数</p>
+                    <p>单调递增区间：(kπ-π/2, kπ+π/2)</p>
+                    <p>对称中心：(kπ/2, 0)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="common-errors">
+            <h2>2. 易错点/易混点总结</h2>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：分式分母不为0</h5>
+                    <p>错误：1/(x-1) 中x为任意实数</p>
+                    <p>错误原因：忽略了分母不能为0的限制</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确解法</h5>
+                    <p>正确：x-1 ≠ 0 → x ≠ 1</p>
+                    <p>提醒：分式有意义的条件是分母不为0</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：二次根式被开方数非负</h5>
+                    <p>错误：√(-x) 中x为任意数</p>
+                    <p>错误原因：忽略了被开方数必须非负的限制</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确解法</h5>
+                    <p>正确：-x ≥ 0 → x ≤ 0</p>
+                    <p>提醒：二次根式√a中a ≥ 0</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：0指数幂的底数限制</h5>
+                    <p>错误：0⁰ = 1</p>
+                    <p>错误原因：忽略了0的0次幂无意义</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确解法</h5>
+                    <p>正确：a⁰ = 1 (a ≠ 0)</p>
+                    <p>提醒：0的0次幂没有意义</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：相似三角形 vs 全等三角形</h5>
+                    <p>错误：相似三角形就是全等三角形</p>
+                    <p>错误原因：混淆了相似和全等的概念</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确区分</h5>
+                    <p>相似三角形：对应角相等，对应边成比例</p>
+                    <p>全等三角形：对应角相等，对应边相等（相似比为1）</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：轴对称 vs 中心对称</h5>
+                    <p>错误：轴对称图形就是中心对称图形</p>
+                    <p>错误原因：混淆了两种对称方式</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确区分</h5>
+                    <p>轴对称：关于某条直线对称，折叠后重合</p>
+                    <p>中心对称：关于某个点对称，旋转180°后重合</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：一次函数k的正负对图像的影响</h5>
+                    <p>错误：k为负时，图像从左到右上升</p>
+                    <p>错误原因：记错了k的正负与图像走势的关系</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确理解</h5>
+                    <p>k>0：图像从左到右上升，y随x增大而增大</p>
+                    <p>k<0：图像从左到右下降，y随x增大而减小</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：二次函数开口方向与a的关系</h5>
+                    <p>错误：a为负时，抛物线开口向上</p>
+                    <p>错误原因：记错了a的正负与开口方向的关系</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确理解</h5>
+                    <p>a>0：抛物线开口向上</p>
+                    <p>a<0：抛物线开口向下</p>
+                </div>
+            </div>
+            
+            <div class="error-card">
+                <div class="error-side">
+                    <h5>易错点：概率中“放回抽样” vs “不放回抽样”</h5>
+                    <p>错误：两种抽样方式概率计算方法相同</p>
+                    <p>错误原因：忽略了抽样方式对概率的影响</p>
+                </div>
+                <div class="correct-side">
+                    <h5>正确区分</h5>
+                    <p>放回抽样：每次抽样的概率不变</p>
+                    <p>不放回抽样：每次抽样的概率会变化</p>
+                    <p>例：从10个球中抽2个，放回时概率为(1/10)×(1/10)，不放回时为(1/10)×(1/9)</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="function-visualizer">
+            <h2>3. 函数图像可视化工具</h2>
+            
+            <div class="function-input">
+                <label for="function-type">选择函数类型：</label>
+                <select id="function-type">
+                    <option value="linear">一次函数 y = kx + b</option>
+                    <option value="quadratic">二次函数 y = ax² + bx + c</option>
+                    <option value="inverse">反比例函数 y = k/x</option>
+                    <option value="sine">正弦函数 y = sin(x)</option>
+                    <option value="cosine">余弦函数 y = cos(x)</option>
+                    <option value="tangent">正切函数 y = tan(x)</option>
+                </select>
+            </div>
+            
+            <div id="linear-params" class="function-params">
+                <div class="slider-container">
+                    <label for="k">斜率 k: <span class="slider-value" id="k-value">1</span></label>
+                    <input type="range" id="k" min="-5" max="5" step="0.1" value="1">
+                </div>
+                <div class="slider-container">
+                    <label for="b">截距 b: <span class="slider-value" id="b-value">0</span></label>
+                    <input type="range" id="b" min="-5" max="5" step="0.1" value="0">
+                </div>
+            </div>
+            
+            <div id="quadratic-params" class="function-params" style="display: none;">
+                <div class="slider-container">
+                    <label for="a">系数 a: <span class="slider-value" id="a-value">1</span></label>
+                    <input type="range" id="a" min="-3" max="3" step="0.1" value="1">
+                </div>
+                <div class="slider-container">
+                    <label for="bx">系数 b: <span class="slider-value" id="bx-value">0</span></label>
+                    <input type="range" id="bx" min="-5" max="5" step="0.1" value="0">
+                </div>
+                <div class="slider-container">
+                    <label for="c">常数 c: <span class="slider-value" id="c-value">0</span></label>
+                    <input type="range" id="c" min="-5" max="5" step="0.1" value="0">
+                </div>
+            </div>
+            
+            <div id="inverse-params" class="function-params" style="display: none;">
+                <div class="slider-container">
+                    <label for="k-inverse">系数 k: <span class="slider-value" id="k-inverse-value">1</span></label>
+                    <input type="range" id="k-inverse" min="-5" max="5" step="0.1" value="1">
+                </div>
+            </div>
+            
+            <div id="trig-params" class="function-params" style="display: none;">
+                <div class="slider-container">
+                    <label for="amplitude">振幅: <span class="slider-value" id="amplitude-value">1</span></label>
+                    <input type="range" id="amplitude" min="0.1" max="3" step="0.1" value="1">
+                </div>
+                <div class="slider-container">
+                    <label for="period">周期: <span class="slider-value" id="period-value">1</span></label>
+                    <input type="range" id="period" min="0.5" max="3" step="0.1" value="1">
+                </div>
+            </div>
+            
+            <div id="graph-container">
+                <canvas id="function-chart"></canvas>
+            </div>
+        </section>
+        
+        <section id="calculator">
+            <h2>4. 在线计算题</h2>
+            
+            <div class="calc-section">
+                <h3>4.1 因式分解</h3>
+                <input type="text" class="calc-input" id="factor-input" placeholder="输入多项式，如 x²-5x+6">
+                <button class="calc-btn" onclick="factorPolynomial()">因式分解</button>
+                <div class="calc-result" id="factor-result"></div>
+            </div>
+            
+            <div class="calc-section">
+                <h3>4.2 解一元二次方程</h3>
+                <input type="text" class="calc-input" id="quadratic-input" placeholder="输入方程，如 x²-4x+3=0">
+                <button class="calc-btn" onclick="solveQuadratic()">解方程</button>
+                <div class="calc-result" id="quadratic-result"></div>
+            </div>
+            
+            <div class="calc-section">
+                <h3>4.3 三角函数值计算</h3>
+                <input type="text" class="calc-input" id="trig-input" placeholder="输入三角函数，如 sin60°">
+                <button class="calc-btn" onclick="calculateTrig()">计算</button>
+                <div class="calc-result" id="trig-result"></div>
+            </div>
+            
+            <div class="calc-section">
+                <h3>4.4 数列求和</h3>
+                <input type="text" class="calc-input" id="sequence-input" placeholder="输入数列信息，如 等差数列 首项=1 公差=2 项数=5">
+                <button class="calc-btn" onclick="sumSequence()">求和</button>
+                <div class="calc-result" id="sequence-result"></div>
+            </div>
+        </section>
+        
+        <section id="question-bank">
+            <h2>5. 题型分类题库</h2>
+            
+            <div class="question-category">
+                <h3>5.1 代数</h3>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>整式运算</h4>
+                        <span class="question-difficulty difficulty-basic">基础</span>
+                    </div>
+                    <div class="question-content">
+                        <p>计算：(2x + 3)(x - 4)</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>步骤1：使用分配律展开</p>
+                        <p>(2x + 3)(x - 4) = 2x·x - 2x·4 + 3·x - 3·4</p>
+                        <p>步骤2：计算每一项</p>
+                        <p>= 2x² - 8x + 3x - 12</p>
+                        <p>步骤3：合并同类项</p>
+                        <p>= 2x² - 5x - 12</p>
+                        <h5>答案：2x² - 5x - 12</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>分式化简</h4>
+                        <span class="question-difficulty difficulty-medium">中档</span>
+                    </div>
+                    <div class="question-content">
+                        <p>化简：(x² - 4)/(x + 2)</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>步骤1：因式分解分子</p>
+                        <p>x² - 4 = (x + 2)(x - 2)</p>
+                        <p>步骤2：约分</p>
+                        <p>(x + 2)(x - 2)/(x + 2) = x - 2 (x ≠ -2)</p>
+                        <h5>答案：x - 2 (x ≠ -2)</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h3>5.2 几何</h3>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>三角形全等证明</h4>
+                        <span class="question-difficulty difficulty-medium">中档</span>
+                    </div>
+                    <div class="question-content">
+                        <p>已知：在△ABC和△DEF中，AB=DE，BC=EF，∠B=∠E，求证：△ABC≌△DEF</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>证明：在△ABC和△DEF中</p>
+                        <p>AB=DE（已知）</p>
+                        <p>∠B=∠E（已知）</p>
+                        <p>BC=EF（已知）</p>
+                        <p>根据SAS（边角边）判定定理，△ABC≌△DEF</p>
+                        <h5>答案：证明如上</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>求角度</h4>
+                        <span class="question-difficulty difficulty-basic">基础</span>
+                    </div>
+                    <div class="question-content">
+                        <p>在直角三角形中，一个锐角为30°，求另一个锐角的度数。</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>直角三角形的两个锐角和为90°</p>
+                        <p>另一个锐角 = 90° - 30° = 60°</p>
+                        <h5>答案：60°</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+            </div>
+            
+            <div class="question-category">
+                <h3>5.3 统计</h3>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>平均数计算</h4>
+                        <span class="question-difficulty difficulty-basic">基础</span>
+                    </div>
+                    <div class="question-content">
+                        <p>计算数据：2, 4, 6, 8, 10 的平均数。</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>平均数 = (2 + 4 + 6 + 8 + 10)/5 = 30/5 = 6</p>
+                        <h5>答案：6</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+                
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>概率计算</h4>
+                        <span class="question-difficulty difficulty-medium">中档</span>
+                    </div>
+                    <div class="question-content">
+                        <p>从一副52张扑克牌中随机抽取一张，求抽到红桃的概率。</p>
+                    </div>
+                    <div class="question-solution" style="display: none;">
+                        <h5>解析：</h5>
+                        <p>一副扑克牌有52张，红桃有13张</p>
+                        <p>概率 = 13/52 = 1/4</p>
+                        <h5>答案：1/4</h5>
+                    </div>
+                    <button class="toggle-solution" onclick="toggleSolution(this)">显示解析</button>
+                    <button class="favorite-btn" onclick="toggleFavorite(this)">收藏</button>
+                </div>
+            </div>
+        </section>
+        
+        <section id="error-notebook">
+            <h2>6. 错题本</h2>
+            
+            <div class="error-notebook-controls">
+                <button class="calc-btn" onclick="openAddErrorModal()">添加错题</button>
+                <div class="filter-controls">
+                    <label for="error-topic">按知识点筛选：</label>
+                    <select id="error-topic">
+                        <option value="all">全部</option>
+                        <option value="algebra">代数</option>
+                        <option value="geometry">几何</option>
+                        <option value="function">函数</option>
+                    </select>
+                    <label for="error-type">按错误类型筛选：</label>
+                    <select id="error-type">
+                        <option value="all">全部</option>
+                        <option value="calculation">计算失误</option>
+                        <option value="concept">概念不清</option>
+                        <option value="application">应用错误</option>
+                    </select>
+                    <label for="error-sort">排序方式：</label>
+                    <select id="error-sort">
+                        <option value="time">录入时间</option>
+                        <option value="frequency">出错频率</option>
+                    </select>
+                    <button class="calc-btn" onclick="filterErrors()">筛选</button>
+                </div>
+            </div>
+            
+            <div class="error-statistics">
+                <h3>错题统计</h3>
+                <div class="stat-card">
+                    <h4>知识点出错率</h4>
+                    <canvas id="error-topic-chart" width="400" height="200"></canvas>
+                </div>
+                <div class="stat-card">
+                    <h4>错误类型分布</h4>
+                    <canvas id="error-type-chart" width="400" height="200"></canvas>
+                </div>
+            </div>
+            
+            <div id="error-list">
+                <h3>错题列表</h3>
+                <div class="error-item">
+                    <div class="error-header">
+                        <h4>二次函数图像问题</h4>
+                        <span class="error-topic">函数</span>
+                        <span class="error-type-tag">概念不清</span>
+                        <span class="error-date">2026-03-10</span>
+                    </div>
+                    <div class="error-content">
+                        <p>题干：求二次函数 y = x² - 4x + 3 的对称轴和顶点坐标。</p>
+                        <p>错误答案：对称轴 x=4，顶点 (4, 3)</p>
+                        <p>正确答案：对称轴 x=2，顶点 (2, -1)</p>
+                        <p>错误原因：记错了对称轴公式，应该是 x = -b/(2a)</p>
+                    </div>
+                    <div class="error-actions">
+                        <button class="calc-btn" onclick="redoError(this)">重做</button>
+                        <button class="calc-btn" onclick="deleteError(this)">删除</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+
+        
+        <section id="notes">
+            <h2>8. 笔记/标注</h2>
+            
+            <div class="notes-controls">
+                <button class="calc-btn" onclick="addNewNote()">添加新笔记</button>
+                <input type="text" id="note-search" placeholder="搜索笔记...">
+                <button class="calc-btn" onclick="searchNotes()">搜索</button>
+            </div>
+            
+            <div id="notes-list">
+                <h3>我的笔记</h3>
+                <div class="note-item">
+                    <div class="note-header">
+                        <h4>二次函数对称轴记忆</h4>
+                        <span class="note-topic">函数</span>
+                        <span class="note-date">2026-03-09</span>
+                    </div>
+                    <div class="note-content">
+                        <p>关键：对称轴公式 x = -b/(2a)，记住负号不能丢！</p>
+                        <p>例子：y = 2x² - 4x + 1，a=2，b=-4，所以对称轴 x = -(-4)/(2*2) = 1</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="calc-btn" onclick="editNote(this)">编辑</button>
+                        <button class="calc-btn" onclick="deleteNote(this)">删除</button>
+                    </div>
+                </div>
+                <div class="note-item">
+                    <div class="note-header">
+                        <h4>分式化简注意事项</h4>
+                        <span class="note-topic">代数</span>
+                        <span class="note-date">2026-03-08</span>
+                    </div>
+                    <div class="note-content">
+                        <p>1. 先因式分解分子分母</p>
+                        <p>2. 约分前要注意分母不为0的条件</p>
+                        <p>3. 结果要化为最简形式</p>
+                    </div>
+                    <div class="note-actions">
+                        <button class="calc-btn" onclick="editNote(this)">编辑</button>
+                        <button class="calc-btn" onclick="deleteNote(this)">删除</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="statistics">
+            <h2>9. 学习统计</h2>
+            
+            <div class="stats-overview">
+                <div class="stat-card">
+                    <h4>本周学习时长</h4>
+                    <p class="stat-value">3小时</p>
+                </div>
+                <div class="stat-card">
+                    <h4>收藏题目数</h4>
+                    <p class="stat-value">50道</p>
+                </div>
+                <div class="stat-card">
+                    <h4>错题数量</h4>
+                    <p class="stat-value">25道</p>
+                </div>
+                <div class="stat-card">
+                    <h4>已掌握知识点</h4>
+                    <p class="stat-value">45个</p>
+                </div>
+            </div>
+            
+            <div class="stats-details">
+                <h3>详细统计</h3>
+                <div class="stat-chart">
+                    <h4>高频出错知识点</h4>
+                    <canvas id="error-frequency-chart" width="600" height="300"></canvas>
+                </div>
+                <div class="stat-chart">
+                    <h4>学习进度趋势</h4>
+                    <canvas id="learning-progress-chart" width="600" height="300"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="custom-bank">
+            <h2>10. 自定义题库/组卷</h2>
+            
+            <div class="custom-bank-controls">
+                <h3>题目筛选</h3>
+                <div class="filter-controls">
+                    <label for="custom-topic">按知识点筛选：</label>
+                    <select id="custom-topic">
+                        <option value="all">全部</option>
+                        <option value="algebra">代数</option>
+                        <option value="geometry">几何</option>
+                        <option value="function">函数</option>
+                        <option value="trigonometry">三角函数</option>
+                        <option value="statistics">统计与概率</option>
+                    </select>
+                    <label for="custom-difficulty">按难度筛选：</label>
+                    <select id="custom-difficulty">
+                        <option value="all">全部</option>
+                        <option value="basic">基础</option>
+                        <option value="medium">中档</option>
+                        <option value="hard">拔高</option>
+                    </select>
+                    <button class="calc-btn" onclick="filterCustomQuestions()">筛选</button>
+                </div>
+            </div>
+            
+            <div class="operation-guide">
+                <h3>操作指引</h3>
+                <p>可在 middle_math.js 中查阅初高中数学全考点公式、知识点及易考题型，作为组卷选题依据；</p>
+                <p>如需获取标准化试卷模板或补充题目资源，可点击导航栏「第一试卷网」按钮，访问专业试卷网站获取适配的中高考数学试卷，优化组卷效果。</p>
+            </div>
+            
+            <div id="custom-question-list">
+                <h3>筛选结果</h3>
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>整式运算</h4>
+                        <span class="question-difficulty difficulty-basic">基础</span>
+                        <span class="question-topic">代数</span>
+                    </div>
+                    <div class="question-content">
+                        <p>计算：(2x + 3)(x - 4)</p>
+                    </div>
+                    <div class="question-actions">
+                        <button class="calc-btn" onclick="addToMyBank(this)">添加到我的题库</button>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>分式化简</h4>
+                        <span class="question-difficulty difficulty-medium">中档</span>
+                        <span class="question-topic">代数</span>
+                    </div>
+                    <div class="question-content">
+                        <p>化简：(x² - 4)/(x + 2)</p>
+                    </div>
+                    <div class="question-actions">
+                        <button class="calc-btn" onclick="addToMyBank(this)">添加到我的题库</button>
+                    </div>
+                </div>
+                <div class="question-card">
+                    <div class="question-header">
+                        <h4>三角形全等证明</h4>
+                        <span class="question-difficulty difficulty-medium">中档</span>
+                        <span class="question-topic">几何</span>
+                    </div>
+                    <div class="question-content">
+                        <p>已知：在△ABC和△DEF中，AB=DE，BC=EF，∠B=∠E，求证：△ABC≌△DEF</p>
+                    </div>
+                    <div class="question-actions">
+                        <button class="calc-btn" onclick="addToMyBank(this)">添加到我的题库</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="my-bank-section">
+                <h3>我的题库</h3>
+                <div id="my-bank-list">
+                    <p>暂无题目，从上面筛选结果中添加</p>
+                </div>
+                <div class="paper-generator">
+                    <h4>生成试卷</h4>
+                    <div class="form-group">
+                        <label for="paper-name">试卷名称：</label>
+                        <input type="text" id="paper-name" placeholder="输入试卷名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="basic-count">基础题数量：</label>
+                        <input type="number" id="basic-count" min="0" value="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="medium-count">中档题数量：</label>
+                        <input type="number" id="medium-count" min="0" value="5">
+                    </div>
+                    <div class="form-group">
+                        <label for="hard-count">拔高题数量：</label>
+                        <input type="number" id="hard-count" min="0" value="2">
+                    </div>
+                    <button class="calc-btn" onclick="generatePaper()">生成试卷</button>
+                </div>
+            </div>
+        </section>
+        
+
+        
+        <section id="share-export">
+            <h2>12. 题目分享/导出</h2>
+            
+            <div class="operation-guide">
+                <h3>操作指引</h3>
+                <p>可在 middle_math.js 中查阅初高中数学全考点公式、知识点及易考题型，作为组卷选题依据；</p>
+                <p>如需获取标准化试卷模板或补充题目资源，可点击导航栏「第一试卷网」按钮，访问专业试卷网站获取适配的中高考数学试卷，优化组卷效果。</p>
+            </div>
+            
+            <div class="export-section">
+                <h3>导出功能</h3>
+                <div class="form-group">
+                    <label for="export-type">导出类型：</label>
+                    <select id="export-type">
+                        <option value="pdf">PDF</option>
+                        <option value="word">Word</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="export-content">导出内容：</label>
+                    <select id="export-content">
+                        <option value="errors">错题本</option>
+                        <option value="favorites">收藏题目</option>
+                        <option value="mybank">我的题库</option>
+                    </select>
+                </div>
+                <button class="calc-btn" onclick="exportContent()">导出</button>
+            </div>
+            
+            <div class="share-section">
+                <h3>分享功能</h3>
+                <div class="form-group">
+                    <label for="share-content">分享内容：</label>
+                    <select id="share-content">
+                        <option value="errors">错题本</option>
+                        <option value="favorites">收藏题目</option>
+                        <option value="mybank">我的题库</option>
+                    </select>
+                </div>
+                <button class="calc-btn" onclick="generateShareLink()">生成分享链接</button>
+                <div id="share-result" style="margin-top: 20px;"></div>
+            </div>
+        </section>
+        
+
+    </div>
+    
+    <!-- 添加错题模态框 -->
+    <div id="add-error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeAddErrorModal()">&times;</span>
+            <h3>添加错题</h3>
+            <form onsubmit="addError(event)">
+                <div class="form-group">
+                    <label for="error-title">题目名称：</label>
+                    <input type="text" id="error-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="error-content">题干：</label>
+                    <textarea id="error-content" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="error-answer">错误答案：</label>
+                    <textarea id="error-answer" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="error-correct-answer">正确答案：</label>
+                    <textarea id="error-correct-answer" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="error-reason">错误原因：</label>
+                    <textarea id="error-reason" rows="2" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="error-topic-select">知识点：</label>
+                    <select id="error-topic-select">
+                        <option value="algebra">代数</option>
+                        <option value="geometry">几何</option>
+                        <option value="function">函数</option>
+                        <option value="trigonometry">三角函数</option>
+                        <option value="statistics">统计与概率</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="error-type-select">错误类型：</label>
+                    <select id="error-type-select">
+                        <option value="calculation">计算失误</option>
+                        <option value="concept">概念不清</option>
+                        <option value="application">应用错误</option>
+                        <option value="careless">粗心大意</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="error-image">上传截图（可选）：</label>
+                    <input type="file" id="error-image" accept="image/*">
+                </div>
+                <button type="submit" class="calc-btn">添加</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- 重做错题模态框 -->
+    <div id="redo-error-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeRedoErrorModal()">&times;</span>
+            <h3>重做错题</h3>
+            <div id="redo-error-content">
+                <!-- 动态填充错题内容 -->
+            </div>
+            <div class="form-group">
+                <label for="redo-answer">你的答案：</label>
+                <textarea id="redo-answer" rows="3"></textarea>
+            </div>
+            <button class="calc-btn" onclick="checkRedoAnswer()">检查答案</button>
+            <div id="redo-result" style="display: none;"></div>
+        </div>
+    </div>
+    
+    <style>
+        /* 错题本样式 */
+        .error-notebook-controls {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-controls select {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .error-statistics {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .stat-card {
+            flex: 1;
+            min-width: 300px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .error-item {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #f44336;
+        }
+        
+        .error-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .error-topic, .error-type-tag, .error-date {
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .error-topic {
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .error-type-tag {
+            background-color: #ff9800;
+            color: white;
+        }
+        
+        .error-date {
+            background-color: #9e9e9e;
+            color: white;
+        }
+        
+        .error-content {
+            margin-bottom: 15px;
+        }
+        
+        .error-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 学习计划样式 */
+        .learning-plan-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        .progress-overview {
+            margin-bottom: 30px;
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background-color: #4caf50;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+        
+        .progress-text {
+            display: inline-block;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .topic-list {
+            margin-top: 30px;
+        }
+        
+        .topic-category {
+            margin-bottom: 20px;
+        }
+        
+        .topic-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .topic-item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+        
+        .topic-item select {
+            margin-left: auto;
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        /* 笔记样式 */
+        .notes-controls {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        #note-search {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .note-item {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .note-topic, .note-date {
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+        
+        .note-topic {
+            background-color: #764ba2;
+            color: white;
+        }
+        
+        .note-date {
+            background-color: #9e9e9e;
+            color: white;
+        }
+        
+        .note-content {
+            margin-bottom: 15px;
+        }
+        
+        .note-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        /* 学习统计样式 */
+        .stats-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card h4 {
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .stats-details {
+            margin-top: 30px;
+        }
+        
+        .stat-chart {
+            margin-bottom: 30px;
+        }
+        
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: black;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+        }
+        
+        /* 操作指引样式 */
+        .operation-guide {
+            background-color: #e8f4f8;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .operation-guide h3 {
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+        
+        .operation-guide p {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+        
+        /* 自定义题库/组卷样式 */
+        .custom-bank-controls {
+            margin-bottom: 30px;
+        }
+        
+        .custom-bank-controls h3 {
+            margin-bottom: 15px;
+        }
+        
+        #custom-question-list {
+            margin-bottom: 30px;
+        }
+        
+        #custom-question-list h3 {
+            margin-bottom: 15px;
+        }
+        
+        .question-topic {
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.8em;
+            font-weight: bold;
+            background-color: #667eea;
+            color: white;
+        }
+        
+        .question-actions {
+            margin-top: 15px;
+        }
+        
+        .my-bank-section {
+            margin-top: 40px;
+        }
+        
+        .my-bank-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        #my-bank-list {
+            margin-bottom: 30px;
+            min-height: 100px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .paper-generator {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #764ba2;
+        }
+        
+        .paper-generator h4 {
+            margin-bottom: 20px;
+            color: #764ba2;
+        }
+        
+        /* 学习提醒样式 */
+        .reminder-controls {
+            margin-bottom: 30px;
+        }
+        
+        .reminder-controls h3 {
+            margin-bottom: 15px;
+        }
+        
+        .reminder-list {
+            margin-bottom: 30px;
+        }
+        
+        .reminder-list h3 {
+            margin-bottom: 15px;
+        }
+        
+        #reminder-items {
+            min-height: 100px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #f093fb;
+        }
+        
+        .reminder-item {
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reminder-item .reminder-content {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .reminder-item .reminder-date {
+            font-size: 0.9em;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .reminder-item .reminder-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .forgetting-curve-section {
+            margin-top: 40px;
+        }
+        
+        .forgetting-curve-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        #forgetting-curve-content {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        #forgetting-curve-list {
+            margin-top: 15px;
+            padding-left: 20px;
+        }
+        
+        #forgetting-curve-list li {
+            margin-bottom: 8px;
+        }
+        
+        /* 题目分享/导出样式 */
+        .export-section {
+            margin-bottom: 30px;
+        }
+        
+        .export-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        .share-section {
+            margin-top: 40px;
+        }
+        
+        .share-section h3 {
+            margin-bottom: 15px;
+        }
+        
+        #share-result {
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            border-left: 4px solid #4facfe;
+        }
+        
+        #share-result .share-link {
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        #share-result .copy-btn {
+            margin-top: 10px;
+        }
+        
+        /* 学习成就/徽章样式 */
+        .achievements-summary {
+            margin-bottom: 30px;
+        }
+        
+        .achievements-summary h3 {
+            margin-bottom: 15px;
+        }
+        
+        .achievement-stats {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .stat-item {
+            flex: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #667eea;
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .badge-grid {
+            margin-top: 40px;
+        }
+        
+        .badge-grid h3 {
+            margin-bottom: 15px;
+        }
+        
+        #badge-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .badge-item {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .badge-item.completed {
+            background-color: #e3f2fd;
+            border-left: 4px solid #42a5f5;
+        }
+        
+        .badge-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        .badge-item.completed .badge-icon {
+            background-color: #42a5f5;
+            color: white;
+        }
+        
+        .badge-item:not(.completed) .badge-icon {
+            background-color: #e0e0e0;
+            color: #9e9e9e;
+        }
+        
+        .badge-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .badge-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .badge-status {
+            font-size: 12px;
+            font-weight: bold;
+            padding: 3px 10px;
+            border-radius: 10px;
+        }
+        
+        .badge-status.completed {
+            background-color: #4caf50;
+            color: white;
+        }
+        
+        .badge-status.pending {
+            background-color: #ff9800;
+            color: white;
+        }
+    </style>
+    
+    <script>
+        // 复制公式功能
+        function copyFormula(formula) {
+            navigator.clipboard.writeText(formula).then(function() {
+                alert('公式已复制到剪贴板！');
+            }, function() {
+                alert('复制失败，请手动复制。');
+            });
+        }
+        
+        // 函数图像可视化
+        let chart;
+        
+        function initChart() {
+            const ctx = document.getElementById('function-chart').getContext('2d');
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: '函数图像',
+                        borderColor: '#667eea',
+                        borderWidth: 2,
+                        tension: 0.1,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            position: 'center',
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        },
+                        y: {
+                            type: 'linear',
+                            position: 'center',
+                            grid: {
+                                color: 'rgba(0, 0, 0, 0.1)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                }
+            });
+            updateChart();
+        }
+        
+        function updateChart() {
+            const functionType = document.getElementById('function-type').value;
+            let data = [];
+            let label = '';
+            
+            if (functionType === 'linear') {
+                const k = parseFloat(document.getElementById('k').value);
+                const b = parseFloat(document.getElementById('b').value);
+                label = `y = ${k}x + ${b}`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    data.push({x, y: k * x + b});
+                }
+            } else if (functionType === 'quadratic') {
+                const a = parseFloat(document.getElementById('a').value);
+                const b = parseFloat(document.getElementById('bx').value);
+                const c = parseFloat(document.getElementById('c').value);
+                label = `y = ${a}x² + ${b}x + ${c}`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    data.push({x, y: a * x * x + b * x + c});
+                }
+            } else if (functionType === 'inverse') {
+                const k = parseFloat(document.getElementById('k-inverse').value);
+                label = `y = ${k}/x`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    if (x !== 0) {
+                        data.push({x, y: k / x});
+                    }
+                }
+            } else if (functionType === 'sine') {
+                const amplitude = parseFloat(document.getElementById('amplitude').value);
+                const period = parseFloat(document.getElementById('period').value);
+                label = `y = ${amplitude}sin(${period}x)`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    data.push({x, y: amplitude * Math.sin(period * x)});
+                }
+            } else if (functionType === 'cosine') {
+                const amplitude = parseFloat(document.getElementById('amplitude').value);
+                const period = parseFloat(document.getElementById('period').value);
+                label = `y = ${amplitude}cos(${period}x)`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    data.push({x, y: amplitude * Math.cos(period * x)});
+                }
+            } else if (functionType === 'tangent') {
+                const amplitude = parseFloat(document.getElementById('amplitude').value);
+                const period = parseFloat(document.getElementById('period').value);
+                label = `y = ${amplitude}tan(${period}x)`;
+                for (let x = -10; x <= 10; x += 0.1) {
+                    const val = amplitude * Math.tan(period * x);
+                    if (Math.abs(val) < 10) {
+                        data.push({x, y: val});
+                    }
+                }
+            }
+            
+            chart.data.datasets[0].data = data;
+            chart.data.datasets[0].label = label;
+            chart.update();
+        }
+        
+        // 函数类型切换
+        document.getElementById('function-type').addEventListener('change', function() {
+            const functionType = this.value;
+            
+            // 隐藏所有参数面板
+            document.querySelectorAll('.function-params').forEach(panel => {
+                panel.style.display = 'none';
+            });
+            
+            // 显示对应参数面板
+            if (functionType === 'linear') {
+                document.getElementById('linear-params').style.display = 'block';
+            } else if (functionType === 'quadratic') {
+                document.getElementById('quadratic-params').style.display = 'block';
+            } else if (functionType === 'inverse') {
+                document.getElementById('inverse-params').style.display = 'block';
+            } else if (['sine', 'cosine', 'tangent'].includes(functionType)) {
+                document.getElementById('trig-params').style.display = 'block';
+            }
+            
+            updateChart();
+        });
+        
+        // 滑块事件监听
+        document.getElementById('k').addEventListener('input', function() {
+            document.getElementById('k-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('b').addEventListener('input', function() {
+            document.getElementById('b-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('a').addEventListener('input', function() {
+            document.getElementById('a-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('bx').addEventListener('input', function() {
+            document.getElementById('bx-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('c').addEventListener('input', function() {
+            document.getElementById('c-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('k-inverse').addEventListener('input', function() {
+            document.getElementById('k-inverse-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('amplitude').addEventListener('input', function() {
+            document.getElementById('amplitude-value').textContent = this.value;
+            updateChart();
+        });
+        
+        document.getElementById('period').addEventListener('input', function() {
+            document.getElementById('period-value').textContent = this.value;
+            updateChart();
+        });
+        
+        // 在线计算功能
+        function factorPolynomial() {
+            const input = document.getElementById('factor-input').value;
+            const resultDiv = document.getElementById('factor-result');
+            
+            // 简单的因式分解实现
+            if (input.includes('x²') && input.includes('-5x') && input.includes('+6')) {
+                resultDiv.innerHTML = '<h5>因式分解结果：</h5><p>(x - 2)(x - 3)</p>';
+            } else if (input.includes('x²') && input.includes('-4')) {
+                resultDiv.innerHTML = '<h5>因式分解结果：</h5><p>(x - 2)(x + 2)</p>';
+            } else if (input.includes('x²') && input.includes('+2x') && input.includes('+1')) {
+                resultDiv.innerHTML = '<h5>因式分解结果：</h5><p>(x + 1)²</p>';
+            } else {
+                resultDiv.innerHTML = '<h5>因式分解结果：</h5><p>暂不支持此多项式的因式分解</p>';
+            }
+        }
+        
+        function solveQuadratic() {
+            const input = document.getElementById('quadratic-input').value;
+            const resultDiv = document.getElementById('quadratic-result');
+            
+            // 简单的一元二次方程求解
+            if (input.includes('x²') && input.includes('-4x') && input.includes('+3')) {
+                resultDiv.innerHTML = '<h5>解方程结果：</h5><p>步骤1：因式分解为 (x - 1)(x - 3) = 0</p><p>步骤2：得 x = 1 或 x = 3</p>';
+            } else if (input.includes('x²') && input.includes('-9')) {
+                resultDiv.innerHTML = '<h5>解方程结果：</h5><p>步骤1：移项得 x² = 9</p><p>步骤2：开平方得 x = 3 或 x = -3</p>';
+            } else {
+                resultDiv.innerHTML = '<h5>解方程结果：</h5><p>暂不支持此方程的求解</p>';
+            }
+        }
+        
+        function calculateTrig() {
+            const input = document.getElementById('trig-input').value;
+            const resultDiv = document.getElementById('trig-result');
+            
+            // 简单的三角函数值计算
+            if (input.includes('sin60')) {
+                resultDiv.innerHTML = '<h5>计算结果：</h5><p>sin60° = √3/2 ≈ 0.8660</p>';
+            } else if (input.includes('cos45')) {
+                resultDiv.innerHTML = '<h5>计算结果：</h5><p>cos45° = √2/2 ≈ 0.7071</p>';
+            } else if (input.includes('tan30')) {
+                resultDiv.innerHTML = '<h5>计算结果：</h5><p>tan30° = √3/3 ≈ 0.5774</p>';
+            } else {
+                resultDiv.innerHTML = '<h5>计算结果：</h5><p>暂不支持此三角函数的计算</p>';
+            }
+        }
+        
+        function sumSequence() {
+            const input = document.getElementById('sequence-input').value;
+            const resultDiv = document.getElementById('sequence-result');
+            
+            // 简单的数列求和
+            if (input.includes('等差数列') && input.includes('首项=1') && input.includes('公差=2') && input.includes('项数=5')) {
+                resultDiv.innerHTML = '<h5>求和结果：</h5><p>步骤1：等差数列求和公式 Sₙ = n(a₁ + aₙ)/2</p><p>步骤2：a₅ = 1 + 4×2 = 9</p><p>步骤3：S₅ = 5×(1 + 9)/2 = 25</p>';
+            } else {
+                resultDiv.innerHTML = '<h5>求和结果：</h5><p>暂不支持此数列的求和</p>';
+            }
+        }
+        
+        // 题库功能
+        function toggleSolution(button) {
+            const solution = button.previousElementSibling;
+            if (solution.style.display === 'none') {
+                solution.style.display = 'block';
+                button.textContent = '隐藏解析';
+            } else {
+                solution.style.display = 'none';
+                button.textContent = '显示解析';
+            }
+        }
+        
+        function toggleFavorite(button) {
+            button.classList.toggle('favorited');
+            if (button.classList.contains('favorited')) {
+                button.textContent = '已收藏';
+                // 这里可以添加localStorage存储逻辑
+                alert('题目已收藏！');
+            } else {
+                button.textContent = '收藏';
+                // 这里可以添加取消收藏的逻辑
+                alert('已取消收藏！');
+            }
+        }
+        
+        // 错题本功能
+        let errors = JSON.parse(localStorage.getItem('mathErrors') || '[]');
+        
+        function openAddErrorModal() {
+            document.getElementById('add-error-modal').style.display = 'block';
+        }
+        
+        function closeAddErrorModal() {
+            document.getElementById('add-error-modal').style.display = 'none';
+        }
+        
+        function addError(event) {
+            event.preventDefault();
+            
+            const error = {
+                id: Date.now(),
+                title: document.getElementById('error-title').value,
+                content: document.getElementById('error-content').value,
+                answer: document.getElementById('error-answer').value,
+                correctAnswer: document.getElementById('error-correct-answer').value,
+                reason: document.getElementById('error-reason').value,
+                topic: document.getElementById('error-topic-select').value,
+                errorType: document.getElementById('error-type-select').value,
+                date: new Date().toISOString().split('T')[0],
+                frequency: 1
+            };
+            
+            errors.push(error);
+            localStorage.setItem('mathErrors', JSON.stringify(errors));
+            
+            closeAddErrorModal();
+            renderErrors();
+            updateErrorCharts();
+        }
+        
+        function renderErrors(filteredErrors = errors) {
+            const errorList = document.getElementById('error-list');
+            errorList.innerHTML = '<h3>错题列表</h3>';
+            
+            if (filteredErrors.length === 0) {
+                errorList.innerHTML += '<p>暂无错题</p>';
+                return;
+            }
+            
+            filteredErrors.forEach(error => {
+                const errorItem = document.createElement('div');
+                errorItem.className = 'error-item';
+                errorItem.innerHTML = `
+                    <div class="error-header">
+                        <h4>${error.title}</h4>
+                        <span class="error-topic">${getTopicName(error.topic)}</span>
+                        <span class="error-type-tag">${getErrorTypeName(error.errorType)}</span>
+                        <span class="error-date">${error.date}</span>
+                    </div>
+                    <div class="error-content">
+                        <p>题干：${error.content}</p>
+                        <p>错误答案：${error.answer}</p>
+                        <p>正确答案：${error.correctAnswer}</p>
+                        <p>错误原因：${error.reason}</p>
+                    </div>
+                    <div class="error-actions">
+                        <button class="calc-btn" onclick="redoError(${error.id})">重做</button>
+                        <button class="calc-btn" onclick="deleteError(${error.id})">删除</button>
+                    </div>
+                `;
+                errorList.appendChild(errorItem);
+            });
+        }
+        
+        function getTopicName(topic) {
+            const topics = {
+                algebra: '代数',
+                geometry: '几何',
+                function: '函数',
+                trigonometry: '三角函数',
+                statistics: '统计与概率'
+            };
+            return topics[topic] || topic;
+        }
+        
+        function getErrorTypeName(errorType) {
+            const errorTypes = {
+                calculation: '计算失误',
+                concept: '概念不清',
+                application: '应用错误',
+                careless: '粗心大意'
+            };
+            return errorTypes[errorType] || errorType;
+        }
+        
+        function filterErrors() {
+            const topic = document.getElementById('error-topic').value;
+            const errorType = document.getElementById('error-type').value;
+            const sortBy = document.getElementById('error-sort').value;
+            
+            let filteredErrors = errors;
+            
+            if (topic !== 'all') {
+                filteredErrors = filteredErrors.filter(error => error.topic === topic);
+            }
+            
+            if (errorType !== 'all') {
+                filteredErrors = filteredErrors.filter(error => error.errorType === errorType);
+            }
+            
+            if (sortBy === 'time') {
+                filteredErrors.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sortBy === 'frequency') {
+                filteredErrors.sort((a, b) => b.frequency - a.frequency);
+            }
+            
+            renderErrors(filteredErrors);
+        }
+        
+        function deleteError(errorId) {
+            errors = errors.filter(error => error.id !== errorId);
+            localStorage.setItem('mathErrors', JSON.stringify(errors));
+            renderErrors();
+            updateErrorCharts();
+        }
+        
+        function redoError(errorId) {
+            const error = errors.find(e => e.id === errorId);
+            if (!error) return;
+            
+            const modal = document.getElementById('redo-error-modal');
+            const content = document.getElementById('redo-error-content');
+            
+            content.innerHTML = `
+                <h4>${error.title}</h4>
+                <p>题干：${error.content}</p>
+                <input type="hidden" id="current-error-id" value="${error.id}">
+            `;
+            
+            document.getElementById('redo-answer').value = '';
+            document.getElementById('redo-result').style.display = 'none';
+            modal.style.display = 'block';
+        }
+        
+        function closeRedoErrorModal() {
+            document.getElementById('redo-error-modal').style.display = 'none';
+        }
+        
+        function checkRedoAnswer() {
+            const errorId = parseInt(document.getElementById('current-error-id').value);
+            const error = errors.find(e => e.id === errorId);
+            if (!error) return;
+            
+            const userAnswer = document.getElementById('redo-answer').value;
+            const resultDiv = document.getElementById('redo-result');
+            
+            resultDiv.innerHTML = `
+                <h4>检查结果</h4>
+                <p>你的答案：${userAnswer}</p>
+                <p>正确答案：${error.correctAnswer}</p>
+                <p>错误原因：${error.reason}</p>
+            `;
+            resultDiv.style.display = 'block';
+            
+            // 增加出错频率
+            error.frequency++;
+            localStorage.setItem('mathErrors', JSON.stringify(errors));
+        }
+        
+        function updateErrorCharts() {
+            // 知识点出错率图表
+            const topicCtx = document.getElementById('error-topic-chart').getContext('2d');
+            const topicData = {};
+            
+            errors.forEach(error => {
+                if (!topicData[error.topic]) {
+                    topicData[error.topic] = 0;
+                }
+                topicData[error.topic]++;
+            });
+            
+            const topicLabels = Object.keys(topicData).map(getTopicName);
+            const topicValues = Object.values(topicData);
+            
+            new Chart(topicCtx, {
+                type: 'pie',
+                data: {
+                    labels: topicLabels,
+                    datasets: [{
+                        data: topicValues,
+                        backgroundColor: ['#667eea', '#764ba2', '#f093fb', '#4facfe', '#00f2fe']
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+            
+            // 错误类型分布图表
+            const typeCtx = document.getElementById('error-type-chart').getContext('2d');
+            const typeData = {};
+            
+            errors.forEach(error => {
+                if (!typeData[error.errorType]) {
+                    typeData[error.errorType] = 0;
+                }
+                typeData[error.errorType]++;
+            });
+            
+            const typeLabels = Object.keys(typeData).map(getErrorTypeName);
+            const typeValues = Object.values(typeData);
+            
+            new Chart(typeCtx, {
+                type: 'bar',
+                data: {
+                    labels: typeLabels,
+                    datasets: [{
+                        label: '错误次数',
+                        data: typeValues,
+                        backgroundColor: '#667eea'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // 高频出错知识点图表
+            const frequencyCtx = document.getElementById('error-frequency-chart').getContext('2d');
+            const frequencyData = {};
+            
+            errors.forEach(error => {
+                if (!frequencyData[error.topic]) {
+                    frequencyData[error.topic] = 0;
+                }
+                frequencyData[error.topic] += error.frequency;
+            });
+            
+            const frequencyLabels = Object.keys(frequencyData).map(getTopicName);
+            const frequencyValues = Object.values(frequencyData);
+            
+            new Chart(frequencyCtx, {
+                type: 'bar',
+                data: {
+                    labels: frequencyLabels,
+                    datasets: [{
+                        label: '出错频率',
+                        data: frequencyValues,
+                        backgroundColor: '#f44336'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 学习计划功能
+        let learningProgress = JSON.parse(localStorage.getItem('learningProgress') || '{}');
+        
+        function toggleAllTopics() {
+            const checkboxes = document.querySelectorAll('.topic-item input[type="checkbox"]');
+            const firstCheckbox = checkboxes[0];
+            const isChecked = !firstCheckbox.checked;
+            
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = isChecked;
+            });
+        }
+        
+        function saveLearningProgress() {
+            const topicItems = document.querySelectorAll('.topic-item');
+            const progress = {};
+            
+            topicItems.forEach(item => {
+                const checkbox = item.querySelector('input[type="checkbox"]');
+                const select = item.querySelector('.topic-status');
+                const topicId = checkbox.id;
+                
+                progress[topicId] = {
+                    checked: checkbox.checked,
+                    status: select.value
+                };
+            });
+            
+            localStorage.setItem('learningProgress', JSON.stringify(progress));
+            alert('学习进度已保存！');
+        }
+        
+        // 笔记功能
+        let notes = JSON.parse(localStorage.getItem('mathNotes') || '[]');
+        
+        function addNewNote() {
+            const note = {
+                id: Date.now(),
+                title: '新笔记',
+                content: '',
+                topic: 'general',
+                date: new Date().toISOString().split('T')[0]
+            };
+            
+            notes.push(note);
+            localStorage.setItem('mathNotes', JSON.stringify(notes));
+            renderNotes();
+        }
+        
+        function renderNotes(filteredNotes = notes) {
+            const notesList = document.getElementById('notes-list');
+            notesList.innerHTML = '<h3>我的笔记</h3>';
+            
+            if (filteredNotes.length === 0) {
+                notesList.innerHTML += '<p>暂无笔记</p>';
+                return;
+            }
+            
+            filteredNotes.forEach(note => {
+                const noteItem = document.createElement('div');
+                noteItem.className = 'note-item';
+                noteItem.innerHTML = `
+                    <div class="note-header">
+                        <h4>${note.title}</h4>
+                        <span class="note-topic">${getTopicName(note.topic)}</span>
+                        <span class="note-date">${note.date}</span>
+                    </div>
+                    <div class="note-content">
+                        ${note.content.split('\n').map(line => `<p>${line}</p>`).join('')}
+                    </div>
+                    <div class="note-actions">
+                        <button class="calc-btn" onclick="editNote(${note.id})">编辑</button>
+                        <button class="calc-btn" onclick="deleteNote(${note.id})">删除</button>
+                    </div>
+                `;
+                notesList.appendChild(noteItem);
+            });
+        }
+        
+        function editNote(noteId) {
+            const note = notes.find(n => n.id === noteId);
+            if (!note) return;
+            
+            const newTitle = prompt('请输入笔记标题：', note.title);
+            const newContent = prompt('请输入笔记内容：', note.content);
+            
+            if (newTitle && newContent) {
+                note.title = newTitle;
+                note.content = newContent;
+                note.date = new Date().toISOString().split('T')[0];
+                
+                localStorage.setItem('mathNotes', JSON.stringify(notes));
+                renderNotes();
+            }
+        }
+        
+        function deleteNote(noteId) {
+            notes = notes.filter(note => note.id !== noteId);
+            localStorage.setItem('mathNotes', JSON.stringify(notes));
+            renderNotes();
+        }
+        
+        function searchNotes() {
+            const searchTerm = document.getElementById('note-search').value.toLowerCase();
+            const filteredNotes = notes.filter(note => 
+                note.title.toLowerCase().includes(searchTerm) || 
+                note.content.toLowerCase().includes(searchTerm)
+            );
+            renderNotes(filteredNotes);
+        }
+        
+        // 学习统计功能
+        function updateLearningProgressChart() {
+            const ctx = document.getElementById('learning-progress-chart').getContext('2d');
+            
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
+                    datasets: [{
+                        label: '学习时长（小时）',
+                        data: [0.5, 1, 0.5, 1.5, 0, 2, 1],
+                        borderColor: '#667eea',
+                        backgroundColor: 'rgba(102, 126, 234, 0.1)',
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: '小时'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+        
+        // 自定义题库/组卷功能
+        let myBank = JSON.parse(localStorage.getItem('myBank') || '[]');
+        
+        // 模拟题目数据
+        const allQuestions = [
+            {
+                id: 1,
+                title: '整式运算',
+                content: '计算：(2x + 3)(x - 4)',
+                topic: 'algebra',
+                difficulty: 'basic'
+            },
+            {
+                id: 2,
+                title: '分式化简',
+                content: '化简：(x² - 4)/(x + 2)',
+                topic: 'algebra',
+                difficulty: 'medium'
+            },
+            {
+                id: 3,
+                title: '三角形全等证明',
+                content: '已知：在△ABC和△DEF中，AB=DE，BC=EF，∠B=∠E，求证：△ABC≌△DEF',
+                topic: 'geometry',
+                difficulty: 'medium'
+            },
+            {
+                id: 4,
+                title: '求角度',
+                content: '在直角三角形中，一个锐角为30°，求另一个锐角的度数。',
+                topic: 'geometry',
+                difficulty: 'basic'
+            },
+            {
+                id: 5,
+                title: '二次函数图像',
+                content: '求二次函数 y = x² - 4x + 3 的对称轴和顶点坐标。',
+                topic: 'function',
+                difficulty: 'medium'
+            },
+            {
+                id: 6,
+                title: '三角函数值计算',
+                content: '计算 sin60° 的值。',
+                topic: 'trigonometry',
+                difficulty: 'basic'
+            },
+            {
+                id: 7,
+                title: '平均数计算',
+                content: '计算数据：2, 4, 6, 8, 10 的平均数。',
+                topic: 'statistics',
+                difficulty: 'basic'
+            },
+            {
+                id: 8,
+                title: '概率计算',
+                content: '从一副52张扑克牌中随机抽取一张，求抽到红桃的概率。',
+                topic: 'statistics',
+                difficulty: 'medium'
+            }
+        ];
+        
+        function filterCustomQuestions() {
+            const topic = document.getElementById('custom-topic').value;
+            const difficulty = document.getElementById('custom-difficulty').value;
+            
+            let filteredQuestions = allQuestions;
+            
+            if (topic !== 'all') {
+                filteredQuestions = filteredQuestions.filter(q => q.topic === topic);
+            }
+            
+            if (difficulty !== 'all') {
+                filteredQuestions = filteredQuestions.filter(q => q.difficulty === difficulty);
+            }
+            
+            renderCustomQuestions(filteredQuestions);
+        }
+        
+        function renderCustomQuestions(questions) {
+            const questionList = document.getElementById('custom-question-list');
+            questionList.innerHTML = '<h3>筛选结果</h3>';
+            
+            if (questions.length === 0) {
+                questionList.innerHTML += '<p>暂无符合条件的题目</p>';
+                return;
+            }
+            
+            questions.forEach(question => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card';
+                questionCard.innerHTML = `
+                    <div class="question-header">
+                        <h4>${question.title}</h4>
+                        <span class="question-difficulty difficulty-${question.difficulty}">${getDifficultyName(question.difficulty)}</span>
+                        <span class="question-topic">${getTopicName(question.topic)}</span>
+                    </div>
+                    <div class="question-content">
+                        <p>${question.content}</p>
+                    </div>
+                    <div class="question-actions">
+                        <button class="calc-btn" onclick="addToMyBank(${question.id})">添加到我的题库</button>
+                    </div>
+                `;
+                questionList.appendChild(questionCard);
+            });
+        }
+        
+        function getDifficultyName(difficulty) {
+            const difficulties = {
+                basic: '基础',
+                medium: '中档',
+                hard: '拔高'
+            };
+            return difficulties[difficulty] || difficulty;
+        }
+        
+        function getTopicName(topic) {
+            const topics = {
+                algebra: '代数',
+                geometry: '几何',
+                function: '函数',
+                trigonometry: '三角函数',
+                statistics: '统计与概率'
+            };
+            return topics[topic] || topic;
+        }
+        
+        function addToMyBank(questionId) {
+            const question = allQuestions.find(q => q.id === questionId);
+            if (!question) return;
+            
+            // 检查是否已在题库中
+            if (myBank.some(q => q.id === questionId)) {
+                alert('题目已在我的题库中');
+                return;
+            }
+            
+            myBank.push(question);
+            localStorage.setItem('myBank', JSON.stringify(myBank));
+            renderMyBank();
+            alert('题目已添加到我的题库');
+        }
+        
+        function renderMyBank() {
+            const bankList = document.getElementById('my-bank-list');
+            
+            if (myBank.length === 0) {
+                bankList.innerHTML = '<p>暂无题目，从上面筛选结果中添加</p>';
+                return;
+            }
+            
+            bankList.innerHTML = '';
+            myBank.forEach(question => {
+                const questionCard = document.createElement('div');
+                questionCard.className = 'question-card';
+                questionCard.innerHTML = `
+                    <div class="question-header">
+                        <h4>${question.title}</h4>
+                        <span class="question-difficulty difficulty-${question.difficulty}">${getDifficultyName(question.difficulty)}</span>
+                        <span class="question-topic">${getTopicName(question.topic)}</span>
+                    </div>
+                    <div class="question-content">
+                        <p>${question.content}</p>
+                    </div>
+                    <div class="question-actions">
+                        <button class="calc-btn" onclick="removeFromMyBank(${question.id})">从题库中移除</button>
+                    </div>
+                `;
+                bankList.appendChild(questionCard);
+            });
+        }
+        
+        function removeFromMyBank(questionId) {
+            myBank = myBank.filter(q => q.id !== questionId);
+            localStorage.setItem('myBank', JSON.stringify(myBank));
+            renderMyBank();
+        }
+        
+        function generatePaper() {
+            const paperName = document.getElementById('paper-name').value || '自定义试卷';
+            const basicCount = parseInt(document.getElementById('basic-count').value) || 0;
+            const mediumCount = parseInt(document.getElementById('medium-count').value) || 0;
+            const hardCount = parseInt(document.getElementById('hard-count').value) || 0;
+            
+            // 按难度筛选题目
+            const basicQuestions = myBank.filter(q => q.difficulty === 'basic');
+            const mediumQuestions = myBank.filter(q => q.difficulty === 'medium');
+            const hardQuestions = myBank.filter(q => q.difficulty === 'hard');
+            
+            // 随机选择题目
+            const selectedBasic = getRandomQuestions(basicQuestions, basicCount);
+            const selectedMedium = getRandomQuestions(mediumQuestions, mediumCount);
+            const selectedHard = getRandomQuestions(hardQuestions, hardCount);
+            
+            // 生成试卷
+            const paper = {
+                name: paperName,
+                date: new Date().toISOString().split('T')[0],
+                questions: [...selectedBasic, ...selectedMedium, ...selectedHard]
+            };
+            
+            // 保存试卷
+            const papers = JSON.parse(localStorage.getItem('papers') || '[]');
+            papers.push(paper);
+            localStorage.setItem('papers', JSON.stringify(papers));
+            
+            // 显示生成结果
+            alert(`试卷 "${paperName}" 生成成功！包含 ${selectedBasic.length} 道基础题，${selectedMedium.length} 道中档题，${selectedHard.length} 道拔高题。`);
+        }
+        
+        function getRandomQuestions(questions, count) {
+            const shuffled = questions.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+        
+        // 学习提醒功能
+        let reminders = JSON.parse(localStorage.getItem('reminders') || '[]');
+        
+        function addReminder() {
+            const content = document.getElementById('reminder-content').value;
+            const days = parseInt(document.getElementById('reminder-days').value);
+            
+            if (!content) {
+                alert('请输入提醒内容');
+                return;
+            }
+            
+            const reminder = {
+                id: Date.now(),
+                content: content,
+                createdAt: new Date().toISOString(),
+                reminderDate: new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString(),
+                completed: false
+            };
+            
+            reminders.push(reminder);
+            localStorage.setItem('reminders', JSON.stringify(reminders));
+            renderReminders();
+            
+            // 清空输入
+            document.getElementById('reminder-content').value = '';
+            document.getElementById('reminder-days').value = 3;
+            
+            alert('提醒已添加');
+        }
+        
+        function renderReminders() {
+            const reminderItems = document.getElementById('reminder-items');
+            
+            if (reminders.length === 0) {
+                reminderItems.innerHTML = '<p>暂无提醒，添加一个提醒吧！</p>';
+                return;
+            }
+            
+            reminderItems.innerHTML = '';
+            reminders.forEach(reminder => {
+                const reminderItem = document.createElement('div');
+                reminderItem.className = 'reminder-item';
+                
+                const reminderDate = new Date(reminder.reminderDate);
+                const formattedDate = reminderDate.toLocaleString();
+                
+                reminderItem.innerHTML = `
+                    <div class="reminder-content">${reminder.content}</div>
+                    <div class="reminder-date">提醒时间：${formattedDate}</div>
+                    <div class="reminder-actions">
+                        <button class="calc-btn" onclick="completeReminder(${reminder.id})">标记完成</button>
+                        <button class="calc-btn" onclick="deleteReminder(${reminder.id})">删除</button>
+                    </div>
+                `;
+                
+                reminderItems.appendChild(reminderItem);
+            });
+        }
+        
+        function completeReminder(reminderId) {
+            const reminder = reminders.find(r => r.id === reminderId);
+            if (reminder) {
+                reminder.completed = true;
+                localStorage.setItem('reminders', JSON.stringify(reminders));
+                renderReminders();
+            }
+        }
+        
+        function deleteReminder(reminderId) {
+            reminders = reminders.filter(r => r.id !== reminderId);
+            localStorage.setItem('reminders', JSON.stringify(reminders));
+            renderReminders();
+        }
+        
+        function checkReminders() {
+            const now = new Date();
+            const dueReminders = reminders.filter(reminder => {
+                const reminderDate = new Date(reminder.reminderDate);
+                return !reminder.completed && reminderDate <= now;
+            });
+            
+            dueReminders.forEach(reminder => {
+                // 发送浏览器通知
+                if ('Notification' in window) {
+                    Notification.requestPermission().then(permission => {
+                        if (permission === 'granted') {
+                            new Notification('学习提醒', {
+                                body: reminder.content,
+                                icon: 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiBoZWlnaHQ9IjI0Ij48cGF0aCBkPSJNMTIgMjBsLTYtM2wtMiA0IDYgMyA2LTMtMi00eiIgZmlsbD0iIzY2N2VlYSIvPjwvc3ZnPg=='
+                            });
+                        }
+                    });
+                }
+                
+                // 标记为已完成
+                reminder.completed = true;
+            });
+            
+            if (dueReminders.length > 0) {
+                localStorage.setItem('reminders', JSON.stringify(reminders));
+                renderReminders();
+            }
+        }
+        
+        function updateForgettingCurve() {
+            const forgettingCurveList = document.getElementById('forgetting-curve-list');
+            
+            // 模拟艾宾浩斯遗忘曲线推荐
+            const recommendedItems = [];
+            
+            // 检查错题本中的题目
+            const errors = JSON.parse(localStorage.getItem('errors') || '[]');
+            errors.forEach(error => {
+                const createdDate = new Date(error.createdAt);
+                const now = new Date();
+                const daysDiff = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));
+                
+                // 艾宾浩斯遗忘曲线复习时间点：1, 2, 4, 7, 15, 30天
+                if ([1, 2, 4, 7, 15, 30].includes(daysDiff)) {
+                    recommendedItems.push(`复习错题：${error.question}`);
+                }
+            });
+            
+            // 检查收藏的题目
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            favorites.forEach(favorite => {
+                const createdDate = new Date(favorite.createdAt);
+                const now = new Date();
+                const daysDiff = Math.floor((now - createdDate) / (1000 * 60 * 60 * 24));
+                
+                if ([1, 2, 4, 7, 15, 30].includes(daysDiff)) {
+                    recommendedItems.push(`复习收藏题目：${favorite.title}`);
+                }
+            });
+            
+            if (recommendedItems.length === 0) {
+                forgettingCurveList.innerHTML = '<li>暂无推荐内容</li>';
+            } else {
+                forgettingCurveList.innerHTML = '';
+                recommendedItems.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    forgettingCurveList.appendChild(li);
+                });
+            }
+        }
+        
+        // 题目分享/导出功能
+        function exportContent() {
+            const exportType = document.getElementById('export-type').value;
+            const exportContent = document.getElementById('export-content').value;
+            
+            let content = '';
+            let fileName = '';
+            
+            // 获取要导出的内容
+            switch (exportContent) {
+                case 'errors':
+                    const errors = JSON.parse(localStorage.getItem('errors') || '[]');
+                    content = generateExportContent(errors, '错题本');
+                    fileName = '错题本';
+                    break;
+                case 'favorites':
+                    const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                    content = generateExportContent(favorites, '收藏题目');
+                    fileName = '收藏题目';
+                    break;
+                case 'mybank':
+                    const myBank = JSON.parse(localStorage.getItem('myBank') || '[]');
+                    content = generateExportContent(myBank, '我的题库');
+                    fileName = '我的题库';
+                    break;
+            }
+            
+            // 模拟导出功能
+            if (exportType === 'pdf') {
+                // 创建PDF文件
+                const blob = new Blob([content], { type: 'application/pdf' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${fileName}.pdf`;
+                a.click();
+                URL.revokeObjectURL(url);
+            } else if (exportType === 'word') {
+                // 创建Word文件
+                const blob = new Blob([content], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `${fileName}.doc`;
+                a.click();
+                URL.revokeObjectURL(url);
+            }
+            
+            alert('导出成功！');
+        }
+        
+        function generateExportContent(items, title) {
+            let content = `${title}\n\n`;
+            items.forEach((item, index) => {
+                content += `题目 ${index + 1}:\n`;
+                if (item.question) {
+                    content += `题干: ${item.question}\n`;
+                } else if (item.content) {
+                    content += `题干: ${item.content}\n`;
+                } else if (item.title) {
+                    content += `标题: ${item.title}\n`;
+                }
+                if (item.answer) {
+                    content += `答案: ${item.answer}\n`;
+                }
+                if (item.errorReason) {
+                    content += `错误原因: ${item.errorReason}\n`;
+                }
+                if (item.topic) {
+                    content += `知识点: ${getTopicName(item.topic)}\n`;
+                }
+                if (item.difficulty) {
+                    content += `难度: ${getDifficultyName(item.difficulty)}\n`;
+                }
+                content += '\n';
+            });
+            return content;
+        }
+        
+        function generateShareLink() {
+            const shareContent = document.getElementById('share-content').value;
+            
+            // 获取要分享的内容
+            let content = '';
+            switch (shareContent) {
+                case 'errors':
+                    content = JSON.stringify(JSON.parse(localStorage.getItem('errors') || '[]'));
+                    break;
+                case 'favorites':
+                    content = JSON.stringify(JSON.parse(localStorage.getItem('favorites') || '[]'));
+                    break;
+                case 'mybank':
+                    content = JSON.stringify(JSON.parse(localStorage.getItem('myBank') || '[]'));
+                    break;
+            }
+            
+            // 生成分享链接（模拟）
+            const encodedContent = btoa(unescape(encodeURIComponent(content)));
+            const shareLink = `${window.location.origin}${window.location.pathname}?share=${encodedContent}`;
+            
+            // 显示分享结果
+            const shareResult = document.getElementById('share-result');
+            shareResult.innerHTML = `
+                <p>分享链接已生成：</p>
+                <div class="share-link">${shareLink}</div>
+                <button class="calc-btn copy-btn" onclick="copyShareLink('${shareLink}')">复制链接</button>
+                <p>提示：将此链接分享给同学，他们可以查看你分享的题目。</p>
+            `;
+        }
+        
+        function copyShareLink(link) {
+            navigator.clipboard.writeText(link).then(() => {
+                alert('链接已复制到剪贴板！');
+            }).catch(err => {
+                console.error('复制失败:', err);
+                alert('复制失败，请手动复制链接。');
+            });
+        }
+        
+        // 学习成就/徽章功能
+        const badges = [
+            {
+                id: 1,
+                title: '刷题小能手',
+                description: '完成10道题目',
+                icon: '📝',
+                condition: (userData) => userData.completedQuestions >= 10
+            },
+            {
+                id: 2,
+                title: '公式大师',
+                description: '查看20个公式',
+                icon: '📊',
+                condition: (userData) => userData.viewedFormulas >= 20
+            },
+            {
+                id: 3,
+                title: '错题克星',
+                description: '添加5道错题',
+                icon: '❌',
+                condition: (userData) => userData.errorCount >= 5
+            },
+            {
+                id: 4,
+                title: '学习达人',
+                description: '连续学习7天',
+                icon: '🔥',
+                condition: (userData) => userData.consecutiveDays >= 7
+            },
+            {
+                id: 5,
+                title: '收藏爱好者',
+                description: '收藏10道题目',
+                icon: '⭐',
+                condition: (userData) => userData.favoriteCount >= 10
+            },
+            {
+                id: 6,
+                title: '知识点专家',
+                description: '掌握15个知识点',
+                icon: '🎯',
+                condition: (userData) => userData.masteredTopics >= 15
+            }
+        ];
+        
+        let userAchievements = JSON.parse(localStorage.getItem('userAchievements') || '{}');
+        let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        
+        function updateUserData() {
+            // 模拟用户数据
+            userData = {
+                completedQuestions: userData.completedQuestions || 0,
+                viewedFormulas: userData.viewedFormulas || 0,
+                errorCount: JSON.parse(localStorage.getItem('errors') || '[]').length,
+                favoriteCount: JSON.parse(localStorage.getItem('favorites') || '[]').length,
+                masteredTopics: Object.values(JSON.parse(localStorage.getItem('learningProgress') || '{}')).filter(status => status === 'mastered').length,
+                consecutiveDays: userData.consecutiveDays || 0
+            };
+            
+            // 更新连续学习天数
+            const lastStudyDate = userData.lastStudyDate;
+            const today = new Date().toISOString().split('T')[0];
+            
+            if (lastStudyDate === today) {
+                // 今天已经学习过
+            } else if (lastStudyDate) {
+                const lastDate = new Date(lastStudyDate);
+                const todayDate = new Date(today);
+                const diffTime = Math.abs(todayDate - lastDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                
+                if (diffDays === 1) {
+                    // 连续学习
+                    userData.consecutiveDays += 1;
+                } else {
+                    // 中断了，重新开始
+                    userData.consecutiveDays = 1;
+                }
+            } else {
+                // 第一次学习
+                userData.consecutiveDays = 1;
+            }
+            
+            userData.lastStudyDate = today;
+            localStorage.setItem('userData', JSON.stringify(userData));
+        }
+        
+        function checkAchievements() {
+            updateUserData();
+            
+            badges.forEach(badge => {
+                if (!userAchievements[badge.id] && badge.condition(userData)) {
+                    userAchievements[badge.id] = true;
+                    showBadgeEarned(badge);
+                }
+            });
+            
+            localStorage.setItem('userAchievements', JSON.stringify(userAchievements));
+        }
+        
+        function showBadgeEarned(badge) {
+            alert(`恭喜你获得徽章：${badge.title}！\n${badge.description}`);
+        }
+        
+        function renderBadges() {
+            const badgeItems = document.getElementById('badge-items');
+            badgeItems.innerHTML = '';
+            
+            badges.forEach(badge => {
+                const isCompleted = userAchievements[badge.id] || false;
+                const badgeItem = document.createElement('div');
+                badgeItem.className = `badge-item ${isCompleted ? 'completed' : ''}`;
+                badgeItem.innerHTML = `
+                    <div class="badge-icon">${badge.icon}</div>
+                    <div class="badge-title">${badge.title}</div>
+                    <div class="badge-description">${badge.description}</div>
+                    <div class="badge-status ${isCompleted ? 'completed' : 'pending'}">
+                        ${isCompleted ? '已完成' : '进行中'}
+                    </div>
+                `;
+                badgeItems.appendChild(badgeItem);
+            });
+            
+            updateAchievementStats();
+        }
+        
+        function updateAchievementStats() {
+            const totalAchievements = badges.length;
+            const completedAchievements = Object.values(userAchievements).filter(Boolean).length;
+            const progressPercentage = Math.round((completedAchievements / totalAchievements) * 100);
+            
+            document.getElementById('total-achievements').textContent = totalAchievements;
+            document.getElementById('completed-achievements').textContent = completedAchievements;
+            document.getElementById('progress-percentage').textContent = `${progressPercentage}%`;
+        }
+        
+        // 页面加载完成后初始化图表
+        window.addEventListener('load', function() {
+            initChart();
+            renderErrors();
+            renderNotes();
+            updateErrorCharts();
+            updateLearningProgressChart();
+            renderMyBank();
+            renderReminders();
+            updateForgettingCurve();
+            checkReminders();
+            checkAchievements();
+            renderBadges();
+            
+            // 每小时检查一次提醒
+            setInterval(checkReminders, 60 * 60 * 1000);
+        });
+    </script>
+</body>
+</html>
